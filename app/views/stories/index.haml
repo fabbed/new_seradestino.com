@@ -1,0 +1,36 @@
+-title("seradestino.com - ¿Destino o casualidad?")
+
+-content_for(:sidebar) do
+  =render :partial => '/shared/sidebars/sidebar', :locals => {:big => false}
+
+Content
+/ -content_for(:top) do
+/   .country_selector
+/     .cs_content
+/       =render :partial => "shared/country_selector", :locals => {:title => "<b>Nuevas historias</b> de", :mode => "index", :width => 140}
+/       
+/       / -form_tag({:controller => :stories, :action => :set_selected_country}, :method => :post) do
+/       /   %table{:cellpadding => 2}
+/       /     %tr
+/       /       %td{:valign => "BOTTOM", :style => "width:128px;"} Nuevas historias de
+/       /       %td{:valign => "BOTTOM", :style => "width:163px;"}
+/       /         =select_tag :country_id, options_for_select(Country.for_story_select_box, visitor_country_id_or_selected_country_id), :id => "select_country"
+/       /         =hidden_field_tag "return_path", get_return_path(params)
+/       /       %td{:valign => "BOTTOM"}=image_submit_tag "new/btn_refresh.png"
+/       /     %tr
+/       /       %td{:colspan => 3}= page_entries_info @stories, :entry_name => 'historias'
+/ 
+/ 
+/ -content_for(:top) do
+/   .country_selector
+/     .cs_content
+/       .filter_indicator
+/         / %span Nuevas Historias en queputamierda.com
+/ 
+/ -content_for(:main) do
+/   =render :partial => 'stories/story_new', :collection => @stories
+/ 
+/   .paginators
+/     -if PAGINATION or true
+/       = will_paginate @stories, :prev_label => '« Anterior', :next_label => 'Siguiente »'
+/       = will_paginate @stories, :page_links => false, :class => :prev_next_pagination, :previous_label => "", :next_label => ""  

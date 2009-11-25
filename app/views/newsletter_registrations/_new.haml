@@ -1,0 +1,13 @@
+- form_for(newsletter_registration) do |f|
+  = f.error_messages
+  %br
+  %br  
+  %span.label Email:
+  = f.text_field :email, :class => :input
+  =f.error_message_on :email
+  
+  %br
+  = image_submit_tag "btn_register.png"
+.clear
+
+=render :partial => "/newsletter_registrations/js_validation", :locals => { :form_id => "new_newsletter_registration" }

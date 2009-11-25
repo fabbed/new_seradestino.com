@@ -1,0 +1,114 @@
+In Country Selector nur Countries anzeigen die es gibt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Böse Kommentare:
+-Evtl. durch Priming versuchen das zu verhinderm erinnern an gute Sachen
+-
+
+Errors:
+Parameters  	
+{"story"=>"1133",
+ "action"=>"create",
+ "authenticity_token"=>"txto8ueTkVMzIIt5B4pzdgaUmWrV3pGiOVAZ+jkUjRc=",
+ "controller"=>"comments",
+ "comment"=>
+  {"comment"=>
+    "eso es incesto, no sabes que no debes tener relaciones sexuales con tu hermana? Qué te pasaba por la cabeza en ese momento?"}}
+
+-Story.find(1133), Email mit jimmylñagobas@hotmail.com
+-Loesung: nur Email wenn email valid ist
+
+
+
+
+rake stories:get_real_country_names
+Deaktivieren von dem Mandar COmentario Button
+
+Soltar la mierda button
+what can be better kasten
+
+Next:
+-Admin Stuff für Elena
+-AdSense
+-Sidebar transparent
+-Landsuche
+-more info on flag tooltips (people in total, people in the internet)
+-big tooltip giving options for seeing all entradas from that country etc.
+
+
+not clickable childrens in pngfix and positioned elements (gif?)
+
+
+
+
+
+-terms verlinken
+-header text einbinden
+-comments antwortbox
+-antwortmöglichkeit und einrckung
+
+
+
+
+-Google-Suche
+
+-Scroll Balken nach unten und evtl. nofollow
+
+-escribir como anonymo unchecken
+default-wert ändern
+
+
+Elena
+  2) Lo de los comentarios debería dar un giro grande grande. Lo que te dije ya de que se pareciera más a un foro. Así no ponemos límite al crecimiento del contenido. Que se puedan responder unos a otros, que salgan ramas. Para eso es muy importante que se resalte el campo de nombre de usuario. Hay que fomentarlo, tantos anónimos no mola. Incluso se me ocurre que puedan usar nombres aunque no se registren (eso tb sirve pa engañar a los nuevos). Lo que no sé es si es conveniente restringur los nombres ya regustrados... auqnue lo estamos haciendo por mail, ¿no? ¿Entonces puede haber usuarios duplicados?
+  
+  
+- Historias relacionadas nur anziegen wenn auch vorhanden
+- Google Suche
+- Elena soll sich endlich registrieren
+- story in die meta description rein
+
+
+
+Elena
+  -neuer Algorithmus
+  -Texte für sidebars tops/flops
+  -Newsletter wenn fertig
+  -Varianten für Header Text

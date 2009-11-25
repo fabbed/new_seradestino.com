@@ -1,0 +1,88 @@
+=render :partial => "stories/story_new", :locals => {:story_new => story}
+
+.c
+#comments
+  .cl
+  %br
+  .story_comment_divider.fix
+    &nbsp;
+
+  .leave_comment
+    %h3 Tu respuesta:
+    %br
+    -form_for :comment, :url => comments_path(:story => story.id), :html => {:id => "comment_form"} do |f|
+      =text_area_tag "comment[comment]", "", :id => "story_comment_field", :size => "1x6"
+      =submit_tag "Mandar comentario", :style => "margin-top: 10px;", :class => "comment_submit"
+
+  %h2 Comentarios
+
+  -if @story.comments.size > 0
+    -@story.comments.reverse.each do |comment|
+      -if comment.comment.size > 5
+        .comment.round
+          .info
+            .flag
+              =image_tag "new/flags/#{comment.country_code.downcase}.png", :title => comment.country_name, :class => "tooltip" if comment.country_code
+              %span.info
+                ="Escrito por: #{author(comment)} el #{my_date(comment.created_at)}"
+          %span.black
+            =comment.comment
+  -else
+    No hay comentarios para esta entrada
+  .clear
+  %br
+  %br
+
+
+
+
+/ .story_wrapper.round{:id => dom_id(story)}
+/   .body.round
+/     %h2=h story.title
+/     =simple_format story.body
+/     .story_tags
+/       ="Palabras claves: #{story.tag_list.map {|tag| link_to "#{tag}, ", :controller => :stories, :action => :tag, :id => tag}}"
+/   .footer
+/     .category.fl
+/       ="#{link_to(story.category.name, category_path(story.category))}/#{my_date(story.created_at)}"
+/     .vote_top.fl
+/       %span
+/         -unless session[:flop_votes].include?(story.id) or session[:top_votes].include?(story.id)
+/           =link_to_function "¡Qué puta mierda!(#{story.rated_top})", "vote_story(#{story.id}, 'top', 'single')", :class => "vote_link"
+/         -else
+/           =link_to_function "¡Qué puta mierda!(#{story.rated_top})", "alert('Ya voteaste')", :class => "inactive"
+/     .vote_flop.fl
+/       %span
+/         -unless session[:flop_votes].include?(story.id) or session[:top_votes].include?(story.id)
+/           =link_to_function "Te lo buscaste(#{story.rated_flop})", "vote_story(#{story.id}, 'flop', 'single')", :class => "vote_link"
+/         -else
+/           =link_to_function "Te lo buscaste(#{story.rated_flop})", "alert('Ya voteaste')", :class => "inactive"
+/     .comments.fl{:style => "padding-left: 17px;"}
+/       ="Comentarios(#{story.comments.size})"
+/   
+/     .clear.h_20
+/     .h_10
+/     %h2 Escribir comentario
+/     .h_5
+/     Tu respuesta:
+/     %br
+/     -form_for :comment, :url => comments_path(:story => story.id), :html => {:id => "comment_form"} do |f|
+/       =text_area_tag "comment[comment]", "", :id => "story_comment_field"
+/       .fr{:style => "margin-top: 10px;"}
+/         =submit_tag "Mandar comentario"  
+/       .clear
+/ 
+/     %h2 Comentarios
+/     -story.comments.reverse.each do |comment|
+/       .story_comment.round_corners.back_white
+/         -if comment.user_id > 0
+/           =User.find_by_id(comment.user_id).login+":"
+/         -else
+/           ="anónimo:"
+/         %span.comment_meta
+/           ="#{my_date(comment.created_at)}"
+/         %br
+/         %span.black
+/           =comment.comment
+
+=render :partial => "comments/js_validation", :locals => { :form_id => "comment_form" }

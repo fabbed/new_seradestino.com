@@ -1,0 +1,6 @@
+%h2 Editing story
+= render :partial => "form", :locals => {:story => @story}
+%ul
+  %li= link_to 'Show', @story
+  %li= link_to 'Back', stories_path
+  %li= link_to 'Destroy', @story, :confirm => 'Are you sure?', :method => :delete  

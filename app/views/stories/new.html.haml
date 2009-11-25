@@ -1,0 +1,4 @@
+%h2 New story
+= render :partial => "form", :locals => {:story => @story}
+%ul
+  %li= link_to 'Back', stories_path

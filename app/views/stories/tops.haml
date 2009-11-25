@@ -1,0 +1,19 @@
+-title("Las putadas más grandes")
+
+-content_for(:sidebar) do
+  =render :partial => '/shared/sidebars/sidebar_tops'
+
+
+-content_for(:top) do
+  .country_selector
+    .cs_content
+      =render :partial => "shared/country_selector", :locals => {:title => "Las <b>putadas más grandes</b> de", :mode => "tops", :width => 195}
+      
+
+-content_for(:main) do
+  =render :partial => 'stories/story_new', :collection => @stories
+
+
+-if PAGINATION
+  = will_paginate @stories, :prev_label => '« Anterior', :next_label => 'Siguiente »'
+  = will_paginate @stories, :page_links => false, :class => :prev_next_pagination, :previous_label => "", :next_label => ""
