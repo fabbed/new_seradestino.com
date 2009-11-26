@@ -1,4 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
+  map.signup   '/registrarse', :controller => 'users',   :action => 'new'
+  map.login    '/conectar',  :controller => 'session', :action => 'new'
+  map.logout   '/cerrar', :controller => 'session', :action => 'destroy'
+  map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
+
+
+
+  map.resources :users
+
+  map.resource :session
+
   map.resources :visitors
   map.resources :visitor_sessions
 

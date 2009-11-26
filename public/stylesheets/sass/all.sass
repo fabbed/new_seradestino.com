@@ -12,10 +12,27 @@
 !header_sub_text = #FF9900  
 /----------------- GENERAL
 
+
+#inside_left, #inside_right, .wrapper
+  :float left
+
+#inside_left, #inside_right
+  :background-color white
+  :width auto
+
+#inside_left
+  :background transparent url(/images/left_moon.jpg) no-repeat scroll right top
+  :width 50px
+  :height 600px
+
+#inside_right
+  :background transparent url(/images/right_moon.jpg) no-repeat scroll left top
+  :width 120px
+  :height 600px
+
 #spinner
   :float left
   :display none
-
 
 .section
   .section_content
@@ -23,12 +40,12 @@
 
 body
   :background-color black
-  //  :background url(/images/body_background.jpg) no-repeat scroll 0 0em    
   :font-family Georgia, Verdana, Tahoma, Helvetica, Arial
   :font-size 10px
   :color = !text_color
   :text-align center
-    
+  :width 1260px
+  
 .fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span
   :behavior url("/iepngfix.htc")
 
@@ -40,6 +57,10 @@ body
   :text-align left
   :margin 0 auto
   :width 960px
+//  :position relative
+//  :left 50%
+//  :margin-left -480px
+
 
 #content
   :width 100%

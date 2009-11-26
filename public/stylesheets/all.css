@@ -1,4 +1,21 @@
 
+#inside_left, #inside_right, .wrapper {
+  float: left; }
+
+#inside_left, #inside_right {
+  background-color: white;
+  width: auto; }
+
+#inside_left {
+  background: transparent url(/images/left_moon.jpg) no-repeat scroll right top;
+  width: 50px;
+  height: 600px; }
+
+#inside_right {
+  background: transparent url(/images/right_moon.jpg) no-repeat scroll left top;
+  width: 120px;
+  height: 600px; }
+
 #spinner {
   float: left;
   display: none; }
@@ -11,7 +28,8 @@ body {
   font-family: Georgia, Verdana, Tahoma, Helvetica, Arial;
   font-size: 10px;
   color: #26130c;
-  text-align: center; }
+  text-align: center;
+  width: 1260px; }
 
 .fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span {
   behavior: url("/iepngfix.htc"); }

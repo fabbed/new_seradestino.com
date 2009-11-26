@@ -39,92 +39,10 @@
         #content
           =yield(:sidebar)
           #middle.fix
-            #content_header
-              #content_header_content
-                HIER HEADER
+            =yield(:top)
             #content_main_wrapper
               #content_main
-                Test
-                Test
-                Test
-                Test
-                %br
-                Test
-                Test
-                Test
-                %br                
-                Test
-                Test
-                Test
-                %br
-                Test
-                Test
-                Test
-                %br                
-                %br
-                Test
-                Test
-                Test
-                %br
-                Test
-                Test
-                Test
-                %br                
-                %br
-                Test
-                Test
-                Test
-                %br
-                Test
-                Test
-                Test
-                %br                
-                %br
-                Test
-                Test
-                Test
-                %br
-                Test
-                Test
-                Test
-                %br                
-                %br
-                Test
-                Test
-                Test
-                %br
-                Test
-                Test
-                Test
-                %br                
-                %br
-                Test
-                Test
-                Test
-                %br                
-                Test
-                Test
-                Test
-                %br
-                Test
-                Test
-                Test
-                %br                
-                %br
-                Test
-                Test
-                Test
-                %br                
-                Test
-                Test
-                Test
-                %br
-                Test
-                Test
-                Test
-                %br                
-                Test
-                Test
+                = yield
               /   #stories_content
               /     / -if controller.controller_name == "stories" and controller.action_name == "new"
               /     /   #vamos.fix
@@ -143,14 +61,14 @@
               /     /       #{visual_effect :highlight, "flash"}
               /     / 
               /     / =yield(:main) || "&nbsp;"
-              / =# yield
+              
 
               =image_tag "footer_cat.png", :id => "footer_cat"
 
           #end.fix &nbsp;
           
           =link_to (image_tag("new/terms.png", :class => :fix), "#", :id => "terms_link")
-    
+    #inside_right $nbsp;
     =yield(:javascript)
 
     #spinner
