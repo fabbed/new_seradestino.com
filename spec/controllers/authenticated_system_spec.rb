@@ -6,11 +6,11 @@ include AuthenticatedTestHelper
 include AuthenticatedSystem
 def action_name() end
 
-describe SessionsController do
+describe flash[:info]Controller do
   fixtures :users
   
   before do
-    # FIXME -- sessions controller not testing xml logins 
+    # FIXME -- flash[:info] controller not testing xml logins 
     stub!(:authenticate_with_http_basic).and_return nil
   end    
   describe "logout_killing_session!" do

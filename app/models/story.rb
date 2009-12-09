@@ -2,9 +2,11 @@ class Story < ActiveRecord::Base
   # belongs_to :user
   belongs_to :category
   belongs_to :country  
+  belongs_to :user 
 
   acts_as_commentable
   acts_as_taggable
+  acts_as_rateable
 
   validates_presence_of   :body, :message => "Debes escribir una historia"
   validates_presence_of   :title, :message => "Debes poner un titulo"
@@ -14,6 +16,9 @@ class Story < ActiveRecord::Base
   
   validates_length_of     :body,              :within => 99..1000000, :message => "Al menos 100 letras"
   validates_presence_of :category_id, :message => "Elige una categoría"
+
+  validates_format_of       :email,    :with => Authentication.email_regex, :message => I18n.t("user.email_format"), :allow_nil => true
+
 
   named_scope :moderated, :conditions => ['on_startpage = ?', true]
   named_scope :tops, :order => ['rated_top desc']

@@ -13,7 +13,7 @@ Story: Logging in
   Scenario: Anonymous user can get a login form.
     Given an anonymous user
     When  she goes to /login
-    Then  she should be at the new sessions page
+    Then  she should be at the new flash[:info] page
      And  the page should look AWESOME
      And  she should see a <form> containing a textfield: Login, password: Password, and submit: 'Log in'
   
@@ -23,7 +23,7 @@ Story: Logging in
   Scenario: Anonymous user can log in
     Given an anonymous user
      And  an activated user named 'reggie'
-    When  she creates a singular sessions with login: 'reggie', password: 'monkey', remember me: ''
+    When  she creates a singular flash[:info] with login: 'reggie', password: 'monkey', remember me: ''
     Then  she should be redirected to the home page
     When  she follows that redirect!
     Then  she should see a notice message 'Logged in successfully'
@@ -33,7 +33,7 @@ Story: Logging in
   Scenario: Logged-in user who logs in should be the new one
     Given an activated user named 'reggie'
      And  an activated user logged in as 'oona'
-    When  she creates a singular sessions with login: 'reggie', password: 'monkey', remember me: ''
+    When  she creates a singular flash[:info] with login: 'reggie', password: 'monkey', remember me: ''
     Then  she should be redirected to the home page
     When  she follows that redirect!
     Then  she should see a notice message 'Logged in successfully'
@@ -46,7 +46,7 @@ Story: Logging in
   Scenario: Anonymous user can log in and be remembered
     Given an anonymous user
      And  an activated user named 'reggie'
-    When  she creates a singular sessions with login: 'reggie', password: 'monkey', remember me: '1'
+    When  she creates a singular flash[:info] with login: 'reggie', password: 'monkey', remember me: '1'
     Then  she should be redirected to the home page
     When  she follows that redirect!
     Then  she should see a notice message 'Logged in successfully'
@@ -61,14 +61,14 @@ Story: Logging in
   
   Scenario: Logged-in user who fails logs in should be logged out
     Given an activated user named 'oona'
-    When  she creates a singular sessions with login: 'oona', password: '1234oona', remember me: '1'
+    When  she creates a singular flash[:info] with login: 'oona', password: '1234oona', remember me: '1'
     Then  she should be redirected to the home page
     When  she follows that redirect!
     Then  she should see a notice message 'Logged in successfully'
      And  oona should be logged in
      And  she should have an auth_token cookie
-    When  she creates a singular sessions with login: 'reggie', password: 'i_haxxor_joo'
-    Then  she should be at the new sessions page
+    When  she creates a singular flash[:info] with login: 'reggie', password: 'i_haxxor_joo'
+    Then  she should be at the new flash[:info] page
     Then  she should see an error message 'Couldn't log you in as 'reggie''
      And  she should not be logged in
      And  she should not have an auth_token cookie
@@ -76,31 +76,31 @@ Story: Logging in
   
   Scenario: Log-in with bogus info should fail until it doesn't
     Given an activated user named 'reggie'
-    When  she creates a singular sessions with login: 'reggie', password: 'i_haxxor_joo'
-    Then  she should be at the new sessions page
+    When  she creates a singular flash[:info] with login: 'reggie', password: 'i_haxxor_joo'
+    Then  she should be at the new flash[:info] page
     Then  she should see an error message 'Couldn't log you in as 'reggie''
      And  she should not be logged in
      And  she should not have an auth_token cookie
      And  her session store should not have user_id
-    When  she creates a singular sessions with login: 'reggie', password: ''
-    Then  she should be at the new sessions page
+    When  she creates a singular flash[:info] with login: 'reggie', password: ''
+    Then  she should be at the new flash[:info] page
     Then  she should see an error message 'Couldn't log you in as 'reggie''
      And  she should not be logged in
      And  she should not have an auth_token cookie
      And  her session store should not have user_id
-    When  she creates a singular sessions with login: '', password: 'monkey'
-    Then  she should be at the new sessions page
+    When  she creates a singular flash[:info] with login: '', password: 'monkey'
+    Then  she should be at the new flash[:info] page
     Then  she should see an error message 'Couldn't log you in as '''
      And  she should not be logged in
      And  she should not have an auth_token cookie
      And  her session store should not have user_id
-    When  she creates a singular sessions with login: 'leonard_shelby', password: 'monkey'
-    Then  she should be at the new sessions page
+    When  she creates a singular flash[:info] with login: 'leonard_shelby', password: 'monkey'
+    Then  she should be at the new flash[:info] page
     Then  she should see an error message 'Couldn't log you in as 'leonard_shelby''
      And  she should not be logged in
      And  she should not have an auth_token cookie
      And  her session store should not have user_id
-    When  she creates a singular sessions with login: 'reggie', password: 'monkey', remember me: '1'
+    When  she creates a singular flash[:info] with login: 'reggie', password: 'monkey', remember me: '1'
     Then  she should be redirected to the home page
     When  she follows that redirect!
     Then  she should see a notice message 'Logged in successfully'

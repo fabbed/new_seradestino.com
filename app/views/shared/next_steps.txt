@@ -1,4 +1,16 @@
-In Country Selector nur Countries anzeigen die es gibt
+- User Bild Größe
+- Geschichten anzeigen
+- Kommentare
+- Meine Geschichten
+- Layout anpassen
+
+
+
+
+
+
+
+
 
 
 

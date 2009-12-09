@@ -1,40 +1,32 @@
-=render :partial => "stories/story_new", :locals => {:story_new => story}
-
+=render :partial => "stories/story", :locals => {:story => story}
 .c
 #comments
   .cl
   %br
   .story_comment_divider.fix
-    &nbsp;
-
+    =image_tag "comments_leave_a_comment_header.png", :style => "margin-top: 22px;"    
+  
   .leave_comment
-    %h3 Tu respuesta:
-    %br
-    -form_for :comment, :url => comments_path(:story => story.id), :html => {:id => "comment_form"} do |f|
-      =text_area_tag "comment[comment]", "", :id => "story_comment_field", :size => "1x6"
-      =submit_tag "Mandar comentario", :style => "margin-top: 10px;", :class => "comment_submit"
+    .brown_background
+      %h3= t("comments.textarea_title")
+      -form_for :comment, :url => comments_path(:story => story.id), :html => {:id => "comment_form", :class => "comment_form"} do |f|
+        =text_area_tag "comment[comment]", "", :id => "story_comment_field", :size => "1x6"
+        =submit_tag t("comments.send_comment"), :style => "margin-top: 2px;", :class => "comment_submit button button_blue_small fr"
+      .c
+  
+  =image_tag "comments_header.png", :style => "margin-top: 22px;"    
 
-  %h2 Comentarios
-
-  -if @story.comments.size > 0
-    -@story.comments.reverse.each do |comment|
-      -if comment.comment.size > 5
-        .comment.round
-          .info
-            .flag
-              =image_tag "new/flags/#{comment.country_code.downcase}.png", :title => comment.country_name, :class => "tooltip" if comment.country_code
-              %span.info
-                ="Escrito por: #{author(comment)} el #{my_date(comment.created_at)}"
-          %span.black
-            =comment.comment
+  / #8A5126
+  -if @story.root_comments.size > 0
+    = render :partial => "comments/comment", :collection => @story.root_comments, :locals => {:level => "parent"}
   -else
-    No hay comentarios para esta entrada
+    .c
+    %span.font_14=t("comments.no_comments")
   .clear
   %br
   %br
 
-
-
+=render :partial => "comments/js_validation", :locals => { :form_class => "comment_form" }
 
 / .story_wrapper.round{:id => dom_id(story)}
 /   .body.round
@@ -83,6 +75,6 @@
 /           ="#{my_date(comment.created_at)}"
 /         %br
 /         %span.black
-/           =comment.comment
+/           =comment.body
 
-=render :partial => "comments/js_validation", :locals => { :form_id => "comment_form" }
+=#render :partial => "comments/js_validation", :locals => { :form_id => "comment_form" }

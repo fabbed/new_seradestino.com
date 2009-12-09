@@ -1,14 +1,26 @@
 ActionController::Routing::Routes.draw do |map|
-  map.signup   '/registrarse', :controller => 'users',   :action => 'new'
-  map.login    '/conectar',  :controller => 'session', :action => 'new'
-  map.logout   '/cerrar', :controller => 'session', :action => 'destroy'
+  map.signup   '/registrate', :controller => 'users',   :action => 'new'
+  map.login    '/entrar',  :controller => 'sessions', :action => 'new'
+  map.logout   '/cerrar-sesion', :controller => 'sessions', :action => 'destroy'
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
+
+
+  map.reglas  '/reglas-de-uso', :controller => 'pages', :action => 'reglas_de_uso'
+  map.privacidad  '/politica-de-privacidad', :controller => 'pages', :action => 'politica_de_privacidad'
+  
+  map.my_account '/mi-cuenta', :controller => 'account/base', :action => 'show'
+  
+  map.resource :account, :collection => { :validate => :get } do |account|
+    account.resource   :profile,  :controller => "account/profiles"
+    account.resource   :avatar,   :controller => "account/avatars"
+    account.resource   :stories,   :controller => "account/stories"    
+  end
 
 
 
   map.resources :users
 
-  map.resource :session
+  map.resource :sessions
 
   map.resources :visitors
   map.resources :visitor_sessions
@@ -21,11 +33,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :stories, 
                 :collection => { :tops => :get, :flops => :get, :to_moderate => :get, :new2 => :get},
-                :member => { :vote_top => :post, :vote_flop => :post }
+                :member => { :rate => :post }
 
   map.resources :categories
     
-  map.resource :comments  
+  map.resource :comments
 
   map.terms      '/terminos-del-servicio', :controller => 'terminos', :action => 'terms'
   map.privacidad  '/politica-de-privacidad', :controller => 'terminos', :action => 'privacidad'

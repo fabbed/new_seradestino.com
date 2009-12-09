@@ -1,15 +1,185 @@
-class StoriesController < ApplicationController
+class StoriesController < LocatableController
+  # GET /stories
+  # GET /stories.xml
 
-  before_filter :find_story
+  protect_from_forgery :only => [:create, :update, :destroy] 
+  before_filter :prepare_stuff, :only => [:vote_top, :vote_flop] 
+  before_filter :load_story, :only => [:vote_top, :vote_flop, :rate] 
+  before_filter :activation_required
 
-  STORIES_PER_PAGE = 20
+  # def tag
+  #   @stories = Story.find_tagged_with(params[:id], :match_all => true).paginate(:page => params[:page], :per_page => STORIES_PER_PAGE)
+  #   @tags = Story.tag_counts    
+  # end
 
+  def load_story
+    @story = Story.find(params[:id])    
+    @rating = (params[:type] == "destino" ? 5 : 1)
+    #todo: into I18N
+    flash[:success] = "Has votado por la historia <a href='/stories/#{@story.id}'>#{@story.title}</a>. <br/>Gracias por el voto!"
+  end
+  
+  def rate
+    @story.rate_it(@rating.to_i, (current_user ? current_user.id : get_visitor_session.visitor.vcode))
+    redirect_to story_path(@story)
+  end
+
+  def vote_top
+    session[:top_votes] << @story.id
+
+    @story.rated_top = @story.rated_top + 1
+    @story.save
+
+    new_rating
+
+    respond_to do |wants|
+      wants.html do
+        redirect_to root_path
+      end
+      wants.js do
+        render :partial => "mark_as_voted"
+      end
+    end
+  end
+
+  def vote_flop
+    session[:flop_votes] << params[:id].to_i
+    @story.rated_flop = @story.rated_flop + 1
+    @story.save
+
+    new_rating
+    
+    respond_to do |wants|
+      wants.html do
+        redirect_to root_path        
+      end
+      wants.js do
+        render :partial => "mark_as_voted"
+      end
+    end
+  end
+
+
+
+  def new_rating
+    #Track: New Comment
+    #TODO TRACK
+    # if (visitor_session = get_visitor_session)
+    #   visitor_session.ratings << @story.id
+    #   visitor_session.save
+    #   puts "Track: New Rating"
+    # else
+    #   puts "error in track: new rating"        
+    # end
+  end
+
+  def tops
+    
+    date_range=case params[:tiempo]
+      when nil
+        (Date.today-30.days)..(Date.today)
+      when "hoy"
+        (Date.today-1.days)..Date.today
+      when "ayer"
+        (Date.today-2.days)..(Date.today-1.day)
+      when "semana"
+        (Date.today-7.days)..(Date.today)
+      when "mes"
+        (Date.today-30.days)..(Date.today)
+      when "siempre"
+        "no sort"
+    end
+
+    builder = Story.scope_builder
+    builder.tops
+    builder.date_between(date_range) unless date_range == "no sort"
+    builder.from_country(session[:selected_country]) if session[:selected_country]
+    
+    @stories = builder.paginate(:page => params[:page], :per_page => 8)
+
+  end
+
+  def flops
+    date_range=case params[:tiempo]
+      when nil
+        (Date.today-30.days)..(Date.today)
+      when "hoy"
+        (Date.today-1.days)..Date.today
+      when "ayer"
+        (Date.today-2.days)..(Date.today-1.day)
+      when "semana"
+        (Date.today-7.days)..(Date.today)
+      when "mes"
+        (Date.today-30.days)..(Date.today)
+      when "siempre"
+        "no sort"
+    end
+    
+    builder = Story.scope_builder
+    builder.flops
+    builder.date_between(date_range) unless date_range == "no sort"
+    builder.from_country(session[:selected_country]) if session[:selected_country]
+    
+    @stories = builder.paginate(:page => params[:page], :per_page => 8)
+  end
+
+  def index
+    builder = Story.scope_builder
+    builder.newest_first
+    builder.from_country(session[:selected_country]) if session[:selected_country]
+    @stories = builder.paginate(:page => params[:page], :per_page => 8)
+  end
+
+  # GET /stories/1
+  # GET /stories/1.xml
+  def show
+
+    # story = Story.find(13)
+    # story.location = session[:geo_location]
+    # story.save
+
+
+    @story = Story.find(params[:id])
+
+    @related_stories = Story.find_tagged_with(@story.tag_list, :limit => 10)
+    @related_stories = @related_stories - [@story]
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @story }
+    end
+  end
+
+  # GET /stories/new
+  # GET /stories/new.xml
+  def new
+    @story = Story.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @story }
+    end
+  end
+
+  # GET /stories/1/edit
+  def edit
+    @story = Story.find(params[:id])
+  end
+
+  # POST /stories
+  # POST /stories.xml
   def create
     @story = Story.new(params[:story])
+    @story.tag_list = params[:story][:tag_list]
+    @story.user = current_user if current_user
+
     respond_to do |format|
       if @story.save
-        flash[:notice] = 'Story was successfully created.'
-        format.html { redirect_to @story }
+        flash[:success] = '¡Muy bien!<br/> Ahora tu historia se encuentra en la página de inicio donde también puedes votar otras historias.'
+
+        track_story
+
+        format.html { redirect_to root_path(:param => "historia_creado") }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
       else
         format.html { render :action => "new" }
@@ -18,51 +188,17 @@ class StoriesController < ApplicationController
     end
   end
 
-  def destroy
-    respond_to do |format|
-      if @story.destroy
-        flash[:notice] = 'Story was successfully destroyed.'        
-        format.html { redirect_to stories_path }
-        format.xml  { head :ok }
-      else
-        flash[:error] = 'Story could not be destroyed.'
-        format.html { redirect_to @story }
-        format.xml  { head :unprocessable_entity }
-      end
-    end
-  end
-
-  def index
-    @stories = Story.paginate(:page => params[:page], :per_page => STORIES_PER_PAGE)
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @stories }
-    end
-  end
-
-  def edit
-  end
-
-  def new
-    @story = Story.new
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @story }
-    end
-  end
-
-  def show
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @story }
-    end
-  end
-
+  # PUT /stories/1
+  # PUT /stories/1.xml
   def update
+    @story = Story.find(params[:id])
+
+    @story.tag_list = params[:story][:tag_list]
+    @story.administered = true
     respond_to do |format|
       if @story.update_attributes(params[:story])
-        flash[:notice] = 'Story was successfully updated.'
-        format.html { redirect_to @story }
+        flash[:info] = 'Story was successfully updated.'
+        format.html { redirect_to admin_stories_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -71,10 +207,27 @@ class StoriesController < ApplicationController
     end
   end
 
-  private
+  # DELETE /stories/1
+  # DELETE /stories/1.xml
+  def destroy
+    @story = Story.find(params[:id])
+    @story.destroy
 
-  def find_story
-    @story = Story.find(params[:id]) if params[:id]
+    flash[:info] = 'Story deleted.'    
+
+    respond_to do |format|
+      format.html { redirect_to(admin_stories_path) }
+      format.xml  { head :ok }
+    end
   end
+
+  protected
+    def activation_required
+      if current_user and !current_user.activated_at
+        redirect_to :controller => "account/base", :action => "activation_required"
+      end
+    end
+
+
 
 end

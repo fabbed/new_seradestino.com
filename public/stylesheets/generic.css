@@ -1,6 +1,15 @@
 .small {
   font-size: 50%; }
 
+.dashed:hover {
+  border-bottom: 1px dashed; }
+
+.font_14 {
+  font-size: 14px; }
+
+.font_16 {
+  font-size: 16px; }
+
 .bottom-margin-20 {
   margin-bottom: 30px; }
 
@@ -79,3 +88,6 @@
 
 .back_white {
   background-color: white; }
+
+.di {
+  display: inline; }

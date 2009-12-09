@@ -4,6 +4,41 @@ module ApplicationHelper
   include TagsHelper
 
 
+
+  def link_to_profile(user, options = {})
+
+      flag = image_tag "flags/mx.png", :class => "user_box_flag"
+      output = flag
+      user_pic = link_to image_tag(user.avatar.url(:medium), :alt => h(user.login), :title => h(user.login), :class => "icon"), user_path(user)
+      output << user_pic
+      output << "<br/>"
+      user_name_link =link_to user.login, user_path(user), :class => "normal_color dashed"
+      output << user_name_link
+            
+      content_tag(:div, output, :class => "userbox")
+
+  end
+
+
+
+  
+  def meta_info(object)
+    output = ""
+
+    if object.is_a?(Comment)
+      output << "Escrito por: #{author(object)} el #{my_date(object.created_at)}"      
+    elsif object.is_a?(Story)
+      output << content_tag(:div, (image_tag("flags/#{object.country_code.downcase}.png", :title => object.country.name, :class => "tooltip") if object.country_id), :class => "flag")
+
+      output << content_tag(:div, "Escrito por: #{author(object)} el #{my_date(object.created_at)}", :class => "text")
+      output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text")
+      output << content_tag(:div, "Categoría: #{link_to 'Amor', '#'}", :class => "category text")      
+    end
+        
+    output
+  end
+
+
   def production?
     return RAILS_ENV=="production"
   end

@@ -1,31 +1,16 @@
--if WEBSITE_OPTIMIZER == true
-  :erb
-    <!-- Google Website Optimizer Control Script -->
-    <script>
-    function utmx_section(){}function utmx(){}
-    (function(){var k='1353356641',d=document,l=d.location,c=d.cookie;function f(n){
-    if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return c.substring(i+n.
-    length+1,j<0?c.length:j)}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;
-    d.write('<sc'+'ript src="'+
-    'http'+(l.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com'
-    +'/siteopt.js?v=1&utmxkey='+k+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='
-    +new Date().valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-    '" type="text/javascript" charset="utf-8"></sc'+'ript>')})();
-    </script><script>utmx("url",'A/B');</script>
-    <!-- End of Google Website Optimizer Control Script -->
-
-
--title("Contar nueva historia en queputamierda.com")
+-title("Contar nueva historia en seradestino.com")
 
 -content_for(:sidebar) do
-  =render :partial => '/shared/sidebars/sidebar_new'
+  =render :partial => 'sidebar_new'
+
+
 
 -content_for(:main) do
-
   #new_story_wrapper
     - form_for(@story) do |f|
-      
+      =error_messages_for :story      
       %h1.title ¡Cuenta tu historia!
+      =link_to_function "Fill with fake data", "fill_with_fake_data()"
       
       - if f.error_messages.present?
         #flash_message
@@ -55,10 +40,6 @@
           =f.label(:email, "¿Quieres que te avisemos cuando tu historia tenga comentarios? ¡Déjanos tu correo!", :class => "label_sub")
           =f.text_field :email, :class => "input  short"
           =f.error_message_on :email              
-        -else
-          =f.check_box :anonymous
-          %span.label Escribir como anónimo
-
       %p
         =f.label(:tag_list, "Palabras claves")
         =f.label(:tag_list, "Separadas por comas (Ejemplo: autobus, fiesta, mascota, amigo)", :class => "label_sub")              
@@ -72,7 +53,13 @@
 
       %p
         %br
-        = f.submit '¡Soltar la mierda!', :class => "btn_middle orange"
+        =f.check_box :anonymous, :checked => false
+        %span.label Escribir como anónimo
 
+
+
+      %p
+        %br
+        =f.submit t("story.send_story"), :style => "margin-top: 5px;", :class => "comment_submit button button_blue_small"
 -if JS_VALIDATION == true
   =render :partial => "js_validation", :locals => { :form_id => "new_story" }

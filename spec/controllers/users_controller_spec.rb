@@ -58,27 +58,27 @@ describe UsersController do
     User.authenticate('aaron', 'monkey').should be_nil
     get :activate, :activation_code => users(:aaron).activation_code
     response.should redirect_to('/login')
-    flash[:notice].should_not be_nil
-    flash[:error ].should     be_nil
+    flash[:info].should_not be_nil
+    flash[:info:error ].should     be_nil
     User.authenticate('aaron', 'monkey').should == users(:aaron)
   end
   
   it 'does not activate user without key' do
     get :activate
-    flash[:notice].should     be_nil
-    flash[:error ].should_not be_nil
+    flash[:info].should     be_nil
+    flash[:info:error ].should_not be_nil
   end
   
   it 'does not activate user with blank key' do
     get :activate, :activation_code => ''
-    flash[:notice].should     be_nil
-    flash[:error ].should_not be_nil
+    flash[:info].should     be_nil
+    flash[:info:error ].should_not be_nil
   end
   
   it 'does not activate user with bogus key' do
     get :activate, :activation_code => 'i_haxxor_joo'
-    flash[:notice].should     be_nil
-    flash[:error ].should_not be_nil
+    flash[:info].should     be_nil
+    flash[:info:error ].should_not be_nil
   end
   
   def create_user(options = {})

@@ -2,16 +2,39 @@
 !link_blue = #0099FF
 !link_color = #FF6600
 !text_color = #26130C
-!comment_number = #FF3300
-!comment_number_zero = #D6BBB1
+!comment_number = #FF6600
+!comment_number_zero = #FCFAF5
 !leer_mas = #FF6600
 !story_footer_text = #AB8573
 !estas_viendo = #784E3D
 !new_story_background = #F5EEEB
 !sidebar_color = #AB8574
 !header_sub_text = #FF9900  
+!bubble_link_color = #FF6600
+!brown_background = #F6EFDF
+!meta_info_text = #8A5126
+!error_msg_color = #FF3300
 /----------------- GENERAL
 
+#stories
+  #show
+    #content_main
+      :padding-top 25px
+      .middle
+        h2
+          :font-size 2em
+          :color black
+
+
+
+a.normal_color
+  :color = !text_color
+
+
+#title_new_users
+  :float left
+  :margin-left 30px
+  :margin-right 10px
 
 #inside_left, #inside_right, .wrapper
   :float left
@@ -31,7 +54,7 @@
   :height 600px
 
 #spinner
-  :float left
+  :float right
   :display none
 
 .section
@@ -48,10 +71,6 @@ body
   
 .fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span
   :behavior url("/iepngfix.htc")
-
-#terms_link
-  :margin-top 5em
-  :display inline-block
 
 .wrapper
   :text-align left
@@ -81,7 +100,11 @@ body
       :overflow hidden
       :background-color #FCFAF5
       #content_main
-      :padding-left 30px
+        :padding-left 30px
+      #content_footer
+        :background transparent url(/images/content_footer_stars.png) no-repeat scroll 0 0em
+        :overflow hidden
+
     h2
       :font-size 1.7em
       :line-height 1.3em
@@ -113,15 +136,15 @@ body
         :margin-bottom 1.8em
         :color = !estas_viendo
   #end
-    :background transparent url(/images/new/content_bottom.png) no-repeat scroll 0 0em
-    :float right
-    :height 88px
-    :width 730px
     :padding 0
     :margin 0
-    :display inline
-
-
+    :float right
+    :width 710px
+    #footer_moon
+      :margin-left 6em
+    #terms_link
+      :margin-top 1em
+      :display inline-block
 
 h1
   :font-size 2em
@@ -134,7 +157,7 @@ a
   :text-decoration none
 
 label.error
-  :color = !comment_number
+  :color = !error_msg_color
   :font-size 13px
   :margin 0
   :margin-top 3px
@@ -224,6 +247,16 @@ a.not_zero
 
 
 #sub_header
+  .login
+    :width 438px
+    :height 50px
+    :background transparent url(/images/right_top_bar.png) no-repeat scroll 0 0em
+    :float right
+    :font-size 120%
+    .links
+      :margin 14px 0px 0px 52px
+      a
+        :margin-right 10px
   #header_text
     :float right
     :margin-top 70px
@@ -235,108 +268,12 @@ a.not_zero
     :text-align right
 
   #right
-    :margin-top 120px
+    :margin-top 80px
     :float right
 
 
-
-#sidebar.big
-  :height 626px
-  :background transparent url(/images/new/sidebar_bottom_big.png) no-repeat scroll 0px 0px
-
-
-#sidebar
-  :width 250px
-  :background transparent url(/images/new/sidebar_bottom_small.png) no-repeat scroll 0px 0px
-  :float left
-  :background-color #000000
-    
-  #sb_content
-    :padding 40px 10px 10px 40px
-  .seperator
-    :margin 1.2em 0
-  h2
-    :margin-bottom 5px  
-  img
-    :margin-bottom 2px
-  p
-    :color white
-    :font-size 1.1em
-    :padding-right 10px
-    :padding-left 6px    
-    :line-height 1.1em
-  span.highlight
-    :color = !leer_mas
-  span.label
-    :font-size 1.2em
-    :display block
-    :margin-bottom 3px
-    :color #CC9966
-  input.input
-    :width 170px
-    :background-image url( '/images/sidebar_input_gradient.png' )
-    :border-top 1px solid white
-    :border-left 1px solid white
-    :border-right 1px solid white
-  #categories
-    :margin-top 15px
-    :padding-left 16px
-    a
-      :font-size 1.4em
-      :color = !link_color
-    ul
-      li
-        :list-style-type disc
-        :color #784E3D
-        :line-height 16px
-  #header
-    :background transparent url(/images/new/header_categories.png) no-repeat scroll 0 0em    
-    :width 100%
-    :height 351px
-    :margin 0
-
-    
-
-.seperator_line
-  :height 7px
-  :background transparent url(/images/new/seperator_line.png) no-repeat scroll 0 0em
-
-
-
-
-
-
-/----------------- Story
-
-.pagination
-  :float left
-  :display inline
-  :margin-left 5em
-  :margin-top 0.5em
-  .next_page, .prev_page
-    :display none
-  :font-size 2.0em
-  a
-  
-
-.prev_next_pagination
-  :float right
-  :margin-right 4em
-  :display inline
-  .next_page, .prev_page
-    :margin-right 1em
-    :float left
-    :display block
-    :width 81px
-    :height 64px
-  a.next_page
-    :background transparent url(/images/new/icon_next.png) no-repeat scroll 0 0em
-  a.prev_page
-    :background transparent url(/images/new/icon_prev.png) no-repeat scroll 0 0em
-  span.next_page
-    :background transparent url(/images/new/icon_next_disabled.png) no-repeat scroll 0 0em
-  span.prev_page
-    :background transparent url(/images/new/icon_prev_disabled.png) no-repeat scroll 0 0em
+input.medium_input
+  :width 200px
 
 
 /--------------------  NEW STORY
@@ -355,23 +292,22 @@ div.fieldWithErrors
 .fieldWithErrors
   .input, select, textarea
     :margin-bottom 5px
-    :display block
-    :background-image url( '/images/new/input_gradient_error.png' )
+    :background-image url( '/images/input_gradient_error.png' )
     :border solid 1px red
 
 input.error, textarea.error
-  :background-image url( '/images/new/input_gradient_error.png' )
+  :background-image url( '/images/input_gradient_error.png' )
   :border solid 1px red
-
 
 .input, textarea
   :width 540px
   :border solid 1px #D6BCB1
   :font-size 1.6em
-  :padding 4px
-  
+  :padding 2px
+
 textarea  
   :font-size 1.2em
+  :width 100%
 
 .input:focus, select:focus
   :background-image none
@@ -402,12 +338,11 @@ label.label_sub
       
 .story
   :overflow hidden
-  :float right
   .text
     :line-height 16px
     :font-size 1.3em
   .footer
-    :margin-left 80px
+    :margin-left 58px
     :margin-bottom 20px
     :margin-top 0px
   h2
@@ -416,31 +351,38 @@ label.label_sub
     :font-weight normal
   .left
     :float left
-    :margin-left 10px
-    :margin-right 20px
-    :width 53px    
-    :background transparent url(/images/new/comment_bubble.png) no-repeat scroll 0 0em  
+    :margin-right 11px
+    :width 51px    
+    :background transparent url(/images/comment_bubble.png) no-repeat scroll 0 0em  
     a
       :display block
       :width 50px
       :text-align center
       :height 57px
-      :padding-top 12px
-      :font-size 2em
+      :padding-top 5px
+      :font-size 2.4em
   .middle
-    :width 460px
+    :width 430px
     :float left  
+    :margin-bottom 10px
     .story_footer
       :margin-top 15px
       :padding 0px
-      :color = !story_footer_text
+      :color = !meta_info_text
+      .flag, .seperator, .category, .text
+        :float left        
       .flag
-        :float left
         :padding-top 4px
       .text
-        :float left
-        :padding-left 5px        
+        :padding-top 2px
+        :padding-left 5px
+      .seperator  
+        :margin-left 5px
+      .category
+        
     h2
+      a
+        :color #CC0000
       a.tag
         :color white
         :font-size 12px
@@ -457,7 +399,7 @@ label.label_sub
     :float left  
   .right
     :float left  
-    :width 110px
+    :width 153px
     :overflow hidden
 
 
@@ -495,7 +437,8 @@ label.label_sub
 
 
 #comments
-  :margin-left 80px
+  :margin-left 57px
+  :width 88%  
   .story_comment_divider
     :background transparent url(/images/new/single_footer.png) no-repeat scroll 0 0em  
     :width 580px
@@ -507,21 +450,37 @@ label.label_sub
     :font-weight normal
     :margin-bottom 0.5em
   .leave_comment
-    :height 171px
+    :margin-top 2em
     :overflow hidden
     :display block
+    .brown_background
+      :background-color = !brown_background
+      :padding 20px
+      :padding-bottom 1em
+      textarea
+        :border 1px solid #D6BCB1
+  .child
+    :display none
+    .comment
+      :margin-left 20px
+  .child_of_child
+    .comment
+      :margin-left 40px
+    .icon_comment_reply
+      :margin-left 20px
+
   .comment
-    :background-color = !new_story_background
+    :background-color = !brown_background
     :padding 13px
     :font-size 12px
-    :width 88%  
     :margin-bottom 10px
     .black
       :margin-top 4px
       :display block
     .info
-      :color #AB8574
-      :font-size 11px
+      :color = !meta_info_text
+      :font-size 13px
+
 
 .thumbs
   :margin-top 1.5em
@@ -534,25 +493,27 @@ label.label_sub
     :color #3D2115
     span
       :position relative
-      :margin-left 80px
-      :margin-top -48px
+      :margin-left 128px
+      :margin-top -26px
+      :font-size 15px
       :float left
     .top
       .thumb_input
-        :background transparent url(/images/new/icon_thumbs_up_active.png) no-repeat scroll 0 0em    
-        :width 101px
-        :height 65px
-      .not_active
-        :background transparent url(/images/new/icon_thumbs_up_not_active.png) no-repeat scroll 0 0em    
+        :background transparent url(/images/btn_es_destino.png) no-repeat scroll 0 0em    
+        :width 153px
+        :height 38px
+      .rated
+        :background transparent url(/images/btn_es_destino_not_active.png) no-repeat scroll 0 0em    
+        :cursor default
     .flop
       .thumb_input
         :margin-top 0.6em
-        :background transparent url(/images/new/icon_thumbs_down_active.png) no-repeat scroll 0 0em    
-        :width 101px
-        :height 65px
-        :margin-left 8px
-      .not_active
-        :background transparent url(/images/new/icon_thumbs_down_not_active.png) no-repeat scroll 0 0em    
+        :background transparent url(/images/btn_es_casualidad.png) no-repeat scroll 0 0em    
+        :width 150px
+        :height 38px
+      .rated
+        :cursor default
+        :background transparent url(/images/btn_es_casualidad_not_active.png) no-repeat scroll 0 0em    
 
 #inside_navigation
   :height 10px
@@ -573,10 +534,9 @@ label.label_sub
     :padding-right 1em
     :color = !dark_brown
     :text-decoration none
-
-#footer_cat
+#cat
   :float right
-  :display block
   :width 153px
-  :height 97px
-  :margin-right 24px
+  :height 90px
+  #footer_cat
+    :display block

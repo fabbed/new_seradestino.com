@@ -1,4 +1,4 @@
-#sidebar{:class => big ? "big" : ""}
+#sidebar
   #sb_content
     .section
       =image_tag "header_categories.png", :class => "fix"
@@ -9,12 +9,4 @@
 
     =image_tag "sidebar_seperator.png", :class => "seperator fix"
 
-    .section
-      =image_tag "header_newsletter.png", :class => "fix"
-      .section_content
-        %br
-        %p{:style => "padding: 0;"} Ingresa tu email y recibe<br/> semanal o diariamente las mejores cagadas y puteada
-    
-        =render :partial => "/newsletter_registrations/new", :locals => {:newsletter_registration => NewsletterRegistration.new}
-    
-    =image_tag "sidebar_seperator.png", :class => "seperator fix"
+    =render :partial => "/newsletter_registrations/sidebar_section"

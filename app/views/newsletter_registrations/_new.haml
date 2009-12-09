@@ -7,7 +7,7 @@
   =f.error_message_on :email
   
   %br
-  = image_submit_tag "btn_register.png"
+  =submit_tag t("newsletter.register"), :style => "margin-top: 5px;", :class => "button button_blue_big"  
 .clear
 
 =render :partial => "/newsletter_registrations/js_validation", :locals => { :form_id => "new_newsletter_registration" }

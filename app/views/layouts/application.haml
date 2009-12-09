@@ -9,79 +9,57 @@
     %title=yield(:title)
 
     = render :partial => "shared/js_and_css"
-
-  /[if IE 7]
-    =stylesheet_link_tag "iefixes_v7"
-
-  /[if IE 6]
-    =stylesheet_link_tag "iefixes_v6"
-
+    /[if IE 7]
+      =stylesheet_link_tag "iefixes_v7"
+    /[if IE 6]
+      =stylesheet_link_tag "iefixes_v6"
   %body{:id=>controller.controller_name}
     .wrapper{:id => controller.action_name}
       #main
         #header
           #logo
             =link_to "", root_path, :id => "sera_destino_logo"
-          =#tabnav :main
-
           #sub_header
-            /-if controller.controller_name == "stories" and controller.action_name == "new"
-            /  #vamos &nbsp;              
+            .login
+              .links
+                -unless logged_in?
+                  =link_to t("top_login.register"), signup_path
+                  =link_to t("top_login.login"), login_path
+                -else
+                  =link_to t("top_login.my_account"), my_account_path, :style => "margin-left: 80px; margin-right: 60px;"
+                  =link_to t("top_login.logout"), logout_path
             #right
-              -unless controller.controller_name == "stories" and controller.action_name == "new"
-                =link_to(image_tag("btn_contar_nueva_historia.png"), new_story_path, :id => :new_history)
+              =link_to(image_tag("btn_contar_nueva_historia.png"), new_story_path, :id => :new_history)
             #header_text
-              Amores pasados, encuentros casuales, la suerte a la vuelta de la esquina... 
-              A todos nos pasaron historias de esas, ¿casualidad o destino? 
-              ¡Cuéntanos tu historia y además lee y opina sobre la de los demás!
-
-        
+              =t "global.introduction_text"
         #content
           =yield(:sidebar)
           #middle.fix
             =yield(:top)
             #content_main_wrapper
               #content_main
+                - unless flash.empty?
+                  #flash_message
+                    = content_tag :div, flash[:success],  :class => "success"  if flash[:success]
+                    = content_tag :div, flash[:info],     :class => "info" if flash[:info]
+                    = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
+                  :javascript
+                    #{visual_effect :highlight, "flash"}
                 = yield
-              /   #stories_content
-              /     / -if controller.controller_name == "stories" and controller.action_name == "new"
-              /     /   #vamos.fix
-              /     /     &nbsp;
-              /     / #top
-              /     /   -unless yield(:top) || flash[:success] || flash[:info] || flash[:error]
-              /     /     .spacer
-              /     /   =yield(:top) || "&nbsp;"
-              /     / 
-              /     /   - unless flash.empty?
-              /     /     #flash_message
-              /     /       = content_tag :div, flash[:success],  :class => "success"  if flash[:success]
-              /     /       = content_tag :div, flash[:info],     :class => "info" if flash[:info]
-              /     /       = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
-              /     /     :javascript
-              /     /       #{visual_effect :highlight, "flash"}
-              /     / 
-              /     / =yield(:main) || "&nbsp;"
-              
+                = yield(:main)
+              #content_footer
+                = yield(:footer)
+                #cat
+                  =image_tag "footer_cat.png", :id => "footer_cat"
 
-              =image_tag "footer_cat.png", :id => "footer_cat"
+          #end.fix.font_14
+            =image_tag "footer_moon.png", :id => "footer_moon"
+            =link_to t("global.terms"), terms_path, :id => "terms_link", :class => "fr"
 
-          #end.fix &nbsp;
-          
-          =link_to (image_tag("new/terms.png", :class => :fix), "#", :id => "terms_link")
     #inside_right $nbsp;
     =yield(:javascript)
 
     #spinner
-      =image_tag "facebox/loading.gif"
+      =image_tag "loading.gif"
 
-    -if production?
-      :erb
-        <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-        </script>
-        <script type="text/javascript">
-        try {
-        var pageTracker = _gat._getTracker("UA-78290-23");
-        pageTracker._trackPageview();
-        } catch(err) {}</script>
+    = render :partial => "shared/google_analytics" if production?

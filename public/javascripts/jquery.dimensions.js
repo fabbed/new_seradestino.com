@@ -8,7 +8,7 @@
  * Version: 1.0b2
  */
 
-(function($){
+;(function($){
 
 // store a copy of the core height and width methods
 var height = $.fn.height,

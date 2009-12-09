@@ -1,27 +1,54 @@
 -content_for(:sidebar) do
   =render :partial => '/shared/sidebars/sidebar', :locals => {:big => false}
 
-%h1
-  Sign up as a new user
-- @user.password = @user.password_confirmation = nil
-= error_messages_for :user
-- form_for :user, :url => users_path do |f|
-  %p
-    = label_tag 'login'
-    %br
-    = f.text_field :login
-  %p
-    = label_tag 'email'
-    %br
-    = f.text_field :email
-  %p
-    = label_tag 'password'
-    %br
-    = f.password_field :password
-  %p
-    = label_tag 'password_confirmation', 'Confirm Password'
-    %br
-    = f.password_field :password_confirmation
-  %p
-    = submit_tag 'Sign up'
+.box_wrapper.round_corners
+  .box_content
+    %h1 Regístrate
+    %h2 Es gratis y cualquiera puede unirse.
 
+    - @user.password = @user.password_confirmation = nil
+    - form_for :user, :url => users_path, :html => {:id => "new_user_registration"} do |f|
+      %p
+        = f.label 'login', 'Nombre de usuario'
+        = f.text_field :login
+        = error_message_on :user, :login
+      %p
+        = f.label 'email', 'Dirección de correo electrónico:'
+        = f.text_field :email
+        = error_message_on :user, :email
+      %p
+        = f.label 'password', 'Contraseña nueva:'
+        = f.password_field :password
+        = error_message_on :user, :password        
+      %p
+        = label_tag 'password_confirmation', 'Contraseña nueva otra vez:'
+        = f.password_field :password_confirmation
+        = error_message_on :user, :password_confirmation
+      %p
+        = f.label :gender, 'Sexo'
+        = f.select :gender, [[ t('account.male'), :male ], [ t('account.female'), :female ]]
+
+        = error_message_on :user, :gender
+      %p
+        = label_tag 'birthdate', 'Fecha de nacimiento:'
+        = date_select(:user, :birthdate, :order => [:day, :month, :year], :start_year => 1920, :end_year => Date.today.year - 12,  :include_blank => true)
+        = error_message_on :user, :birthdate
+        #dateerrors
+      %br
+      
+      =f.check_box "terms_accepted", :checked => true
+      Confirmo que he acepto 
+      =link_to "las reglas de uso", reglas_path, :target => "_blank"
+      y 
+      =link_to "la politica de privacidad", privacidad_path, :target => "_blank"
+      de conoceos.com
+      \.
+      #termserrors
+      
+      
+      %br
+      %br
+      %p
+        = submit_tag 'Regístrate'
+
+=render :partial => "/users/js_validation", :locals => { :form_id => "new_user_registration" }

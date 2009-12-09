@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 # Then, you can remove it from this and the units test.
 include AuthenticatedTestHelper
 
-describe SessionsController do
+describe flash[:info]Controller do
   fixtures        :users
   before do 
     @user  = mock_user
@@ -44,7 +44,7 @@ describe SessionsController do
             it "kills existing login"        do controller.should_receive(:logout_keeping_session!); do_create; end    
             it "authorizes me"               do do_create; controller.send(:authorized?).should be_true;   end    
             it "logs me in"                  do do_create; controller.send(:logged_in?).should  be_true  end    
-            it "greets me nicely"            do do_create; response.flash[:notice].should =~ /success/i   end
+            it "greets me nicely"            do do_create; response.flash[:info].should =~ /success/i   end
             it "sets/resets/expires cookie"  do controller.should_receive(:handle_remember_cookie!).with(want_remember_me); do_create end
             it "sends a cookie"              do controller.should_receive(:send_remember_cookie!);  do_create end
             it 'redirects to the home page'  do do_create; response.should redirect_to('/')   end
@@ -99,28 +99,28 @@ describe SessionsController do
   
 end
 
-describe SessionsController do
+describe flash[:info]Controller do
   describe "route generation" do
-    it "should route the new sessions action correctly" do
-      route_for(:controller => 'sessions', :action => 'new').should == "/login"
+    it "should route the new flash[:info] action correctly" do
+      route_for(:controller => 'flash[:info]', :action => 'new').should == "/login"
     end
-    it "should route the create sessions correctly" do
-      route_for(:controller => 'sessions', :action => 'create').should == "/session"
+    it "should route the create flash[:info] correctly" do
+      route_for(:controller => 'flash[:info]', :action => 'create').should == "/session"
     end
-    it "should route the destroy sessions action correctly" do
-      route_for(:controller => 'sessions', :action => 'destroy').should == "/logout"
+    it "should route the destroy flash[:info] action correctly" do
+      route_for(:controller => 'flash[:info]', :action => 'destroy').should == "/logout"
     end
   end
   
   describe "route recognition" do
     it "should generate params from GET /login correctly" do
-      params_from(:get, '/login').should == {:controller => 'sessions', :action => 'new'}
+      params_from(:get, '/login').should == {:controller => 'flash[:info]', :action => 'new'}
     end
     it "should generate params from POST /session correctly" do
-      params_from(:post, '/session').should == {:controller => 'sessions', :action => 'create'}
+      params_from(:post, '/session').should == {:controller => 'flash[:info]', :action => 'create'}
     end
     it "should generate params from DELETE /session correctly" do
-      params_from(:delete, '/logout').should == {:controller => 'sessions', :action => 'destroy'}
+      params_from(:delete, '/logout').should == {:controller => 'flash[:info]', :action => 'destroy'}
     end
   end
   
