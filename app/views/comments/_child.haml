@@ -1,0 +1,14 @@
+=image_tag "icon_comment_reply.png", :style => "float:left"
+.comment.brown_background.child.oh{:id => dom_id(child)}
+  .info
+    .flag
+      =image_tag "new/flags/#{child.country_code.downcase}.png", :title => child.country_name, :class => "tooltip" if child.country_id
+      %span.info
+        =meta_info child
+  %span.black.font_14
+    =child.body
+  .fr.child_action
+    =link_to t("comments.show_answers"), "#"
+    |
+    =link_to t("comments.reply"), story_path(@story), :class => "reply_to_child"
+  =#render :partial => "childs/reply_to_child", :locals => {:child => child}      

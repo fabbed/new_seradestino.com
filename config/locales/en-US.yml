@@ -1,0 +1,486 @@
+"en-US":
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%e %b"
+      long: "%B %e, %Y"
+      only_day: "%e"
+
+    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    order: [ :year, :month, :day ]
+  
+  time:
+    formats:
+      default: "%a %b %d %H:%M:%S %Z %Y"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+      only_second: "%S"
+      
+      datetime:
+        formats:
+          default: "%Y-%m-%dT%H:%M:%S%Z"
+          
+      am: 'am'
+      pm: 'pm'
+      
+  datetime:
+    distance_in_words:
+      half_a_minute: 'half a minute'
+      less_than_x_seconds:
+        zero: 'less than 1 second'
+        one: '1 second'
+        other: '{{count}} seconds'
+      x_seconds:
+        one: '1 second'
+        other: '{{count}} seconds'
+      less_than_x_minutes:
+        zero: 'less than a minute'
+        one: '1 minute'
+        other: '{{count}} minutes'
+      x_minutes:
+        one: '1 minute'
+        other: '{{count}} minutes'
+      about_x_hours:
+        one: 'about 1 hour'
+        other: '{{count}} hours'
+      x_days:
+        one: '1 day'
+        other: '{{count}} days'
+      about_x_months:
+        one: 'about 1 month'
+        other: '{{count}} months'
+      x_months:
+        one: '1 month'
+        other: '{{count}} months'
+      about_x_years:
+        one: 'about 1 year'
+        other: '{{count}} years'
+      over_x_years:
+        one: 'over 1 year'
+        other: '{{count}} years'
+      
+  number:
+    format:
+      precision: 3
+      separator: '.'
+      delimiter: ','
+    currency:
+      format:
+        unit: '$'
+        precision: 2
+        format: '%u %n'
+        
+  activerecord:
+    errors:
+      template:
+        header:
+          one:    "1 error prohibited this {{model}} from being saved"
+          other:  "{{count}} errors prohibited this {{model}} from being saved"
+        body: "There were problems with the following fields:"
+      messages:
+        inclusion: "is not included in the list"
+        exclusion: "is reserved"
+        invalid: "is invalid"
+        confirmation: "doesn't match confirmation"
+        accepted: "must be accepted"
+        empty: "can't be empty"
+        blank: "can't be blank"
+        too_long: "is too long (maximum is {{count}} characters)"
+        too_short: "is too short (minimum is {{count}} characters)"
+        wrong_length: "is the wrong length (should be {{count}} characters)"
+        taken: "has already been taken"
+        not_a_number: "is not a number"
+        greater_than: "must be greater than {{count}}"
+        greater_than_or_equal_to: "must be greater than or equal to {{count}}"
+        equal_to: "must be equal to {{count}}"
+        less_than: "must be less than {{count}}"
+        less_than_or_equal_to: "must be less than or equal to {{count}}"
+        odd: "must be odd"
+        even: "must be even"
+    models:
+    attributes:
+
+  txt:
+    main_title: "konauto.com"
+    app_name: "konauto.com - ride-sharing for students"
+    sub_title1: "welcome at konauto"
+    sub_title2: "you never drive alone"
+    page_teaser: "Ride-sharing"
+    welcome_text: "Welcome at konauto - the ride-sharing center for Germany & Europe!
+    Driver and Passenger can easy and free add new trip offers.
+    Save your environment and meet new people!"
+    # Models Section
+    booking:
+      seats_not_available: "No seats available."
+    user:
+      check_invitaion_failed: "Invitation code does not exist."          
+    # Views Section     
+    menu:
+      privacy_protection: terms of privacy
+      start: "Start"
+      go_with: "Go with"
+      pick_up: "Pick up"
+      my_account: "My Konauto"
+      information: "Information"
+      about: "About konauto"
+      faq: "FAQ"
+      help: "Help"
+      contact: "Contact"
+      terms: "Terms & Conditions"
+      privacy: "Privacy"
+      imprint: "Imprint"
+    my_konauto_nav:
+      my_space: "My Konauto"
+      my_trips: "My trips"
+      my_ratings: "My ratings"
+      my_profile: "My profile"
+      my_info: "My infos"
+      my_account: "My account"
+    bookings:
+      payment_type: "Payment Type"      
+      id: "ID"
+      driver: "Driver"
+      booking: "Booking"      
+      trip: "Trip"
+      date: "Date"
+      time: "Time"
+      price: "Price"
+      seats_needed: "Needed seats"
+      passenger: "Passenger"
+      comment: "Comment"
+      confirm_booking: "Book now"        
+      bookings:   
+      seat: "Seats"
+      booked_seats: "Total seats"
+      confirm_booking: "book now"
+      msg_create_success: "Booking was successfully created."
+      msg_available_failed: "Already booked up."
+      msg_allowed_failed_driver: "You're the driver."
+      msg_allowed_failed_booked: "You're already booked for this trip."
+      msg_allowed_failed_female: "On this Trip - Female only."
+      msg_credits_failed: "No credit on your account"      
+    cities:
+      start_city: "Start City"
+      end_city: "Destination City"
+      start_address: "Start Address"
+      end_address: "Destination Address"
+      over: "over"
+      change: "change"
+      meeting_point: "Meeting Point"        
+    ratings:
+      no_ratings_received: "No ratings received"
+      no_pending_ratings: "No pending ratings"
+      no: "No ratings received yet"
+      no_ratings_given: "No ratings given yet"      
+      got_rated: "got rated"
+      rate_now: "Rate now"
+      my_received_ratings: "My received ratings"
+      my_given_ratings: "My given ratings"
+      my_pending_ratings: "To rate"      
+      ratings_title: "Ratings from"
+      score: "Score"
+      comment: "Comment"
+      rating_from: "Rating from"
+      rating_to: "Rating for"
+      rating_user: "Rating from"
+      trip: "Trip"
+      rate_trip: "Rate trip"
+      msg_create_success: "Rating was successfully created."
+      msg_allowed_failed: "Already rated."
+      view_all_received_ratings: "All received ratings"
+      view_all_given_ratings: "All given ratings"
+      view_all_pending_ratings: "All trips to rate"      
+    trips:  
+      slow: "slow"
+      normal: "normal"
+      fast: "fast"
+      really_delete_trip: "Really delete this trip?"
+      delete_info_text: "Since there are no bookings for this trip you can delete it."
+      route: "Route"    
+      arrival_in: "Arrival in"    
+      guessed_arrival_time: "Guessed arrival time"      
+      stopover: "Stopover"
+      departure_in: "Departure in"
+      complete_subtrips_details: "Details for Subtrips"
+      complete_subtrips_prices: "Prices"
+      no_trip: "No trip"    
+      no_previous_trips: "At the moment there are no previous trips"
+      no_current_trips: "At the moment there are no current trips"
+      offered_trip: "My Offered Trip"
+      no_trips: "No trips"
+      no_search_results: "No search results"
+      no_passengers: "No passengers"
+      future_trips: "Zukünftige Fahrten"
+      meeting_point: "Meeting-point"
+      offer_trip_now: "Add a trip"
+      search_trip_now: "Search a trip"
+      current: "Current"
+      previous: "Previous"
+      from: "from"
+      passengers: "Passengers"
+      cancel: "Cancel"
+      new_search: "New search"
+      book_trip: "book trip"
+      id: "ID"
+      start_date: "Start date"
+      start_time: "Start time"
+      start_city: "Start City"
+      end_city: "Destination City"
+      passenger: "Passenger"
+      comment: "Comment"    
+      duration: "Expected duration"
+      female_only: "female only"
+      driving_style: "Driving style"
+      price: "Price"
+      seats: "Seats"
+      smoking: "Smoking allowed?"
+      phone: "Phone for requests"
+      car: "Car type"
+      car_code: "Car code"    
+      description: "Comments"
+      music: "Music"
+      seq_text: "This trip is part of a longer trips with the following course"
+      course: "Course"
+      start: "Start"
+      destination: "Destination"
+      departure: "departure"
+      driver: "Driver"
+      available_seats: "Available seats"
+      price: "Price"
+      rating: "Rating"
+      smoking: "Smoking allowed?"
+      details: "Details"
+      details_for_driver: "Details for driver"
+      details_for_passenger: "Details for passenger"  
+      details_for_trip: "Details for trip"          
+      edit_trip: "Edit trip"
+      show_trip: "Show trip"
+      click_drive: "Click & Drive"
+      update_trip: "Update trip"
+      trips_show: "Trips overview"    
+      on_opt: "on"
+      km: "km"
+      search_results: "Search results"
+      detail_search: "Detail search"
+      search_trip: "Search a lift"
+      details_trip: "Ride"      
+      from: "from"
+      to: "to"
+      radius: "Radius"
+      date: "Date"
+      arbitrary: "arbitrary"
+      at: "at"
+      days: "Days"
+      search: "Search"
+      to_search: "go to search"
+      ext_search: "Extended search"
+      time: "Time"
+      hours: "Hours"
+      before: "before"
+      after: "after"
+      clock: "o'clock"
+      other: "other"
+      seats: "Seats"
+      yes_opt: "Yes"
+      no_opt: "No"
+      never_mind: "Never mind"
+      direct_trips: "Only direct trips"
+      price_max: "Price max"
+      female_only: "Female only"
+      new_trip: "Add new trip"
+      confirm_trip: "Add trip now"      
+      show: "Show"
+      edit: "Edit"
+      destroy: "destroy"
+      msg_create_success: "Trip was successfully created."
+      msg_update_success: "Trip was successfully updated."
+      msg_delete_success: "Trip was successfully deleted."
+      msg_edit_denied: "You cannot edit this trip, because you are not the driver."
+      msg_edit_subtrip_denied: "A subtrip can't be edited."
+      msg_edit_failed_bookings: "You cannot edit this trip, there are already bookings available."    
+    base_mailer:
+      konauto_url: "www.konauto.com"
+      konauto_mail: "mail@konauto.com"      
+    user_mailer:
+      subject_signup: "Please activate your new account"
+      subject_activation: "Your account has been activated!"
+    booking_mailer:
+      subject_passenger: "Trip booked"
+      subject_driver: "You have a new passenger"
+    rating_mailer:
+      subject_rated_user: "You got rated"
+      subject_rating_user: "You rated"
+      subject_ratings_todo_driver: "Rate your Passenger"
+      subject_rating_todo_passenger: "Rate the driver"
+    trip_mailer:
+      subject_create: "You created a trip."
+      subject_update: "You updated a trip."      
+    users:
+      password_new: "Password new"
+      set_pwd: "New"
+      send_new: "Send me"
+      password_forgotten: "Password forgotten"
+      birth_date_check: "You must be at least 18 years old to add trips!"
+      locale: "Sprache"
+      member_since: "member since"
+      uni: "University"
+      my_info: "My data"
+      my_profile: "My profile"
+      my_ratings: "My ratings"
+      my_account: "My Account"
+      my_trips: "My Trips"
+      my_links: "Nice Links"
+      my_public_profile: "My public profile"
+      my_public_ratings: "My public ratings"
+      university_section: "University/Course"
+      personal_section: "Private"
+      address_section: "Address"
+      car_section: "Car"
+      photo_section: "Photo"
+      account_section: "Login-data"
+      received_ratings: "Received"
+      given_ratings: "Given"      
+      show_user: "Show User"
+      edit_user: "Edit User"
+      user_list: "User list"      
+      name: "Name"
+      first_name: "First name"
+      last_name: "Last name"
+      email: "Email"
+      password: "Password"
+      password_confirm: "Password confirmation"
+      gender: "Gender"
+      male: "male"
+      female: "female"
+      sign_up: "Sign up"
+      birth_day: "Birthday"
+      university: "University"
+      course: "Course"
+      phone: "Phone"
+      mobile: "Mobile"
+      address1: "Address 1"
+      address2: "Address 2"
+      zip: "ZIP"
+      city: "City"
+      country: "Country"
+      profile: "Profile URL"
+      about: "About me"
+      car_type: "Car type"
+      car_code: "Car code"
+      ratings: "Ratings"
+      id: "ID"
+      name: "Name"
+      show: "Show"
+      edit: "Edit"
+      destroy: "Destroy"
+      save: "Save"
+      confirm: "Are you shure ?"
+      ratings: "Ratings"      
+      users: "Users"
+      my_photo: "My Photo"
+      upload_photo: "Upload photo"
+      remember_me: "Remember me"
+      edit_infos: "Edit Infos"
+      edit_profile: "Edit Profile"
+      edit_avatar: "Edit Photo"
+      profile_page: "Profile Page"   
+      profile_only: "Profile"
+      positiv: "positiv"
+      check_old_password_failed: " doesn't match!"
+      old_password: "Old Password"
+      terms_of_service_text: "Yes, i accept the {{terms_link}} and the {{privacy_link}} and register as a free member."      
+      current_trips_passenger: "Current trips as passenger"
+      previous_trips_passenger: "Previous trips as passenger"
+      current_trips_driver: "Current trips as driver"
+      previous_trips_driver: "Previous trips as driver"   
+      
+      current_trips_passenger_menu: "As driver - current"
+      previous_trips_passenger_menu: "As passenger - previous"
+      current_trips_driver_menu: "As driver - current"
+      previous_trips_driver_menu: "As passenger - previous"
+      
+      msg_request_new_passwort: "A password reset code has been sent to you."
+      msg_could_not_find_user: "The email address you entered could not be found in the system."
+      msg_update_avatar_success: "Picture was successfully updated."
+      msg_update_infos_success: "Information was successfully updated."
+      msg_update_profile_success: "Profile was successfully updated."
+      msg_update_success: "User was successfully updated."
+      msg_delete_success: "User was successfully deleted."
+    payments:
+      amount_money: "Amount"
+      amount_credits: "Amount Credits"
+      my_payments: "Account"
+      sms_payment: "SMS-Payment"
+      voucher_payment: "Vulture-Payment"
+    shared:
+      credits: "Credits"
+      new_trip: "New trip"
+      show_all: "show all"
+      edit: "edit"
+      print: "print"
+      more_options: "more options"
+      zoom_in: "Zoom in"
+      google_maps: "Google Maps"
+      back: "back"
+      hello: "Hello, "
+      not_logged_in: "Not logged in"
+      register: "Register"
+      login: "Login"
+      logout: "Logout"
+      quick_search: "Quicksearch"
+      trip_to: "destination"
+      invitation_code: "Invitation code"
+      email: "Email"
+      password: "Password"
+      login: "Login"
+      teaser_title: "Own Car?"
+      teaser_text: "Register right away, offer trip and get money!"
+      signup_teaser_title: "Still not registered?"
+      signup_teaser_text: "Join now ! Book or offer trips and meet people!"
+      teaser_sub_text: "Yes, I want"
+      register: "Register"
+      top_title: "Driver-Top 5"
+      ratings: "Ratings"
+      driver: "Driver"
+      passenger: "Passenger"
+      registered: "Registered"
+      trip_search: "Search trip"
+      start_city: "Start City"
+      end_city: "Destination City"
+      radius: "Radius"
+      date: "Date"
+      day: "Day"
+      month: "Month"
+      year: "Year"
+      departure: "Departure"
+      arrival: "Arrival"
+      tolerance: "Tolerance"
+      arbitrary: "arbitrary"
+      return_tour: "return tour"
+      search: "Search"
+      save: "Save"
+      current_trips: "Current Trips/Offers"
+      german: "german"
+      english: "english"
+      msg_signup_success: "Thanks for signing up!  We're sending you an email with your activation code."
+      msg_signup_failed: "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      msg_account_success: "Signup complete! Please sign in to continue."
+      msg_account_missing: "The activation code was missing.  Please follow the URL from your email."
+      msg_account_failed:  "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
+      msg_access_denied: "You need to log in first."
+      msg_permission_denied: "You don't have permission to do that."
+      msg_login_success: "Logged in successfully"
+      msg_login_failed: "Wrong email or password"
+      msg_logout_success: "You have been logged out."
+      msg_already_logged_in: "Your are already logged in."
+    js_text:
+      msg_time_format: "Please use time in this format hh:mm (Example: 13:45)."
+      msg_duration_format: "Please use duration in this format hh:mm (Example: 02:15)."
+      msg_phone_format: "It is not a valid phone number."
+      msg_car_code: "It is not a valid car code."
+      msg_zip_code: "It is not a valid ZIP code."
+      msg_url: "It is not a valid URL."

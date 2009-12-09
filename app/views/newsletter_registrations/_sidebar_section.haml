@@ -1,0 +1,19 @@
+.section
+  =image_tag "header_newsletter.png", :class => "fix"
+  .section_content
+    %br
+    %p{:style => "padding: 0;"}=t "global.newsletter_subtext"
+
+    - form_for(NewsletterRegistration.new) do |f|
+      = f.error_messages
+      %br
+      %br  
+      %span.label Email:
+      = f.text_field :email, :class => :input
+      =f.error_message_on :email
+  
+      %br
+      =image_submit_tag "btn_register.png"
+    .clear
+
+    =render :partial => "/newsletter_registrations/js_validation", :locals => { :form_id => "new_newsletter_registration" }

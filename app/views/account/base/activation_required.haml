@@ -1,0 +1,11 @@
+.my_account_main
+  -content_for(:sidebar) do
+    =render :partial => 'account/sidebar', :locals => {:photo_link => false}
+
+  .box_wrapper.round_corners
+    .box_content
+      %h1="Hola #{current_user.login}!"
+      %br
+      %p.font_14
+        =t("account.still_not_confirmed", :email => current_user.email)
+

@@ -1,0 +1,474 @@
+"de-DE":
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%e. %b"
+      long: "%e. %B %Y"
+      only_day: "%e"
+
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
+    order: [ :day, :month, :year ]
+  
+  
+  
+  time:
+    formats:
+      default: "%A, %e. %B %Y, %H:%M Uhr"
+      time: "%H:%M"
+      short: "%e. %B, %H:%M Uhr"
+      long: "%A, %e. %B %Y, %H:%M Uhr"
+      only_second: "%S"
+
+    am: ""
+    pm: ""
+
+  datetime:
+    distance_in_words:
+      half_a_minute: 'eine halbe Minute'
+      less_than_x_seconds:
+        zero: 'weniger als 1 Sekunde'
+        one: '1 Sekunde'
+        other: '{{count}} Sekunden'
+      x_seconds:
+        one: '1 Sekunde'
+        other: '{{count}} Sekunden'
+      less_than_x_minutes:
+        zero: 'weniger als 1 Minute'
+        one: 'eine Minute'
+        other: '{{count}} Minuten'
+      x_minutes:
+        one: '1 Minute'
+        other: '{{count}} Minuten'
+      about_x_hours:
+        one: 'etwa 1 Stunde'
+        other: '{{count}} Stunden'
+      x_days:
+        one: '1 Tag'
+        other: '{{count}} Tage'
+      about_x_months:
+        one: 'etwa 1 Monat'
+        other: '{{count}} Monate'
+      x_months:
+        one: '1 Monat'
+        other: '{{count}} Monate'
+      about_x_years:
+        one: 'etwa 1 Jahr'
+        other: '{{count}} Jahre'
+      over_x_years:
+        one: 'mehr als 1 Jahr'
+        other: '{{count}} Jahre'
+      
+  number:
+    format:
+      precision: 2
+      separator: ','
+      delimiter: '.'
+    currency:
+      format:
+        unit: '€'
+        format: '%n%u'
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one:    "{{model}} konnte nicht gespeichert werden: 1 Fehler."
+          other:  "{{model}} konnte nicht gespeichert werden: {{count}} Fehler."
+        body: "Bitte überprüfen Sie die folgenden Felder:"
+      messages:
+        inclusion: "ist kein gültiger Wert"
+        exclusion: "ist nicht verfügbar"
+        invalid: "ist nicht gültig"
+        confirmation: "stimmt nicht mit der Bestätigung überein"
+        accepted: "muss akzeptiert werden"
+        empty: "muss ausgefüllt werden"
+        blank: "muss ausgefüllt werden"
+        too_long: "ist zu lang (nicht mehr als {{count}} Zeichen)"
+        too_short: "ist zu kurz (nicht weniger als {{count}} Zeichen)"
+        wrong_length: "hat die falsche Länge (muss genau {{count}} Zeichen haben)"
+        taken: "ist bereits vergeben"
+        not_a_number: "ist keine Zahl"
+        greater_than: "muss größer als {{count}} sein"
+        greater_than_or_equal_to: "muss größer oder gleich {{count}} sein"
+        equal_to: "muss genau {{count}} sein"
+        less_than: "muss kleiner als {{count}} sein"
+        less_than_or_equal_to: "muss kleiner oder gleich {{count}} sein"
+        odd: "muss ungerade sein"
+        even: "muss gerade sein"
+    models:
+    attributes:
+  
+  txt:
+    main_title: "konauto.com"
+    app_name: "konauto.com - Die Mitfahrzentrale für Studenten - Jetzt Mitfahrgelegenheiten finden und mitfahren!"
+    sub_title1: "willkommen bei konauto"
+    sub_title2: "you never drive alone"
+    page_teaser: "Mitfahrgelegenheiten sofort buchen"
+    welcome_text: "Willkommen bei konauto, der Online-Mitfahrtzentrale für Deutschland und Europa!
+    konauto verfügt über eine der größten Fahrtdatenbanken Europas.
+    Als Fahrer und Mitfahrer könnt ihr hier einfach und kostenlos eure Angebote und Gesuche eingeben.
+    Gemeinsam konauto fahren spart Geld und schützt die Umwelt! Nebenbei lernt man noch nette Leute kennen ..."
+    # Models Section
+    booking:
+      seats_not_available: "Keine Plätze verfügbar."
+    user:
+      check_invitation_failed: "Einladungscode exitiert nicht."
+    # Views Section 
+    menu:
+      privacy_protection: Datenschutzerklärung
+      start: "Start"
+      go_with: "Mitfahren"
+      pick_up: "Mitnehmen"
+      my_account: "Mein Konauto"
+      information: "Informationen"
+      about: "Über konauto"
+      faq: "FAQ"
+      help: "Hilfe"
+      contact: "Kontakt"
+      terms: "AGB"
+      privacy: "Datenschutz"
+      imprint: "Impressum"
+    bookings:
+      payment_type: "Zahlungsart"
+      id: "ID"
+      booking: "Buchung"
+      driver: "Fahrer/in"
+      trip: "Fahrt"
+      date: "Datum"
+      time: "Uhrzeit"
+      price: "Fahrtkosten"
+      seats_needed: "Anzahl benötigter Plätze"
+      passenger: "Mitfahrer"
+      comment: "Kommentar"
+      seat: "Plätze"
+      booked_seats: "Anzahl Plätze"
+      confirm_booking: "Buchen"
+      msg_create_success: "Erfolgreiche Buchung."
+      msg_available_failed: "Bereits ausgebucht."
+      msg_allowed_failed_driver: "Du kannst keine Fahrt buchen -- du bist der/die Fahrer/in."
+      msg_allowed_failed_booked: "Du hast diese Fahrt bereits gebucht."
+      msg_allowed_failed_female: "Leider nicht möglich -- dies ist eine 'Frauen für Frauen' Fahrt." 
+      msg_credits_failed: "Kein Kredit mehr auf dem Konto"     
+    cities:
+      start_city: "Startort"
+      end_city: "Zielort"
+      start_address: "Start Adresse"
+      end_address: "Zieladresse"
+      over: "über"
+      change: "ändern"
+      meeting_point: "Treffpunkt"
+    ratings:
+      no_pending_ratings: "Keine offenen Bewertungen"
+      no_ratings_received: "Keine erhaltenen Bewertungen vorhanden"
+      no_ratings_given: "Keine abgegebenen Bewertungen vorhanden"
+      got_rated: "wurde so bewertet"
+      rate_now: "Jetzt bewerten"
+      my_received_ratings: "Meine erhaltenen Bewertungen"
+      my_given_ratings: "Meine abgegebenen Bewertungen"
+      my_pending_ratings: "Meine noch zu bewertende Fahrten"
+      ratings_title: "Bewertungen von"
+      score: "Wertung"
+      comment: "Kommentar"
+      rating_from: "Bewertet durch"
+      rating_to: "Bewertung von"
+      rating_user: "Bewertung durch"
+      trip: "Fahrt"
+      rate_trip: "Fahrt bewerten"
+      msg_create_success: "Bewertung erfolreich abgegeben."
+      msg_allowed_failed: "Bereist bewertet."
+      view_all_received_ratings: "Alle erhaltenen Bewertungen"
+      view_all_given_ratings: "Alle abgegebenen Bewertungen"
+      view_all_pending_ratings: "Alle noch zu bewertende Fahrten"
+    trips:
+      slow: "gemütlich"
+      normal: "normal"
+      fast: "sportlich"
+      really_delete_trip: "Fahrt wirklich löschen?"
+      delete_info_text: "Da noch keine Buchungen für deine Fahrt vorhanden sind, kannst du die Fahrt löschen."
+      route: "Strecke"
+      arrival_in: "Ankunft in"
+      guessed_arrival_time: "Geschätz. Ankunftszeit"
+      departure_in: "Abfahrt in"
+      stopover: "Zwischenstop"
+      complete_subtrips_details: "Details zu den Zwischenstops"
+      complete_subtrips_prices: "Preise"
+      no_trip: "Keine Fahrt vorhanden."
+      no_previous_trips: "Im Moment sind keine vergangenen Fahrten vorhanden."
+      no_current_trips: "Im Moment sind keine aktuellen Fahrten vorhanden."
+      offered_trip: "Meine Angebotene Fahrt"
+      no_trips: "Keine Fahrten"
+      no_search_results: "Keine Suchergebnisse"
+      no_passengers: "Keine Mitfahrer"
+      future_trips: "Zukünftige Fahrten"
+      meeting_point: "Treffpunkt"
+      end_point: "Zieladresse"
+      offer_trip_now: "Jetzt eine Fahrt einstellen"
+      search_trip_now: "Jetzt eine Fahrt suchen"
+      current: "Alle aktuellen Fahrten"
+      previous: "Alle vergangenen Fahrten"
+      from: "von"
+      passengers: "Mitfahrer"
+      cancel: "Stornieren"
+      new_search: "Neue Suche"
+      book_trip: "Mitfahrt buchen"
+      start_date: "Startdatum"
+      start_time: "Abfahrtszeit"
+      start_city: "Abfahrt"
+      end_city: "Ziel"
+      duration: "Vorra. Fahrzeit"
+      driving_style: "Fahrstil"
+      price: "Preis"
+      seats: "Plätze"
+      seats_booked: "Gebuchte Plätze"
+      subtrip_booked: "Gebuchte Strecke"
+      smoking: "Rauchen erlaubt?"
+      phone: "Telefonnummer bei Rückfragen"
+      car: "Auto"
+      car_code: "Autokennzeichen"
+      description: "Kommentare/Weiteres"
+      music: "Musik"
+      id: "ID"
+      passenger: "Mitfahrer"
+      comment: "Kommentar"
+      seq_text: "Diese Fahrt ist Bestandteil einer längeren Fahrt mit folgendem Verlauf"
+      course: "Verlauf"
+      start: "Start"
+      destination: "Ziel"
+      departure: "Abfahrt"
+      driver: "Fahrer/in"
+      available_seats: "Freie Plätze"
+      price: "Preis"
+      rating: "Bewertung"
+      details: "Details"
+      details_for_driver: "Details zum Fahrer"
+      details_for_passenger: "Details zum Mitfahrer"      
+      details_for_trip: "Details zur Fahrt" 
+      click_drive: "Click & Drive"
+      update_trip: "Fahrt aktualisieren"
+      edit_trip: "Trip bearbeiten"
+      show_trip: "Fahrt anzeigen"
+      show_show: "Fahrtenübersicht"
+      search_trip: "Mitfahrgelegenheiten suchen"
+      details_trip: "Mitfahrgelegenheit"
+      from: "von"
+      to: "nach"
+      radius: "Umkreis"
+      date: "Datum"
+      arbitrary: "beliebig"
+      at: "um"
+      on_opt: "am"
+      km: "km"
+      days: "Tage"
+      search_results: "Suchergebnisse"
+      to_search: "zur Suche"
+      search: "Suchen"
+      detail_search: "Detailsuche"
+      ext_search: "Erweiterte Suche"
+      time: "Uhrzeit"
+      hours: "Stunden"
+      before: "vor"
+      after: "nach"
+      clock: "Uhr"
+      other: "Sonstiges"
+      seats: "Plätze"
+      yes_opt: "Ja"
+      no_opt: "Nein"
+      never_mind: "Egal"
+      direct_trips: "Nur Direktfahrten"
+      price_max: "Maximaler Preis"
+      female_only: "Frauen für Frauen"
+      new_trip: "Neue Fahrt einstellen"
+      confirm_trip: "Speichern"
+      show: "Anzeigen"
+      edit: "Bearbeiten"
+      destroy: "Löschen"
+      msg_create_success: "Fahrt erfolgreich angelegt."
+      msg_update_success: "Fahrt erfolgreich aktualisiert."
+      msg_delete_success: "Fahrt erfolgreich gelöscht."
+      msg_edit_denied: "Du kannst diese Fahrt nicht bearbeiten -- du bist nicht der Fahrer."
+      msg_edit_subtrip_denied: "Eine Teilfahrt kann nicht bearbeitet werden."
+      msg_edit_failed_bookings: "Du kannst diese Fahrt nicht bearbeiten -- es sind bereist Mitfahrten gebucht."
+    base_mailer:
+      konauto_url: "http://www.konauto.de"
+      konauto_mail: "mail@konauto.de"
+    user_mailer:
+      subject_signup: "Bitte aktiviere deinen neuen Account."
+      subject_activation: "Dein Account wurde aktiviert!"
+    booking_mailer:
+      subject_passenger: "Fahrt gebucht."
+      subject_driver: "Du hast einen neuen Mitfahrer."
+    rating_mailer:
+      subject_rated_user: "Du wurdest bewertet."
+      subject_rating_user: "Du hast eine Bewertung abgegeben."
+      subject_ratings_todo_driver: "Bewerte deine Mitfahrer"
+      subject_rating_todo_passenger: "Bewerte den/die Fahrer/in"
+    trip_mailer:
+      subject_create: "You created a trip."
+      subject_update: "You updated a trip."      
+    users:
+      password_new: "Passwort neu"
+      set_pwd: "Neu"
+      send_pwd: "Zusenden"
+      password_forgotten: "Passwort vergessen"
+      birth_date_check: "Du musst mindestens 18 Jahre alt sein um Fahrten einstellen zu können!"
+      locale: "Sprache"
+      my_info: "Meine Daten"
+      my_profile: "Mein Profil"
+      my_account: "Mein Konto"
+      my_trips: "Meine Fahrten"
+      my_ratings: "Meine Bewertungen"
+      my_links: "Nützliche Links"
+      my_public_profile: "Mein öffentliches Profil"
+      my_public_ratings: "Meine öffentlichen Bewertungen"
+      university_section: "Uni/Studiengang"
+      personal_section: "Persönliches"
+      address_section: "Adresse"
+      car_section: "Auto"
+      photo_section: "Foto"
+      account_section: "Zugangsdaten"
+      received_ratings: "Erhaltene"
+      given_ratings: "Gegebene"
+      show_user: "Benutzer anzeigen"
+      edit_user: "Benutzer bearbeiten"
+      user_list: "Benutzerliste"
+      member_since: "Mitglied seit"
+      name: "Name"
+      first_name: "Vorname"
+      last_name: "Nachname"
+      email: "Email"
+      password: "Passwort"
+      password_confirm: "Password nochmal"
+      gender: "Geschlecht"
+      male: "männlich"
+      profile_only: "Profil"
+      ratings_profile: "Bewertungsprofil"
+      female: "weiblich"
+      sign_up: "Registrieren"
+      birth_day: "Geburtstag"
+      university: "Universität"
+      uni: "Uni"
+      course: "Studiengang"
+      phone: "Telefon"
+      mobile: "Handy"
+      address1: "Strasse 1"
+      address2: "Strasse 2"
+      zip: "Postleitzahl"
+      city: "Stadt"
+      country: "Land"
+      profile: "Profil URL"
+      about: "Über mich"
+      car_type: "Auto-Typ"
+      car_code: "Autokennzeichen"
+      ratings: "Bewertungen"
+      id: "ID"
+      show: "Anzeigen"
+      edit: "Bearbeiten"
+      destroy: "Löschen"
+      save: "Speichern"
+      confirm: "Bist du sicher?"
+      ratings: "Bewertungen"
+      users: "Benutzer"
+      my_photo: "Mein Bild"
+      upload_photo: "Foto hochladen"
+      remember_me: "Merken"
+      edit_infos: "Bearbeite Infos"
+      edit_profile: "Bearbeite Profil"
+      edit_avatar: "Bearbeite Foto"
+      profile_page: "Profil Seite"
+      positiv: "positiv"
+      check_old_password_failed: " ist nicht richtig."
+      old_password: "Altes Passwort"
+      terms_of_service_text: "Ja, ich akzeptiere die {{terms_link}} und die {{privacy_link}} und melde mich als kostenloses Mitglied an."
+      
+      current_trips_passenger_menu: "Als Mitfahrer - Aktuelle"
+      previous_trips_passenger_menu: "Als Mitfahrer - Vergangene"
+      current_trips_driver_menu: "Als Fahrer - Aktuelle"
+      previous_trips_driver_menu: "Als Fahrer - Vergangene"
+
+      current_trips_passenger: "Meine aktuellen Fahrten als Mitfahrer"
+      previous_trips_passenger: "Meine vergangenen Fahrten als Mitfahrer"
+      current_trips_driver: "Meine aktuellen Fahrten als Fahrer"
+      previous_trips_driver: "Meine vergangenen Fahrten als Fahrer"
+      
+      msg_request_new_passwort: "Wir haben dir eine email zugesendet mit der du dein Passwort zurücksetzen kannst."
+      msg_could_not_find_user: "Die email adresse ist uns leider nicht bekannt."
+      msg_update_avatar_success: "Dein Bild wurde erfolgreich aktualisiert."
+      msg_update_infos_success: "Informationen erfolgreich aktualisiert."
+      msg_update_profile_success: "Profil erfolgreich aktualisiert."
+      msg_update_user_success: "Benutzer erfolgreich aktualisiert."
+      msg_delete_user_success: "Benutzer erfolgreich gelöscht."
+    payments:
+      amount_money: "Betrag"
+      amount_credits: "Anzahl Credits"
+      my_payments: "Kontoauszug"
+      sms_payment: "SMS-Zahlung"
+      voucher_payment: "Gutschein-Zahlung"
+    shared:
+      credits: "Credits"
+      new_trip: "Neue Fahrt"
+      show_all: "Alle anzeigen"
+      edit: "bearbeiten"
+      print: "Drucken"
+      more_options: "Weitere Optionen"
+      zoom_in: "Vergrößern"
+      google_maps: "Google Maps"
+      back: "zurück"
+      hello: "Hallo, "
+      not_logged_in: "Nicht eingeloggt."
+      register: "Registrieren"
+      login: "Anmelden"
+      logout: "Abmelden"
+      quick_search: "Schnellsuche"
+      trip_to: "Fahrziel eingeben"
+      invitation_code: "Einladungscode"
+      email: "Email"
+      password: "Passwort"
+      teaser_title: "Eigenes Auto?"
+      teaser_text: "Jetzt mitmachen, Fahrten anbieten und Geld verdienen!"
+      signup_teaser_title: "Noch nicht angemeldet?"
+      signup_teaser_text: "Jetzt mitmachen, Mitfahrgelegenheiten buchen, Fahrten anbieten und Leute kennenlernen!"
+      teaser_sub_text: "Ja, ich will"
+      top_title: "Fahrer-Top 5"
+      ratings: "Bewertungen"
+      driver: "Fahrer"
+      passenger: "Mitfahrer"
+      registered: "Insgesamt registriert"
+      trip_search: "Fahrt suchen"
+      start_city: "Abfahrtsort"
+      end_city: "Ankunftsort"
+      radius: "Umkreis"
+      date: "Datum"
+      day: "Tag"
+      month: "Monat"
+      year: "Jahr"
+      departure: "Abfahrt"
+      arrival: "Ankunft"
+      tolerance: "Toleranz"
+      arbitrary: "beliebig"
+      return_tour: "auch Rückfahrt"
+      search: "Suchen"
+      save: "Speichern"
+      current_trips: "Aktuelle Fahrten/Angebote"
+      german: "deutsch"
+      english: "englisch"      
+      msg_signup_success: "Danke für deine Registrierung!  Wir haben dir eine Email mit deinem Aktivierungscode gesendet."
+      msg_signup_failed: "Leider konnten wir keinen Account einrichten. Versuche es noch einmal oder kontaktiere den Administrator."
+      msg_account_success: "Registrierung abgeschlossen! Du kannst dich jetzt anmelden."
+      msg_account_missing: "Der Aktivierungscode fehlt. Bitte folge der URL aus deiner Email."
+      msg_account_failed:  "Wir konnten keinen Benutzer mit diesem Aktivierungscode finden -- überprüfe deine Email! Vielleicht ist dein Account bereits avtiviert -- versuche dich anzumelden."
+      msg_access_denied: "Du musst dich erst anmelden."
+      msg_permission_denied: "Du hast keine Berechtigung das zu tun."
+      msg_login_success: "Erfolgreich angemeldet"
+      msg_login_failed: "Falsche Email oder Passwort"
+      msg_logout_success: "Du wurdest abgemeldet."      
+      msg_already_logged_in: "Du bist bereits angemeldet."
+    js_text:
+      msg_time_format: "Bitte gib einen Zeitpunkt im Format hh:mm ein.(Beispiel: 13:45)"
+      msg_duration_format: "Bitte gib die Fahrdauer im Format hh:mm ein.(Beispiel: 02:15)"
+      msg_phone_format: "Keine gültige Telefonnummer"
+      msg_car_code: "Kein gültiges KFZ-Kennzeichen"
+      msg_zip_code: "Keine gültige Postleitzahl"
+      msg_url: "Keine gültige URL"

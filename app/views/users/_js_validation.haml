@@ -1,0 +1,86 @@
+-content_for :javascript do
+  :javascript
+
+    $(document).ready(function() {
+
+      $.validator.addMethod("nospaces", function(value, element) {
+        return check_regexp(value, new RegExp(/^[A-Za-z0-9\-]*$/));
+      }, "No pongas espacios o signos raros en tu nombre usuario. Solo letras y numeros.");
+
+      var validator = $("##{form_id}").validate({
+    rules: {
+      "user[login]": {
+        required: true,
+        minlength: 5,
+        nospaces: true
+      },
+      "user[password]": {
+        required: true,
+        minlength: 5
+      },
+      "user[password_confirmation]": {
+        required: true,
+        minlength: 4,
+        equalTo: "#user_password"
+      },
+      "user[email]": {
+        required: true,
+        email: true,
+        minlength: 4
+      },
+      "user[gender]": {
+        required: true
+      },
+      "user[birthdate(1i)]": "required",
+      "user[birthdate(2i)]": "required",
+      "user[birthdate(3i)]": "required",
+      "user[terms_accepted]": {
+        required: true
+      }
+    },
+          messages: {
+            "user[login]": {
+              required: "Porfavor ingresa un nombre de usuario",
+              minlength: jQuery.format("Ingresa al menos {0} characters"),
+            },
+          "user[password]": {
+            required: "Pon tu contraseña",
+            rangelength: jQuery.format("Enter at least {0} characters")
+          },
+          "user[password_confirmation]": {
+            required: "Pon la misma contraseña que arriba.",
+            equalTo: "Pon la misma contraseña que arriba."
+          },
+          "user[email]": {
+            required: "Pon tu correo",
+            email: "Pon un correo valido."
+          },
+          "user[gender]": {
+            required: "Eres mujer o hombre?"
+          },
+          "user[birthdate(1i)]": {
+            required: "¿Cual es tu cumpleaños?"                    
+          },
+          "user[birthdate(2i)]": {
+            required: "¿Cual es tu cumpleaños?"                    
+          },
+          "user[birthdate(3i)]": {
+            required: "¿Cual es tu cumpleaños?"                    
+          }
+        },
+        
+    errorPlacement: function(error, element) {
+           if(element.attr('id') == "user_terms_accepted"){
+             error.appendTo("#termserrors");
+           }
+           else if(element.attr('id') == "user_birthdate_3i" || element.attr('id') == "user_birthdate_2i" || element.attr('id') == "user_birthdate_1i") {
+                   $("#dateerrors").html(error);
+           } else {
+                   error.insertAfter(element);
+           }
+       }
+        
+        
+        
+      })
+    });

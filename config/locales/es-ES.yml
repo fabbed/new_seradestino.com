@@ -1,0 +1,205 @@
+es:
+  #¡Te damos la bienvenida a Facebook!
+  # Hola, Fabian:
+  # Tu cuenta ha sido creada. Ahora te será más fácil que nunca compartir y conectar con tus amigos.
+  # Éstas son tres formas en las que puedes sacarle el máximo provecho:
+  #   
+  # Buscar amigos
+  # Encuentra en Facebook a personas que conoces usando nuestras herramientas.
+  #   
+  # Cargar una foto de perfil
+  # Personaliza tu perfil y ayuda a tus amigos a reconocerte.
+  #   
+  # Editar tu perfil
+  # Describe intereses personales, información de contacto y afiliaciones.
+  # Si tienes alguna pregunta, consulta nuestra Guía para nuevos usuarios.
+  # Gracias,
+  # El equipo de Facebook
+  
+  emails:
+    signup_notification:
+      subject: "Confirmación de tu cuenta en seradestino.com"
+      body: "Hola, {{login}}: <br/><br/> Hace poco que te has registrado en seradestino.com.  Confirma tu cuenta de Facebook haciendo clic en este enlace: <br/><br/> {{link}} <br/><br/>Gracias,<br/>El equipo de Facebook"
+  
+  global:
+    cancel: "Cancelar"
+    send: "Enviar"
+    introduction_text: "Amores pasados, encuentros casuales, la suerte a la vuelta de la esquina... A todos nos pasaron historias de esas, ¿casualidad o destino? ¡Cuéntanos tu historia y además lee y opina sobre la de los demás!"
+    newsletter_subtext: "Ingresa tu email y recibe<br/> semanal o diariamente las mejores cagadas y puteada"
+    terms: "Condiciones de Uso"
+  top_login:
+    register: "Regístrate como nuevo usuario"
+    login: "Ingresa a seradestino.com"
+    my_account: "Mi cuenta"
+    logout: "Cerrar sesión"
+
+  story:
+    send_story: "Enviar"
+  
+  account:
+    select_photo_title: "Seleciona tu foto"
+    my_avatar_header: "Mi foto"
+    your_stories_header: "Historias tuyas ({{count}}):"
+    your_favorite_stories_header: "Tus historias favoritas"
+    your_comments: "Tus comentarios ({{count}}):"
+    change_picture: "Cambiar foto"
+    stories_rated_as_destino: "Historias que votaste como 'destino' ({{count}}):"
+    stories_rated_as_casualidad: "Historias que votaste como 'casualidad' ({{count}}):"
+    commented_stories: "Historias que comentaste ({{count}}):"
+    male: "Hombre"
+    female: "Mujer"
+    still_not_confirmed: "Tu cuenta <b>no está confirmada todavía</b>. Revisa tu correo electrónico ({{email}}) para ver la confirmación de seradestino.com."
+    first_confirm_photo_link: "Tu cuenta no está confirmada todavía. Revisa tu correo electrónico ({{email}}) para ver la confirmación de seradestino.com."
+    no_top_rated_stories: "No votaste ninguna historia como 'destino'"
+    no_flop_rated_stories: "No votaste ninguna historia como 'casualidad'"
+    no_commented_stories: "No comentaste ninguna historia"
+    no_comment: "No mandaste ni un comentario"
+    
+
+
+  
+  comments:
+    comment_box_title: "Tu respuesta:"
+    send_comment: "Enviar"
+    show_answers: "Mostrar Respuestas"
+    reply: "Contestar"
+    textarea_title: "Tu comentario:"
+    no_comments: "No hay comentarios para esta entrada"
+    your_answer: "Tu respuesta:"
+  newsletter:
+      register: "Registrarse"
+
+  user:
+    login_required: "Nombre de usuario es required"
+    login_length: "Tu nombre de usuario sólo puede contener de 4 a 40 caracteres"
+    login_exists: "El nombre de usuario no está disponible en seradestino.com. Haz clic aquí para iniciar sesión como fabian@hotmail.com"
+    login_format: "Dont use strange signs or spaces en tu nombre de usuario"
+    email_required: "email required"
+    email_length: "email between..."
+    email_exists: "	Este email ya esta tomada en seradestino.com"
+    email_format: "Tu dirección de correo electrónico no es válida. Por favor verifica que sea la correcta."
+    birthdate_required: "Para registrarte tienes que indicar tu fecha de nacimiento completa."
+    gender_required: "Por favor, selecciona 'Hombre' o 'Mujer'."
+
+  flash:
+    error_in_signing_up: "Debes llenar todos los campos"
+    thanks_for_signing_up: "Hola {{login}}! <br/> <b>Tu cuenta no está confirmada todavía</b>. Revisa tu correo electrónico ({{email}}) para ver la confirmación de seradestino."
+    error_in_signing_up: ""
+    user_activation_complete: ""
+    activation_code_missing_in_signup: ""
+    not_existing_activation_code: ""
+    logged_in_with_success: "Logged in successfully"
+    logged_out_with_success: "Logged out successfully"
+    login_as_x_not_possible: "No fue posible conectarte con el email: {{email}}. ¿Estas seguro que el email y tu contraseña es correcto?"
+    
+    
+  number:
+    percentage:
+      format:
+        delimiter: ","
+    currency:
+      format:
+        format: "%u%n"
+        unit: "$"
+    format:
+      delimiter: ","
+      precision: 2
+      separator: "."
+    human:
+      format:
+        delimiter: ","
+      storage_units: [Bytes, KB, MB, GB, TB]
+    precision:
+      format:
+        delimiter: ","
+ 
+  date:
+    order: [:day, :month, :year]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    formats:
+      short: "%d de %b"
+      default: "%d/%m/%Y"
+      long: "%A, %d de %B de %Y"
+  time:
+    formats:
+      short: "%d de %b a las %H:%M hrs"
+      default: "%a, %d de %b de %Y a las %H:%M:%S %Z"
+      long: "%A, %d de %B de %Y a las %I:%M %p"
+    am: "am"
+    pm: "pm"
+ 
+  datetime:
+    distance_in_words:
+      half_a_minute: "medio minuto"
+      less_than_x_seconds:
+        one: "menos de 1 segundo"
+        other: "menos de {{count}} segundos"
+      x_seconds:
+        one: "1 segundo"
+        other: "{{count}} segundos"
+      less_than_x_minutes:
+        one: "menos de 1 minuto"
+        other: "menos de {{count}} minutos"
+      x_minutes:
+        one: "1 minuto"
+        other: "{{count}} minutos"
+      about_x_hours:
+        one: "cerca de 1 hora"
+        other: "cerca de {{count}} horas"
+      x_days:
+        one: "1 día"
+        other: "{{count}} días"
+      about_x_months:
+        one: "cerca de 1 mes"
+        other: "cerca de {{count}} meses"
+      x_months:
+        one: "1 mes"
+        other: "{{count}} meses"
+      about_x_years:
+        other: "cerca de {{count}} años"
+        one: "cerca de 1 año"
+      over_x_years:
+        one: "más de 1 año"
+        other: "más de {{count}} años"
+    prompts:
+      hour: 'Hora'
+      minute: 'Minuto'
+      second: 'Segundo'
+ 
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "{{model}} no pudo guardarse debido a 1 error"
+          other: "{{model}} no pudo guardarse debido a {{count}} errores"
+        body: "Revise que los siguientes campos sean válidos:"
+      messages:
+        inclusion: "no está incluído en la lista"
+        exclusion: "está reservado"
+        invalid: "es inválido"
+        invalid_date: "es una fecha inválida"
+        confirmation: "no coincide con la confirmación"
+        blank: "no puede estar en blanco"
+        empty: "no puede estar vacío"
+        not_a_number: "no es un número"
+        taken: "ya ha sido tomado"
+        less_than: "debe ser menor que {{count}}"
+        less_than_or_equal_to: "debe ser menor o igual que {{count}}"
+        greater_than: "debe ser mayor que {{count}}"
+        greater_than_or_equal_to: "debe ser mayor o igual que {{count}}"
+        too_short:
+          one: "es demasiado corto (mínimo 1 caracter)"
+          other: "es demasiado corto (mínimo {{count}} caracteres)"
+        too_long:
+          one: "es demasiado largo (máximo 1 caracter)"
+          other: "es demasiado largo (máximo {{count}} caracteres)"
+        equal_to: "debe ser igual a {{count}}"
+        wrong_length:
+          one: "longitud errónea (debe ser de 1 caracter)"
+          other: "longitud errónea (debe ser de {{count}} caracteres)"
+        accepted: "debe ser aceptado"
+        even: "debe ser un número par"
+        odd: "debe ser un número non"

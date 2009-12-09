@@ -1,0 +1,15 @@
+.my_account
+  #sidebar.sidebar
+    #sb_content
+      .section
+        =image_tag "header_micuenta.png"
+
+      =link_to_profile current_user
+      .c
+      %br
+      -unless defined?(photo_link)
+        =link_to t("account.change_picture"), account_avatar_path, :style => "margin-left: 2.5em;"
+      -else
+        =link_to_function t("account.change_picture"), "alert('#{t('account.first_confirm_photo_link', :email => current_user.email)}')", :style => "margin-left: 2.5em;"
+
+      =image_tag "sidebar_seperator.png", :class => "seperator fix"

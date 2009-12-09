@@ -1,0 +1,26 @@
+-content_for(:sidebar) do
+  =render :partial => '/shared/sidebars/sidebar', :locals => {:big => false}
+
+
+.box_wrapper.round_corners
+  .box_content
+    %h1 Entrar
+
+    - form_tag sessions_path , :id => "new_session" do
+      %p
+        = label_tag 'email', "E-Mail"
+        = text_field_tag 'email', @login, :class => "input medium_input"
+      %p
+        = label_tag 'password'
+        = password_field_tag 'password', nil, :class => "input medium_input"
+
+      %br
+      %p
+        = check_box_tag 'remember_me', '1', @remember_me, :checked => true
+        = label_tag 'remember_me', 'No cerrar sesión', :class => "di"
+      %br
+      %br  
+      %p
+        = submit_tag 'Entrar'
+
+=render :partial => "/sessions/js_validation", :locals => { :form_id => "new_session" }

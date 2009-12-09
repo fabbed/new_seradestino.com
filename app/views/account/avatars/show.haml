@@ -1,0 +1,15 @@
+.box_wrapper.round_corners
+  .box_content
+    %h1 Mi Foto
+    
+    -content_for(:sidebar) do
+      =render :partial => 'account/sidebar'
+
+    - form_for :user, :url => account_avatar_path, :html => { :multipart => true, :method => :put } do |f|
+      %p
+        = f.label :avatar, t('account.select_photo_title')
+        = f.file_field :avatar
+      %p
+        =f.submit t('global.send'), :style => "margin-top: 5px;", :class => "comment_submit button button_blue_small"        
+
+

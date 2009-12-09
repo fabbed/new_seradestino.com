@@ -1,0 +1,33 @@
+-content_for :javascript do
+  :javascript
+
+    $(document).ready(function() {
+
+      $.validator.addMethod("nospaces", function(value, element) {
+        return check_regexp(value, new RegExp(/^[A-Za-z0-9\-]*$/));
+      }, "No pongas espacios o signos raros en tu nombre usuario. Solo letras y numeros.");
+
+      var validator = $("##{form_id}").validate({
+    rules: {
+      "password": {
+        required: true,
+        minlength: 5,
+      },
+      "email": {
+        required: true,
+        email: true,
+        minlength: 4
+      }
+    },
+      messages: {
+        "password": {
+          required: "Porfavor ingresa tu contraseña",
+          minlength: jQuery.format("Tu contraseña tiene al menos {0} characters"),
+        },
+      "email": {
+        required: "Pon tu correo",
+        email: "Pon un correo valido.",
+        minlength: jQuery.format("Tu email tiene al menos {0} characters")
+        }
+      }})
+    });

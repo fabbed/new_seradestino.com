@@ -1,0 +1,19 @@
+- content_for :javascript do
+  :javascript
+    $(document).ready(function() {
+      var validator = $(".#{form_class}").validate({
+        rules: {
+          "comment[comment]": {
+            required: true,
+            minlength: 20
+          }
+        },
+        messages: {
+          "comment[comment]": {
+            required: "¿Y donde esta tu comentario?",
+            minlength: "Vamos! Un poco más largo por favor. 20 letras minimo!"
+          }
+        },
+        submitHandler: function(form) {submit_form(form)}
+      });
+    });

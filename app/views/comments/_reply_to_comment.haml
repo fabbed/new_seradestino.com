@@ -1,0 +1,10 @@
+.reply_comment
+  %h3= t("comments.your_answer")
+  -form_for :comment, :url => comments_path(:parent => comment.id), :html => {:id => "comment_form"} do |f|
+    =text_area_tag "comment[comment]", "", :id => "story_comment_field", :size => "1x6"
+  
+    .fr
+      =link_to t("global.cancel")    
+      =submit_tag t("comments.send_comment"), :style => "margin-top: 5px;", :class => "comment_submit button button_blue_small"
+
+  .c

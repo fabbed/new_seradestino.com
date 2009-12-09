@@ -1,0 +1,23 @@
+%div{:class => level}
+  -unless level == "parent"
+    =image_tag "icon_comment_reply.png", :style => "float:left", :class => "icon_comment_reply"
+  .comment.brown_background.oh{:id => dom_id(comment)}
+    .info
+      .flag
+        =image_tag "new/flags/#{comment.country_code.downcase}.png", :title => comment.country_name, :class => "tooltip" if comment.country_id
+        %span.info
+          =meta_info comment
+    %span.black.font_14
+      =comment.body
+    .fr.comment_action
+      -if comment.children.size > 0 and level == "parent"
+        =link_to t("comments.show_answers"), story_path(@story), :class => "show_children_link"
+        |
+      -if level != "child_of_child"
+        =link_to t("comments.reply"), story_path(@story), :class => "reply_to_comment"
+    =#render :partial => "comments/reply_to_comment", :locals => {:comment => comment}
+
+  -if comment.has_children? and level == "parent"
+    =render :partial => "comments/comment", :collection => comment.children, :locals => {:level => "child"}
+  -elsif comment.has_children? and level == "child"
+    =render :partial => "comments/comment", :collection => comment.children, :locals => {:level => "child_of_child"}
