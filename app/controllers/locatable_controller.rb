@@ -9,7 +9,7 @@ class LocatableController < ApplicationController
   end
 
   def locate_user
-    @user.location = Location.build(user, session[:geo_location], request.env["REMOTE_ADDR"]) if session[:geo_location]
+    @user.location = Location.build(@user, session[:geo_location], request.env["REMOTE_ADDR"]) if session[:geo_location]
   end
 
   def track_story
