@@ -48,11 +48,11 @@ module ApplicationHelper
     output = ""
 
     if object.is_a?(Comment)
-      output << content_tag(:div, (image_tag(get_flag_image(object), :title => object.country.name, :class => "tooltip") if object.country_id), :class => "flag")
+      output << content_tag(:div, image_tag(get_flag_image(object), :title => object.country.name, :class => "tooltip"), :class => "flag")
       output << "#{author(object)} el #{my_date(object.created_at)}"      
 
     elsif object.is_a?(Story)
-      output << content_tag(:div, (image_tag(get_flag_image(object), :title => object.country.name, :class => "tooltip") if object.country_id), :class => "flag")
+      output << content_tag(:div, image_tag(get_flag_image(object), :title => object.country.name, :class => "tooltip"), :class => "flag")
 
       output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
       output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text")
