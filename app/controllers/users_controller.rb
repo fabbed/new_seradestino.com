@@ -35,6 +35,7 @@ class UsersController < LocatableController
     when (!params[:activation_code].blank?) && @user && !@user.active?
       @user.activate!
       locate_user
+      @user.save
       @user.assign_content
       self.current_user = @user
       flash[:info] = I18n.t('flash.user_activation_complete')

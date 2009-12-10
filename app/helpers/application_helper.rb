@@ -6,7 +6,7 @@ module ApplicationHelper
 
   def get_flag_image(object)
     return "flags/xx.png" if !object.location
-    "flags/#{object.location.country_code}.png"
+    "flags/#{object.location.country_code.downcase}.png"
   end
 
   def link_to_profile(user, options = {})
@@ -48,10 +48,11 @@ module ApplicationHelper
     output = ""
 
     if object.is_a?(Comment)
+      output << content_tag(:div, (image_tag(get_flag_image(object), :title => object.country.name, :class => "tooltip") if object.country_id), :class => "flag")
       output << "#{author(object)} el #{my_date(object.created_at)}"      
 
     elsif object.is_a?(Story)
-      output << content_tag(:div, (image_tag("flags/#{object.country_code.downcase}.png", :title => object.country.name, :class => "tooltip") if object.country_id), :class => "flag")
+      output << content_tag(:div, (image_tag(get_flag_image(object), :title => object.country.name, :class => "tooltip") if object.country_id), :class => "flag")
 
       output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
       output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text")

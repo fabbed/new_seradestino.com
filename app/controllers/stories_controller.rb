@@ -124,7 +124,6 @@ class StoriesController < LocatableController
   end
 
   def index
-    flash[:info]= "dsajhdjash"
     builder = Story.scope_builder
     builder.newest_first
     builder.from_country(session[:selected_country]) if session[:selected_country]
