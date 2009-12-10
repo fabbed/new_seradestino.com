@@ -3,10 +3,16 @@ module ApplicationHelper
 
   include TagsHelper
 
+
+  def get_flag_image(object)
+    return "flags/xx.png" if !object.location
+    "flags/#{object.location.country_code}.png"
+  end
+
   def link_to_profile(user, options = {})
       
       options[:size] ||= :medium
-      flag = image_tag "flags/mx.png", :class => "user_box_flag"
+      flag = image_tag get_flag_image(user), :class => "user_box_flag"
       output = flag
       user_pic = link_to image_tag(user.avatar.url(options[:size]), :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), user_path(user)
       output << user_pic

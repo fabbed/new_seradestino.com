@@ -58,6 +58,7 @@ body {
   background-color: #000000;
   overflow: hidden; }
   #content #middle {
+    background-color: #FCFAF5;
     display: inline;
     width: 710px;
     float: left; }
