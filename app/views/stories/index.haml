@@ -7,6 +7,7 @@
   =render :partial => '/shared/sidebars/sidebar', :locals => {:big => false}
 
 -content_for(:main) do
+  =session[:geo_location].to_yaml
   =render :partial => 'stories/story', :collection => @stories
 
 -content_for(:footer) do

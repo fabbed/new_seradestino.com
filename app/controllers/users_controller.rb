@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < LocatableController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
@@ -8,10 +8,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
  
+ 
+  def show
+    @user = User.find(params[:id])
+  end
+ 
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
-    @user.vcode
+    @user.vcode = cookies[:vcode] if cookies[:vcode]
     success = @user && @user.save
     if success && @user.errors.empty?
       self.current_user = @user
@@ -25,14 +30,13 @@ class UsersController < ApplicationController
   end
 
   def activate
-    logout_keeping_session!
     user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      
+      locate_user
       user.assign_content
-      current_user = user
+      self.current_user = user
       flash[:info] = I18n.t('flash.user_activation_complete')
       redirect_to my_account_path
     when params[:activation_code].blank?

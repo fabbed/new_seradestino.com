@@ -222,6 +222,7 @@ a.not_zero {
   float: right;
   font-size: 120%; }
   #sub_header .login .links {
+    font-size: 14px;
     margin: 14px 0px 0px 52px; }
     #sub_header .login .links a {
       margin-right: 10px; }
@@ -412,10 +413,8 @@ label.label_sub {
       padding-bottom: 1em; }
       #comments .leave_comment .brown_background textarea {
         border: 1px solid #D6BCB1; }
-  #comments .child {
-    display: none; }
-    #comments .child .comment {
-      margin-left: 20px; }
+  #comments .child .comment {
+    margin-left: 20px; }
   #comments .child_of_child .comment {
     margin-left: 40px; }
   #comments .child_of_child .icon_comment_reply {

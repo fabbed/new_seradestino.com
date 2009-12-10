@@ -1,6 +1,6 @@
 require 'digest/sha1'
 
-class User < ActiveRecord::Base
+class User  < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :stories
   has_many :comments
   has_many :user_ratings
+  belongs_to :location
 
   validates_presence_of     :login,    :message => I18n.t("user.login_required")
   validates_length_of       :login,    :within => 4..40, :message => I18n.t("user.login_length")
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
   validates_presence_of     :birthdate,   :message => I18n.t("user.birthdate_required")
   # validates_presence_of     :gender,   :message => I18n.t("user.gender_required")
   
-  validates_inclusion_of :gender, :in => %w(male female),   :message => I18n.t("user.gender_required")
+  validates_inclusion_of :gender, :in => %w(m f),   :message => I18n.t("user.gender_required")
   
 
 
@@ -42,7 +43,6 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :avatar, :gender, :birthdate
-
 
 
   def self.get_new_users

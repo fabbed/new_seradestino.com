@@ -5,7 +5,9 @@
     -content_for(:sidebar) do
       =render :partial => 'account/sidebar'
 
-    - form_for :user, :url => account_avatar_path, :html => { :multipart => true, :method => :put } do |f|
+    -# form_for :user, :url => account_avatar_path, :html => { :multipart => true, :method => :put } do |f|
+    - form_for :user, @user, :url => account_avatar_path, :html => { :multipart => true, :method => :put } do |f|
+      =error_messages_for :user
       %p
         = f.label :avatar, t('account.select_photo_title')
         = f.file_field :avatar

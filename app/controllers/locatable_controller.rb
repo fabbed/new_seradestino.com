@@ -1,30 +1,16 @@
 class LocatableController < ApplicationController
 
   def locate_comment
-
-    location = session[:geo_location]
-    if location
-      comment.ip = request.env["REMOTE_ADDR"]
-      comment.country_id = Country.find_by_iso(location.country_code.upcase).used_id if location.country_code
-    end
-
+    @comment.location = Location.build(@comment, session[:geo_location], request.env["REMOTE_ADDR"]) if session[:geo_location]
   end
-
 
   def locate_story
-    location = session[:geo_location]
-    if location
-      @story.ip = request.env["REMOTE_ADDR"]
-      @story.lat = location.lat if location.lat
-      @story.lng = location.lng if location.lng
-      @story.city = location.city if location.city
-      @story.country_code = location.country_code if location.country_code
-      @story.country_id = Country.find_by_iso(location.country_code.upcase).used_id if location.country_code
-    end
-
+    @story.location = Location.build(@story, session[:geo_location], request.env["REMOTE_ADDR"]) if session[:geo_location]
   end
 
-
+  def locate_user
+    user.location = Location.build(user, session[:geo_location], request.env["REMOTE_ADDR"]) if session[:geo_location]
+  end
 
   def track_story
       if (visitor_session = get_visitor_session)

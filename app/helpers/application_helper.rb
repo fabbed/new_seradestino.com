@@ -3,22 +3,38 @@ module ApplicationHelper
 
   include TagsHelper
 
-
-
   def link_to_profile(user, options = {})
-
+      
+      options[:size] ||= :medium
       flag = image_tag "flags/mx.png", :class => "user_box_flag"
       output = flag
-      user_pic = link_to image_tag(user.avatar.url(:medium), :alt => h(user.login), :title => h(user.login), :class => "icon"), user_path(user)
+      user_pic = link_to image_tag(user.avatar.url(options[:size]), :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), user_path(user)
       output << user_pic
       output << "<br/>"
-      user_name_link =link_to user.login, user_path(user), :class => "normal_color dashed"
+      user_name_link =link_to truncate(user.login, 15), user_path(user), :class => "normal_color dashed", :id => "user_profile_link"
       output << user_name_link
             
-      content_tag(:div, output, :class => "userbox")
+      content_tag(:div, output, :class => "userbox #{options[:size]}")
 
   end
 
+
+  def author(object)
+    if object.is_a? Story
+      if object.user and !object.anonymous
+        link_to object.user.login, user_path(object.user), :id => "user_profile_link"
+      else
+        "anónimo"
+      end
+    else object.is_a? Comment
+      unless object.user
+        "anónimo"
+      else
+        user = User.find(object.user_id)
+        link_to user.login, user_path(user), :id => "user_profile_link"
+      end
+    end
+  end
 
 
   
@@ -26,11 +42,12 @@ module ApplicationHelper
     output = ""
 
     if object.is_a?(Comment)
-      output << "Escrito por: #{author(object)} el #{my_date(object.created_at)}"      
+      output << "#{author(object)} el #{my_date(object.created_at)}"      
+
     elsif object.is_a?(Story)
       output << content_tag(:div, (image_tag("flags/#{object.country_code.downcase}.png", :title => object.country.name, :class => "tooltip") if object.country_id), :class => "flag")
 
-      output << content_tag(:div, "Escrito por: #{author(object)} el #{my_date(object.created_at)}", :class => "text")
+      output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
       output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text")
       output << content_tag(:div, "Categoría: #{link_to 'Amor', '#'}", :class => "category text")      
     end

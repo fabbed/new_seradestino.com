@@ -35,7 +35,7 @@ es:
 
   story:
     send_story: "Enviar"
-  
+
   account:
     select_photo_title: "Seleciona tu foto"
     my_avatar_header: "Mi foto"
@@ -55,8 +55,6 @@ es:
     no_commented_stories: "No comentaste ninguna historia"
     no_comment: "No mandaste ni un comentario"
     
-
-
   
   comments:
     comment_box_title: "Tu respuesta:"
@@ -80,6 +78,13 @@ es:
     email_format: "Tu dirección de correo electrónico no es válida. Por favor verifica que sea la correcta."
     birthdate_required: "Para registrarte tienes que indicar tu fecha de nacimiento completa."
     gender_required: "Por favor, selecciona 'Hombre' o 'Mujer'."
+    user_no_comments_header: "{{login}} no escribió ni un comentario"
+    comments_of_user_header: "Comentarios"
+    stories_of_user_header: "Historias"
+    user_no_stories: "{{login}} no escribió ni una historia"
+
+
+
 
   flash:
     error_in_signing_up: "Debes llenar todos los campos"

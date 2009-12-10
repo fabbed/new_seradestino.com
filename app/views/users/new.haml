@@ -5,6 +5,7 @@
   .box_content
     %h1 Regístrate
     %h2 Es gratis y cualquiera puede unirse.
+    =link_to_function "Fill with fake data", "fill_with_fake_data_user()" if RAILS_ENV == "development"
 
     - @user.password = @user.password_confirmation = nil
     - form_for :user, :url => users_path, :html => {:id => "new_user_registration"} do |f|
@@ -26,7 +27,7 @@
         = error_message_on :user, :password_confirmation
       %p
         = f.label :gender, 'Sexo'
-        = f.select :gender, [[ t('account.male'), :male ], [ t('account.female'), :female ]]
+        = f.select :gender, [[ t('account.male'), :m ], [ t('account.female'), :f ]]
 
         = error_message_on :user, :gender
       %p

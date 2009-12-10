@@ -1,7 +1,8 @@
-class Comment < ActiveRecord::Base
+class Comment  < ActiveRecord::Base
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
   belongs_to :user
-  
+  belongs_to :location
+    
   validates_presence_of :body
   
   # NOTE: install the acts_as_votable plugin if you 

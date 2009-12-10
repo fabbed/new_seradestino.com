@@ -21,3 +21,11 @@
     margin-top: 0px;
     position: absolute;
     border: 0; }
+
+.medium .user_box_flag {
+  margin-left: 52px;
+  margin-top: -1px; }
+
+.large .user_box_flag {
+  margin-left: 114px;
+  margin-top: -1px; }

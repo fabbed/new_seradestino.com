@@ -4,57 +4,58 @@
 
   .box_wrapper.round_corners
     .box_content
-      %h1="Hola #{current_user.login}!"
-      Aqui ves un resumen de tu actividad en seradestino.com
-      %br
-      %br
+      .fl
+        %h1="Hola #{current_user.login}!"
+        Aqui ves un resumen de tu actividad en seradestino.com
+        %br
+        %br
 
-      %h2 Historias
-      .section
-        %h3.section_title=t("account.your_stories_header", :count => current_user.stories.count)
-        %ul
-          -if current_user.stories.count > 0
-            =render :partial => "account/stories/story", :collection => current_user.stories
-          -else
-            %span.no_entity=t("account.no_own_stories")
+        %h2 Historias
+        .section
+          %h3.section_title=t("account.your_stories_header", :count => current_user.stories.count)
+          %ul
+            -if current_user.stories.count > 0
+              =render :partial => "account/stories/story", :collection => current_user.stories, :locals => {:show_if_anonymous => true}
+            -else
+              %span.no_entity=t("account.no_own_stories")
 
-      %h2 Votos
+        %h2 Votos
 
-      .section
-        %h3.section_title=t("account.stories_rated_as_destino", :count => current_user.top_rated_stories.size)
-        %ul
-          -if current_user.top_rated_stories.size > 0
-            =render :partial => "account/stories/story", :collection => current_user.top_rated_stories
-          -else
-            %span.no_entity=t("account.no_top_rated_stories")
+        .section
+          %h3.section_title=t("account.stories_rated_as_destino", :count => current_user.top_rated_stories.size)
+          %ul
+            -if current_user.top_rated_stories.size > 0
+              =render :partial => "account/stories/story", :collection => current_user.top_rated_stories
+            -else
+              %span.no_entity=t("account.no_top_rated_stories")
 
-      .section
-        %h3.section_title=t("account.stories_rated_as_casualidad", :count => current_user.top_rated_stories.size)
-        %ul
-          -if current_user.flop_rated_stories.size > 0
-            =render :partial => "account/stories/story", :collection => current_user.flop_rated_stories
-          -else
-            %span.no_entity=t("account.no_flop_rated_stories")
+        .section
+          %h3.section_title=t("account.stories_rated_as_casualidad", :count => current_user.top_rated_stories.size)
+          %ul
+            -if current_user.flop_rated_stories.size > 0
+              =render :partial => "account/stories/story", :collection => current_user.flop_rated_stories
+            -else
+              %span.no_entity=t("account.no_flop_rated_stories")
 
-      .section
-        %h3.section_title=t("account.commented_stories", :count => current_user.commented_stories.size)
-        %ul
-          -if current_user.commented_stories.size > 0
-            =render :partial => "account/stories/story", :collection => current_user.commented_stories
-          -else
-            %span.no_entity=t("account.no_comments")
+        .section
+          %h3.section_title=t("account.commented_stories", :count => current_user.commented_stories.size)
+          %ul
+            -if current_user.commented_stories.size > 0
+              =render :partial => "account/stories/story", :collection => current_user.commented_stories
+            -else
+              %span.no_entity=t("account.no_comments")
 
 
-
-      / .section
-      /   %h3.section_title=t("account.your_favorite_stories_header")
-
-      %h2 Comentarios
-      .section
-        %h3.section_title=t("account.your_comments", :count => current_user.comments.size)
-        %ul
-          -if current_user.comments.size > 0
-            =render :partial => "account/comments/comment", :collection => current_user.comments
-          -else
-            =t("account.no_own_comments")
-
+        %h2 Comentarios
+        .section
+          %h3.section_title=t("account.your_comments", :count => current_user.comments.size)
+          %ul
+            -if current_user.comments.size > 0
+              =render :partial => "account/comments/comment", :collection => current_user.comments
+            -else
+              =t("account.no_own_comments")
+      
+      
+      .fr
+        =link_to_profile current_user, :size => :large
+      .c

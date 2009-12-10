@@ -5,6 +5,7 @@ class CreateLocations < ActiveRecord::Migration
       t.float         :lat, :limit => 8      
       t.belongs_to    :country
       t.string        :city
+      t.string        :precision
     end
   end
 

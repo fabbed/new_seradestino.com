@@ -10,7 +10,7 @@
     - form_for(@story) do |f|
       =error_messages_for :story      
       %h1.title ¡Cuenta tu historia!
-      =link_to_function "Fill with fake data", "fill_with_fake_data()"
+      =link_to_function "Fill with fake data", "fill_with_fake_data_story()" if RAILS_ENV == "development"
       
       - if f.error_messages.present?
         #flash_message

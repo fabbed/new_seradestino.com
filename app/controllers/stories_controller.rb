@@ -170,15 +170,17 @@ class StoriesController < LocatableController
   # POST /stories.xml
   def create
     @story = Story.new(params[:story])
-    @story.tag_list = params[:story][:tag_list]
-    @story.user = current_user if current_user
 
     respond_to do |format|
       if @story.save
         flash[:success] = '¡Muy bien!<br/> Ahora tu historia se encuentra en la página de inicio donde también puedes votar otras historias.'
+        @story.tag_list = params[:story][:tag_list]
+        @story.user = current_user if current_user
 
         track_story
-
+        locate_story
+        @story.save
+        
         format.html { redirect_to root_path(:param => "historia_creado") }
         format.xml  { render :xml => @story, :status => :created, :location => @story }
       else

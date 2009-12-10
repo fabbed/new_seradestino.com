@@ -13,22 +13,6 @@ module StoriesHelper
 
 
 
-  def author(object)
-
-    # if object.is_a? Story
-    #   if object.user and !object.anonymous
-    #     object.user.login
-    #   else
-    #     "anónimo"
-    #   end
-    # else object.is_a? Comment
-    #   #todo: wenn eingeloogt dann echten namen
-    #   "anónimo"
-    # end
-  end
-
-
-
 # =link_to_function "¡Qué puta mierda!(#{story_new.rated_top})", "vote_story(#{story_new.id}, 'top', 'collection')", :class => "vote_link"
 # -else
 # =link_to_function "¡Qué puta mierda!(#{story_new.rated_top})", "alert('Ya hay un voto tuyo para esta historia')", :class => "inactive"

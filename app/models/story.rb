@@ -1,8 +1,10 @@
-class Story < ActiveRecord::Base
+class Story  < ActiveRecord::Base
   # belongs_to :user
   belongs_to :category
   belongs_to :country  
   belongs_to :user 
+
+  belongs_to :location
 
   acts_as_commentable
   acts_as_taggable
@@ -17,8 +19,7 @@ class Story < ActiveRecord::Base
   validates_length_of     :body,              :within => 99..1000000, :message => "Al menos 100 letras"
   validates_presence_of :category_id, :message => "Elige una categoría"
 
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => I18n.t("user.email_format"), :allow_nil => true
-
+  validates_format_of       :email,    :with => Authentication.email_regex, :message => I18n.t("user.email_format"), :allow_nil => true, :if => :email?
 
   named_scope :moderated, :conditions => ['on_startpage = ?', true]
   named_scope :tops, :order => ['rated_top desc']
@@ -28,11 +29,9 @@ class Story < ActiveRecord::Base
 
   named_scope :from_country, lambda { |country_id|   { :conditions => { :country_id => country_id } } }
   named_scope :from_category, lambda { |category_id|   { :conditions => { :category_id => category_id } } }
-
-
   named_scope :for_administering, :order => "created_at desc"
-
   named_scope :date_between, lambda { |date_range|   { :conditions => { :created_at => date_range } } }
+  named_scope :not_anonymous, :conditions => { :anonymous => false }
 
 
   

@@ -1,12 +1,22 @@
-function fill_with_fake_data(){
-  
+function fill_with_fake_data_story(){
   $("#story_title").attr("value", "Dies ist eine Fake Story")  
   $("#story_body").attr("value", "Dies ist eine Fake StoryDies ist eine Fake StoryDies ist eine Fake StoryDies ist eine Fake StoryDies ist eine Fake Story")  
-
   $("#story_category_id").attr("value", "2")  
+}
 
 
-  
+function fill_with_fake_data_user(){
+  $("#user_login").attr("value", "Fabian99")  
+  $("#user_email").attr("value", "fabian.dittrich@gmail.com")    
+  $("#user_password").attr("value", "red098")      
+  $("#user_password_confirmation").attr("value", "red098")      
+
+  $("#user_birthdate_1i").attr("value", "1981")
+  $("#user_birthdate_2i").attr("value", "3")
+  $("#user_birthdate_3i").attr("value", "29")
+
+  $("#story_body").attr("value", "Dies ist eine Fake StoryDies ist eine Fake StoryDies ist eine Fake StoryDies ist eine Fake StoryDies ist eine Fake Story")  
+  $("#story_category_id").attr("value", "2")  
 }
 
 function round_corners() {
@@ -61,6 +71,8 @@ function submit_form (form) {
 
 $(document).ready(function() {
   
+  $.facebox.settings.opacity=0.5;  
+  
   $("a.reply_to_comment").live("click", function(){
     open_reply_to_comment($(this));
     return false;
@@ -78,8 +90,20 @@ $(document).ready(function() {
     return false;
   });
 
-
-
   round_corners();
-    
+
+    $.timer(2000, function (timer) {
+      var fade_time = 200;
+      $("#top_signup_link").animate({opacity: 1.0}, fade_time).animate({opacity: 0.1}, fade_time, function() {
+        $("#top_signup_link").animate({opacity: 0.1}, fade_time).animate({opacity: 1.0}, fade_time)
+      })
+      timer.stop();
+    });  
+    $.timer(5000, function (timer) {
+      var fade_time = 200;
+      $("#top_signup_link").animate({opacity: 1.0}, fade_time).animate({opacity: 0.1}, fade_time, function() {
+        $("#top_signup_link").animate({opacity: 0.1}, fade_time).animate({opacity: 1.0}, fade_time)
+      })
+      timer.stop();
+    });  
 });
