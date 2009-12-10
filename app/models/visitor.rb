@@ -50,10 +50,6 @@ class Visitor < ActiveRecord::Base
     new_visitor.ip = request.env["REMOTE_ADDR"]
     
     if location
-      new_visitor.lat = location.lat if location.lat
-      new_visitor.lng = location.lng if location.lng
-      new_visitor.city = location.city if location.city
-      new_visitor.country_code = location.country_code if location.country_code
       new_visitor.country_id = Country.find_by_iso(location.country_code.upcase).used_id if location.country_code
     end
 
