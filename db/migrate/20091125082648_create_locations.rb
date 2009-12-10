@@ -6,6 +6,8 @@ class CreateLocations < ActiveRecord::Migration
       t.belongs_to    :country
       t.string        :city
       t.string        :precision
+      t.string        :country_code
+      t.belongs_to    :locatable
     end
   end
 
