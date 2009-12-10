@@ -4,7 +4,6 @@ class CommentsController < LocatableController
 
   def create
 
-    locate_comment
     
     unless params[:parent]
       @story = Story.find(params[:story])
@@ -17,7 +16,7 @@ class CommentsController < LocatableController
      @comment.save
      @comment.move_to_child_of(parent_comment)
     end
-
+    locate_comment
     track_comment
 
     # if (@story.email.present? or @story.user_id > 0)
