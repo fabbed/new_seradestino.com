@@ -24,11 +24,11 @@ if defined? Geokit
 	# and http://www.google.com/apis/maps/documentation/#Geocoding_Examples
 	
 	if RAILS_ENV == "production"
-	  Geokit::Geocoders::google = 'ABQIAAAAq41jgnMAVw_fZQq0XgCgOxTEYfOv2CBZQYC7BAMTdxBP-tOXOxTESJFrSR1gbubxEqFpMfY0EwyG3g'
+	  Geokit::Geocoders::google = 'ABQIAAAAkzCpk0J1FPlWiSinzJS-6hQasU70E895awct6WnEz2cX57FcExR-8TDVSJXcZAB8ZToBgaBanLSjRw'
   end
     
   if RAILS_ENV == "development"
-	  Geokit::Geocoders::google = 'ABQIAAAAq41jgnMAVw_fZQq0XgCgOxTJQa0g3IQ9GZqIMmInSLzwtGDKaBQs02mhfURaIntuWJUEHCe7OlHgpg'
+	  Geokit::Geocoders::google = 'ABQIAAAAkzCpk0J1FPlWiSinzJS-6hSDXDb-6WZKkeEU3bMrcfn5hF_LFBTXtEwUYvxeTdOa2mWad1KJUFfpMw'
   end
     
 	# This is your username and password for geocoder.us.
