@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   def registered(user)
     setup_email(user)
-    @subject    += 'Please activate your new account'
+    @subject    += t("mails.registered_subject")
   
     @body[:url]  = @base_url + "activate/#{user.activation_code}"
   
@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   
   def activated(user)
     setup_email(user)
-    @subject    += 'Your account has been activated!'
+    @subject    += t("mails.activated_subject")
     @body[:url]  = @base_url
   end
 
@@ -22,17 +22,11 @@ class UserMailer < ActionMailer::Base
     
     puts "sending mail to: " + @recipients 
     
-    @subject = 'seradestino.com - Tu historia tiene un nuevo comentario.'
+    @subject = t("mails.new_comment_subject")
 
     @body[:story]  = story
   end
 
-t("mails.new_comment_subject")
-  'seradestino.com - Tu historia tiene un nuevo comentario.'
-t("mails.activated_subject")
-  'Your account has been activated!'
-t("mails.registered_subject")
-  'Bienvenidos'
   
   protected
     def setup_email(user)
