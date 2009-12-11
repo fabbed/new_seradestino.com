@@ -24,6 +24,13 @@ class StoriesController < LocatableController
     redirect_to story_path(@story)
   end
 
+  def update_story_settings
+    Story.update(params[:story].keys, params[:story].values)
+    flash[:info] = 'Preferencias de tu historias guardadas'
+    redirect_to my_account_path
+  end
+
+
   def vote_top
     session[:top_votes] << @story.id
 

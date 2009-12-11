@@ -1,3 +1,18 @@
+table.own_stories {
+  margin-top: 1em;
+  margin-left: 1em; }
+  table.own_stories th {
+    vertical-align: bottom;
+    border-bottom: 1px solid black; }
+  table.own_stories th.title {
+    width: 200px; }
+  table.own_stories th.anonymous {
+    width: 67px; }
+  table.own_stories th.notifications {
+    width: 130px; }
+  table.own_stories td {
+    border-top: 1px solid grey; }
+
 .filter_page .top {
   margin-top: 1em;
   margin-left: 92px;

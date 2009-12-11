@@ -13,11 +13,21 @@
         %h2 Historias
         .section
           %h3.section_title=t("account.your_stories_header", :count => current_user.stories.count)
-          %ul
-            -if current_user.stories.count > 0
-              =render :partial => "account/stories/story", :collection => current_user.stories, :locals => {:show_if_anonymous => true}
-            -else
-              %span.no_entity=t("account.no_own_stories")
+          -if current_user.stories.count > 0
+            - form_for :story, :url => {:controller => "/stories", :action => 'update_story_settings'}, :html => {:id => "update_stories_form"} do
+              %table.own_stories
+                %tr
+                  %th.title Titulo
+                  %th.anonymous Anónimo
+                  %th.notifications Recibir notificaciones
+                =render :partial => "account/stories/own_story", :collection => current_user.stories
+                %tr
+                  %td{:colspan => 2}
+                  %td
+                    %br
+                    =submit_tag "Guardar", :class => "fr", :onclick => 'submit_form($("#update_stories_form"))'
+          -else
+            %span.no_entity=t("account.no_own_stories")
 
         %h2 Votos
 

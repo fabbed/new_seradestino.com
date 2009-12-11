@@ -1,31 +1,15 @@
 es:
-  #¡Te damos la bienvenida a Facebook!
-  # Hola, Fabian:
-  # Tu cuenta ha sido creada. Ahora te será más fácil que nunca compartir y conectar con tus amigos.
-  # Éstas son tres formas en las que puedes sacarle el máximo provecho:
-  #   
-  # Buscar amigos
-  # Encuentra en Facebook a personas que conoces usando nuestras herramientas.
-  #   
-  # Cargar una foto de perfil
-  # Personaliza tu perfil y ayuda a tus amigos a reconocerte.
-  #   
-  # Editar tu perfil
-  # Describe intereses personales, información de contacto y afiliaciones.
-  # Si tienes alguna pregunta, consulta nuestra Guía para nuevos usuarios.
-  # Gracias,
-  # El equipo de Facebook
-  
-  emails:
-    signup_notification:
-      subject: "Confirmación de tu cuenta en seradestino.com"
-      body: "Hola, {{login}}: <br/><br/> Hace poco que te has registrado en seradestino.com.  Confirma tu cuenta de Facebook haciendo clic en este enlace: <br/><br/> {{link}} <br/><br/>Gracias,<br/>El equipo de Facebook"
+  mails:
+    registered_subject: "Confirmación de tu cuenta en seradestino.com"
+    activated_subject: "¡Te damos la bienvenida a seradestino.com!"
+    new_comment_subject: 'Tu historia tiene un nuevo comentario'
   
   global:
     cancel: "Cancelar"
     send: "Enviar"
     introduction_text: "Amores pasados, encuentros casuales, la suerte a la vuelta de la esquina... A todos nos pasaron historias de esas, ¿casualidad o destino? ¡Cuéntanos tu historia y además lee y opina sobre la de los demás!"
-    newsletter_subtext: "Ingresa tu email y recibe<br/> semanal o diariamente las mejores cagadas y puteada"
+    introduction_text: "¿Te fascinan las historias que podrían ser obra del destino o la casualidad? ¿Existe el destino? Comparte tus historias, disfruta de las de otros usuarios y ayúdanos a discenir cuando son una conexión cósmica y cuando una tirada de dados."
+    newsletter_subtext: "Ingresa tu email y recibe<br/> periódicamente las historias más asombrosas."
     terms: "Condiciones de Uso"
   top_login:
     register: "Regístrate como nuevo usuario"
@@ -57,7 +41,7 @@ es:
     no_top_rated_stories: "No votaste ninguna historia como 'destino'"
     no_flop_rated_stories: "No votaste ninguna historia como 'casualidad'"
     no_commented_stories: "No comentaste ninguna historia"
-    no_comment: "No mandaste ni un comentario"
+    no_comment: "No mandaste ningún comentario. ¡Lánzate!"
     
   
   comments:
@@ -76,34 +60,34 @@ es:
       register: "Registrarse"
 
   user:
-    login_required: "Nombre de usuario es required"
+    login_required: "Nombre de usuario necesario"
     login_length: "Tu nombre de usuario sólo puede contener de 4 a 40 caracteres"
     login_exists: "El nombre de usuario no está disponible en seradestino.com. Haz clic aquí para iniciar sesión como fabian@hotmail.com"
-    login_format: "Dont use strange signs or spaces en tu nombre de usuario"
-    email_required: "email required"
-    email_length: "email between..."
-    email_exists: "	Este email ya esta tomada en seradestino.com"
-    email_format: "Tu dirección de correo electrónico no es válida. Por favor verifica que sea la correcta."
-    birthdate_required: "Para registrarte tienes que indicar tu fecha de nacimiento completa."
-    gender_required: "Por favor, selecciona 'Hombre' o 'Mujer'."
-    user_no_comments_header: "{{login}} no escribió ni un comentario"
+    login_format: "No uses espacios ni signos extraños en tu nombre de usuario"
+    email_required: "email necesario"
+    email_length: "email entre..."
+    email_exists: "	Este email ya está registrado en seradestino.com"
+    email_format: "Tu dirección de correo electrónico no es válida. Por favor verifica que sea la correcta"
+    birthdate_required: "Para registrarte tienes que indicar tu fecha de nacimiento completa"
+    gender_required: "Por favor, selecciona 'Hombre' o 'Mujer'"
+    user_no_comments_header: "{{login}} no escribió ningún comentario"
     comments_of_user_header: "Comentarios"
     stories_of_user_header: "Historias"
-    user_no_stories: "{{login}} no escribió ni una historia"
+    user_no_stories: "{{login}} no escribió ninguna historia"
 
 
 
 
   flash:
-    error_in_signing_up: "Debes llenar todos los campos"
-    thanks_for_signing_up: "Hola {{login}}! <br/> <b>Tu cuenta no está confirmada todavía</b>. Revisa tu correo electrónico ({{email}}) para ver la confirmación de seradestino."
-    error_in_signing_up: "error in signing up"
-    user_activation_complete: "activation complete"
+    error_in_signing_up: "Debes rellenar todos los campos"
+    thanks_for_signing_up: "Hola {{login}}! <br/> <b>Tu cuenta aún no está confirmada</b>. Revisa tu correo electrónico ({{email}}) para ver la confirmación de seradestino."
+    error_in_signing_up: "Error. Rellena los campos correctamente"
+    user_activation_complete: "Tu cuenta está activa. ¡Bienvenido a seradestino.com!"
     activation_code_missing_in_signup: "code is missing"
     not_existing_activation_code: "activation code does not exist"
-    logged_in_with_success: "Logged in successfully"
-    logged_out_with_success: "Logged out successfully"
-    login_as_x_not_possible: "No fue posible conectarte con el email: {{email}}. ¿Estas seguro que el email y tu contraseña es correcto?"
+    logged_in_with_success: "Ingresaste correctamente a seradestino.com"
+    logged_out_with_success: "Sesión cerrada"
+    login_as_x_not_possible: "email no válido: {{email}}. ¿Estás seguro de que el email y la contraseña son correctos?"
     
     
   number:

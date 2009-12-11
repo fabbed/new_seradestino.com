@@ -18,6 +18,10 @@ class CommentsController < LocatableController
     end
     locate_comment
     track_comment
+    if (@story.email.present? or @story.user_id.present?)
+      UserMailer.deliver_new_comment(@story)
+    end
+
 
     # if (@story.email.present? or @story.user_id > 0)
     #   UserMailer.deliver_new_comment(@story)

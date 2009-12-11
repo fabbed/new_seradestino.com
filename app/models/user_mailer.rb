@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  def signup_notification(user)
+  def registered(user)
     setup_email(user)
     @subject    += 'Please activate your new account'
   
@@ -7,11 +7,32 @@ class UserMailer < ActionMailer::Base
   
   end
   
-  def activation(user)
+  def activated(user)
     setup_email(user)
     @subject    += 'Your account has been activated!'
     @body[:url]  = @base_url
   end
+
+  def new_comment(story)
+    if story.user.present? and story.notifications
+      @recipients = story.user.email
+    elsif
+      @recipients = story.email      
+    end
+    
+    puts "sending mail to: " + @recipients 
+    
+    @subject = 'seradestino.com - Tu historia tiene un nuevo comentario.'
+
+    @body[:story]  = story
+  end
+
+t("mails.new_comment_subject")
+  'seradestino.com - Tu historia tiene un nuevo comentario.'
+t("mails.activated_subject")
+  'Your account has been activated!'
+t("mails.registered_subject")
+  'Bienvenidos'
   
   protected
     def setup_email(user)
