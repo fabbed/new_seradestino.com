@@ -1,7 +1,9 @@
 class UserMailer < ActionMailer::Base
+
+
   def registered(user)
     setup_email(user)
-    @subject    += t("mails.registered_subject")
+    @subject    += I18n.t("mails.registered_subject")
   
     @body[:url]  = @base_url + "activate/#{user.activation_code}"
   
@@ -9,7 +11,7 @@ class UserMailer < ActionMailer::Base
   
   def activated(user)
     setup_email(user)
-    @subject    += t("mails.activated_subject")
+    @subject    += I18n.t("mails.activated_subject")
     @body[:url]  = @base_url
   end
 
@@ -22,7 +24,7 @@ class UserMailer < ActionMailer::Base
     
     puts "sending mail to: " + @recipients 
     
-    @subject = t("mails.new_comment_subject")
+    @subject = I18n.t("mails.new_comment_subject")
 
     @body[:story]  = story
   end

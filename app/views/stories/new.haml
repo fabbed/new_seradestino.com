@@ -18,7 +18,7 @@
             Hay errores, debes llenar todos los campos para enviar tu historia.
       %p
         =f.label(:title, "Titulo de la historia")
-        =f.text_field :title, :class => "input", :size => 72, :id => "story_body"
+        =f.text_field :title, :class => "input", :size => 72
         =f.error_message_on :title
 
       %p
@@ -61,6 +61,5 @@
       %p
         %br
         =f.submit t("story.send_story"), :style => "margin-top: 5px;", :class => "comment_submit button button_blue_small"
-
 -if JS_VALIDATION == true
   =render :partial => "js_validation", :locals => { :form_id => "new_story" }
