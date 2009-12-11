@@ -35,6 +35,10 @@ es:
 
   story:
     send_story: "Enviar"
+    
+  stories:
+    story_of_category: 'Historias de la categoría "{{cat_name}}"'
+    no_stories_for_category: 'Todavia no hay historias para la categoria "{{cat_name}}"'
 
   account:
     select_photo_title: "Seleciona tu foto"
@@ -64,6 +68,10 @@ es:
     textarea_title: "Tu comentario:"
     no_comments: "No hay comentarios para esta entrada"
     your_answer: "Tu respuesta:"
+    bubble_tooltip: 
+      one: "1 commentario"
+      other: "{{count}} comentarios"
+
   newsletter:
       register: "Registrarse"
 
@@ -89,10 +97,10 @@ es:
   flash:
     error_in_signing_up: "Debes llenar todos los campos"
     thanks_for_signing_up: "Hola {{login}}! <br/> <b>Tu cuenta no está confirmada todavía</b>. Revisa tu correo electrónico ({{email}}) para ver la confirmación de seradestino."
-    error_in_signing_up: ""
-    user_activation_complete: ""
-    activation_code_missing_in_signup: ""
-    not_existing_activation_code: ""
+    error_in_signing_up: "error in signing up"
+    user_activation_complete: "activation complete"
+    activation_code_missing_in_signup: "code is missing"
+    not_existing_activation_code: "activation code does not exist"
     logged_in_with_success: "Logged in successfully"
     logged_out_with_success: "Logged out successfully"
     login_as_x_not_possible: "No fue posible conectarte con el email: {{email}}. ¿Estas seguro que el email y tu contraseña es correcto?"

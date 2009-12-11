@@ -20,15 +20,16 @@
           #logo
             =link_to "", root_path, :id => "sera_destino_logo"
           #sub_header
-            .login
+            .login.fix
               .links
                 -unless logged_in?
-                  =link_to t("top_login.register"), signup_path, :id => "top_signup_link"
+                  =link_to t("top_login.register"), signup_path, :id => "top_signup_link", :class => "signup"
                   =link_to t("top_login.login"), login_path
                 -else
-                  =link_to t("top_login.my_account"), my_account_path, :style => "margin-left: 80px; margin-right: 60px;"
+                  =link_to t("top_login.my_account"), my_account_path, :class => "my_account"
                   =link_to t("top_login.logout"), logout_path
-            #right
+            .cr
+            #right.fix
               =link_to(image_tag("btn_contar_nueva_historia.png"), new_story_path, :id => "btn_new_story")
             #header_text
               =t "global.introduction_text"
@@ -40,9 +41,10 @@
                 = content_tag :div, flash[:success],  :class => "success"  if flash[:success]
                 = content_tag :div, flash[:info],     :class => "info" if flash[:info]
                 = content_tag :div, flash[:error],   :class => "error"   if flash[:error]
-              :javascript
-                #{visual_effect :highlight, "flash"}
+              / :javascript
+              /   #{visual_effect :highlight, "flash"}
             =yield(:top)
+            =yield(:top_filter_pages)
             #content_main_wrapper
               #content_main
                 = yield
@@ -50,7 +52,7 @@
               #content_footer
                 = yield(:footer)
                 #cat
-                  =image_tag "footer_cat.png", :id => "footer_cat"
+                  =image_tag "footer_cat.png", :id => "footer_cat", :class => "tooltip", :title => "Miauuu ;-)"
 
           #end.fix.font_14
             =image_tag "footer_moon.png", :id => "footer_moon"

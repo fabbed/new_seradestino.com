@@ -7,16 +7,12 @@ class ApplicationController < ActionController::Base
   
   geocode_ip_address if RAILS_ENV == "production"
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  
+
+  STORIES_PER_PAGE = 6
 
   before_filter :create_visitor_or_load_existing
 
-
-
-
   private
-
-
 
     def get_visitor_session
       if has_cookie? and has_session?

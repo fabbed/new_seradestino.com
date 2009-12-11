@@ -51,7 +51,7 @@ module StoriesHelper
   def comment_bubble_link(story)
     
     link_class = ((story.root_comments.size == 0) ? "zero" : "not_zero"     )
-    link_to("#{story.root_comments.size}", story_path(story, :anchor => "comments"), :class => link_class)
+    link_to("#{story.root_comments.size}", story_path(story, :anchor => "comments"), :class => "#{link_class} tooltip", :title =>t("comments.bubble_tooltip", :count => story.root_comments.size))
     
   end
 

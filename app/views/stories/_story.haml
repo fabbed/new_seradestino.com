@@ -4,9 +4,7 @@
 
   .middle
     %h2
-      =#link_to(awesome_truncate(story.title, 80), story_path(story))
-      
-      -unless controller.action_name == "show"
+      -if !(controller.action_name == "show") or controller.controller_name == "categories"
         =link_to(truncate(story.title, 80), story_path(story))      
       -else
         =truncate(story.title)
@@ -18,6 +16,7 @@
         =simple_format(story.body.strip)
     .story_footer
       =meta_info(story)
+
   .right
     .thumbs
       .thumb

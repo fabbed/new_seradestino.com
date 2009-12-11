@@ -27,7 +27,7 @@
         = error_message_on :user, :password_confirmation
       %p
         = f.label :gender, 'Sexo'
-        = f.select :gender, [[ t('account.male'), :m ], [ t('account.female'), :f ]]
+        = f.select :gender, [[ t('account.male'), :m ], [ t('account.female'), :f ]], :include_blank => true
 
         = error_message_on :user, :gender
       %p

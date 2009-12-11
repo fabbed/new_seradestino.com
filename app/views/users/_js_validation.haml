@@ -34,6 +34,7 @@
       "user[birthdate(1i)]": "required",
       "user[birthdate(2i)]": "required",
       "user[birthdate(3i)]": "required",
+
       "user[terms_accepted]": {
         required: true
       }
@@ -41,7 +42,7 @@
           messages: {
             "user[login]": {
               required: "Porfavor ingresa un nombre de usuario",
-              minlength: jQuery.format("Ingresa al menos {0} characters"),
+              minlength: jQuery.format("Ingresa al menos {0} characters")
             },
           "user[password]": {
             required: "Pon tu contraseña",
@@ -62,10 +63,10 @@
             required: "¿Cual es tu cumpleaños?"                    
           },
           "user[birthdate(2i)]": {
-            required: "¿Cual es tu cumpleaños?"                    
+            required: "¿Cual es tu cumpleaños?"
           },
           "user[birthdate(3i)]": {
-            required: "¿Cual es tu cumpleaños?"                    
+            required: "¿Cual es tu cumpleaños?"
           }
         },
         

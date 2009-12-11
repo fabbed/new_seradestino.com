@@ -3,9 +3,9 @@ module ApplicationHelper
 
   include TagsHelper
 
-
   def  get_country_name_for_object(object)
     return object.location.country.name if object.location
+    "No sabemos el país"
   end
 
 
@@ -15,18 +15,15 @@ module ApplicationHelper
   end
 
   def link_to_profile(user, options = {})
-      
       options[:size] ||= :medium
-      flag = image_tag get_flag_image(user), :class => "user_box_flag"
+      flag = image_tag get_flag_image(user), :class => "user_box_flag tooltip", :title => get_country_name_for_object(user)
       output = flag
       user_pic = link_to image_tag(user.avatar.url(options[:size]), :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), user_path(user)
       output << user_pic
       output << "<br/>"
       user_name_link =link_to truncate(user.login, 15), user_path(user), :class => "normal_color dashed", :id => "user_profile_link"
       output << user_name_link
-            
       content_tag(:div, output, :class => "userbox #{options[:size]}")
-
   end
 
 
@@ -38,7 +35,7 @@ module ApplicationHelper
         "anónimo"
       end
     else object.is_a? Comment
-      unless object.user
+      unless object.user_id > 0
         "anónimo"
       else
         user = User.find(object.user_id)
@@ -60,7 +57,7 @@ module ApplicationHelper
       output << content_tag(:div, image_tag(get_flag_image(object), :title =>  get_country_name_for_object(object), :class => "tooltip"), :class => "flag")
 
       output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
-      output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text")
+      output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text fix")
       output << content_tag(:div, "Categoría: #{link_to 'Amor', '#'}", :class => "category text")      
     end
         

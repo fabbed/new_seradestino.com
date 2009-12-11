@@ -45,7 +45,10 @@ body {
   text-align: center;
   width: 1260px; }
 
-.fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span {
+.fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span, .tl, .tr, .br, .bl {
+  behavior: url("/iepngfix.htc"); }
+
+.fix img {
   behavior: url("/iepngfix.htc"); }
 
 .wrapper {
@@ -68,7 +71,7 @@ body {
       #content #middle #content_header #content_header_content {
         padding: 20px 10px 0px 20px; }
     #content #middle #content_main_wrapper {
-      background: transparent url(/images/ringbuch.jpg) repeat-y scroll left top;
+      background: transparent url(/images/ringbuch.png) repeat-y scroll left top;
       width: 100%;
       overflow: hidden;
       background-color: #FCFAF5; }
@@ -204,11 +207,13 @@ a.not_zero {
       background: transparent url(/images/new/icon_grandes_cagadas.png) no-repeat scroll 0 0em; }
   #header #logo {
     float: left;
-    margin-top: 68px; }
+    margin-top: 68px;
+    width: 250px;
+    height: 150px; }
     #header #logo #sera_destino_logo {
       display: block;
-      width: 347px;
-      height: 146px; }
+      width: 100%;
+      height: 100%; }
   #header #header_login_section {
     float: right;
     margin-right: 10px;
@@ -216,29 +221,36 @@ a.not_zero {
     width: 400px;
     background-color: #26140c; }
 
-#sub_header .login {
-  width: 438px;
-  height: 50px;
-  background: transparent url(/images/right_top_bar.png) no-repeat scroll 0 0em;
-  float: right;
-  font-size: 120%; }
-  #sub_header .login .links {
-    font-size: 14px;
-    margin: 14px 0px 0px 52px; }
-    #sub_header .login .links a {
-      margin-right: 10px; }
-#sub_header #header_text {
-  float: right;
-  margin-top: 70px;
-  margin-right: 110px;
-  color: #000000;
-  font-size: 1.8em;
-  line-height: 1.1em;
-  width: 500px;
-  text-align: right; }
-#sub_header #right {
-  margin-top: 80px;
-  float: right; }
+#sub_header {
+  overflow: hidden; }
+  #sub_header .login {
+    width: 444px;
+    height: 50px;
+    background: transparent url(/images/right_top_bar.png) no-repeat scroll 0 0em;
+    float: right;
+    font-size: 120%; }
+    #sub_header .login .links {
+      font-size: 14px;
+      margin-top: 1em; }
+      #sub_header .login .links a.signup {
+        margin-left: 20px;
+        margin-right: 20px; }
+      #sub_header .login .links a.my_account {
+        margin-left: 145px;
+        margin-right: 28px; }
+  #sub_header #header_text {
+    float: right;
+    display: inline;
+    margin-top: 70px;
+    margin-right: 110px;
+    color: #000000;
+    font-size: 1.8em;
+    line-height: 1.1em;
+    width: 500px;
+    text-align: right; }
+  #sub_header #right {
+    margin-top: 80px;
+    float: right; }
 
 input.medium_input {
   width: 200px; }

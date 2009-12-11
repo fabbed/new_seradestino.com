@@ -106,4 +106,10 @@ $(document).ready(function() {
       })
       timer.stop();
     });  
+    
+  $(".tooltip").tooltip({
+     delay: 0,
+     showURL: false
+  })
+    
 });

@@ -25,8 +25,6 @@
           :font-size 2em
           :color black
 
-
-
 a.normal_color
   :color = !text_color
 
@@ -69,8 +67,11 @@ body
   :text-align center
   :width 1260px
   
-.fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span
+.fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span, .tl, .tr, .br, .bl
   :behavior url("/iepngfix.htc")
+.fix
+  img
+    :behavior url("/iepngfix.htc")
 
 .wrapper
   :text-align left
@@ -96,7 +97,7 @@ body
       #content_header_content
         :padding 20px 10px 0px 20px
     #content_main_wrapper
-      :background transparent url(/images/ringbuch.jpg) repeat-y scroll left top
+      :background transparent url(/images/ringbuch.png) repeat-y scroll left top
       :width 100%
       :overflow hidden
       :background-color #FCFAF5
@@ -234,10 +235,12 @@ a.not_zero
   #logo
     :float left
     :margin-top 68px
+    :width 250px
+    :height 150px
     #sera_destino_logo
       :display block
-      :width 347px
-      :height 146px
+      :width 100%
+      :height 100%
 
   #header_login_section
     :float right
@@ -248,19 +251,25 @@ a.not_zero
 
 
 #sub_header
+  :overflow hidden
   .login
-    :width 438px
+    :width 444px
     :height 50px
     :background transparent url(/images/right_top_bar.png) no-repeat scroll 0 0em
     :float right
     :font-size 120%
     .links
       :font-size 14px
-      :margin 14px 0px 0px 52px
-      a
-        :margin-right 10px
+      :margin-top 1em
+      a.signup
+        :margin-left 20px
+        :margin-right 20px
+      a.my_account
+        :margin-left 145px
+        :margin-right 28px
   #header_text
     :float right
+    :display inline
     :margin-top 70px
     :margin-right 110px
     :color #000000
