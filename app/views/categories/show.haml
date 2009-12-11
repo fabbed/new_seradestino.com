@@ -1,0 +1,28 @@
+-title(t("stories.story_of_category", :cat_name => @category.name))
+
+-content_for(:top_filter_pages) do
+  .filter_page
+    .top
+      %h1=t("stories.story_of_category", :cat_name => @category.name)
+      =image_tag "top_main_sep.png"
+
+-content_for(:sidebar) do
+  =render :partial => '/shared/sidebars/sidebar', :locals => {:big => false}
+
+-content_for(:main) do
+  -if @stories.size > 0
+    =render :partial => 'stories/story', :collection => @stories
+  -else
+    %div{:style => "margin-left: 70px;"}
+      %h2=t("stories.no_stories_for_category", :cat_name => @category.name)
+      %br
+      =link_to(image_tag("btn_contar_nueva_historia.png"), new_story_path, :id => "btn_new_story")
+
+
+-content_for(:footer) do
+  .paginators
+    -if PAGINATION or true
+      = will_paginate @stories, :page_links => false, :class => :prev_next_pagination, :prev_label => 'Anterior', :next_label => 'Siguiente'
+      .c
+      = will_paginate @stories, :prev_label => '« Anterior', :next_label => 'Siguiente »'
+
