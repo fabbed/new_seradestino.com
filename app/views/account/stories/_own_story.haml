@@ -1,6 +1,6 @@
 -fields_for "story[]", own_story  do |story_fields|
   %tr
     %td
-      %h4=link_to own_story.title, story_path(own_story)
+      %h4=link_to truncate(own_story.title, 64), story_path(own_story)
     %td=story_fields.check_box :anonymous
     %td=story_fields.check_box :notifications

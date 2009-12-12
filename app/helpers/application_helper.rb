@@ -16,13 +16,14 @@ module ApplicationHelper
 
   def link_to_profile(user, options = {})
       options[:size] ||= :medium
+      
       flag = image_tag get_flag_image(user), :class => "user_box_flag tooltip", :title => get_country_name_for_object(user)
       output = flag
       
       if user.avatar_file_name
-        user_pic = link_to image_tag(user.avatar.url(options[:size]), :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), user_path(user)
+        user_pic = link_to image_tag(user.avatar.url(options[:size]), :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), (defined?(options[:change_photo]) ? account_avatar_path : user_path(user))
       else
-        user_pic = link_to image_tag("/avatars/#{options[:size]}/missing_male.png", :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), user_path(user)
+        user_pic = link_to image_tag("/avatars/#{options[:size]}/missing_#{user.gender}.png", :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), (defined?(options[:change_photo]) ? account_avatar_path : user_path(user))
       end
       
       output << user_pic
@@ -64,7 +65,7 @@ module ApplicationHelper
 
       output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
       output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text fix")
-      output << content_tag(:div, "Categoría: #{link_to 'Amor', '#'}", :class => "category text")      
+      output << content_tag(:div, "Categoría: #{link_to(object.category.name, category_path(object.category))}", :class => "category text")      
     end
         
     output

@@ -11,9 +11,7 @@
       %span.label Email:
       = f.text_field :email, :class => :input
       =f.error_message_on :email
-  
-      %br
-      =image_submit_tag "btn_register.png"
+      =submit_tag t("story.send_story"), :style => "margin-top: 5px;", :class => "comment_submit button button_blue_small_black_back"
     .clear
 
     =render :partial => "/newsletter_registrations/js_validation", :locals => { :form_id => "new_newsletter_registration" }

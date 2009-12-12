@@ -67,5 +67,12 @@
       
       
       .fr
-        =link_to_profile current_user, :size => :large
+        .my_account_avatar
+          =link_to_profile current_user, :size => :large
+          .c
+          -unless defined?(photo_link)
+            =link_to t("account.change_picture"), account_avatar_path, :style => "margin-left: 2.5em;"
+          -else
+            =link_to_function t("account.change_picture"), "alert('#{t('account.first_confirm_photo_link', :email =>current_user.email)}')", :style => "margin-left: 2.5em;"
+          
       .c

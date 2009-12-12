@@ -7,7 +7,7 @@ class Account::AvatarsController < Account::BaseController
   def update
 
     if @user.update_attributes(params[:user])
-      flash[:info] = I18n.t('txt.users.msg_update_profile_success')
+      flash[:info] = I18n.t('account.avatar_updated')
       redirect_to my_account_path
     else
       render :action => "show"

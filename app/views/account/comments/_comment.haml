@@ -1,2 +1,2 @@
 %li
-  %h3=link_to comment.body, story_path(comment.commentable_id, :anchor => "comment_#{comment.id}")
+  %h3=link_to truncate(comment.body, 55), story_path(comment.commentable_id, :anchor => "comment_#{comment.id}")

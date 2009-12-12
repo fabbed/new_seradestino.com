@@ -4,10 +4,10 @@
 
   .middle
     %h2
-      -if !(controller.action_name == "show") or controller.controller_name == "categories"
-        =link_to(truncate(story.title, 80), story_path(story))      
+      -unless defined?(mode)
+        =link_to(truncate(story.title, 80), story_path(story))
       -else
-        =truncate(story.title)
+        =story.title
     .text
       -unless controller.controller_name == "stories" and controller.action_name == "show"
         =truncate(story.body, 400).strip

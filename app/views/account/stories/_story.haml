@@ -1,4 +1,4 @@
 %li
   %h4
-    =link_to story.title, story_path(story)
+    =link_to truncate(story.title,55), story_path(story)
     = "(escrito como anónimo)" if story.anonymous and defined?(show_if_anonymous)

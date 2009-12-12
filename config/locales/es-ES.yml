@@ -16,6 +16,7 @@ es:
     login: "Ingresa a seradestino.com"
     my_account: "Mi cuenta"
     logout: "Cerrar sesión"
+    
 
   story:
     send_story: "Enviar"
@@ -25,6 +26,8 @@ es:
     no_stories_for_category: 'Todavia no hay historias para la categoria "{{cat_name}}"'
 
   account:
+    avatar_updated: "Foto actualizado"
+    see_own_profile: "Mi perfil"
     select_photo_title: "Seleciona tu foto"
     my_avatar_header: "Mi foto"
     your_stories_header: "Historias tuyas ({{count}}):"

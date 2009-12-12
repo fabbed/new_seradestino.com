@@ -1,5 +1,6 @@
 #sidebar
   #sb_content
+    =render :partial => "/account/my_account_sidebar_section" if logged_in?
     .section
       =image_tag "header_categories.png", :class => "fix"
       #categories
