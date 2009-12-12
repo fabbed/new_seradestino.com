@@ -96,5 +96,10 @@
         =link_to "Si, quiero registrarme", signup_path, :class => "font_14"
       .c
 
-
+    -if current_user and !current_user.active?
+      :javascript
+        $(".only_if_activated_link").click(function(){
+          alert("#{t('account.first_confirm_photo_link', :email =>current_user.email)}");
+          return false;
+        })
     = render :partial => "shared/google_analytics" if production?
