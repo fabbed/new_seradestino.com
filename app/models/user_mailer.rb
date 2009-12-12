@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
         
     if story.user.present? and story.notifications
       @recipients = story.user.email
-    elsif story.email.length > 1
+    elsif story.email.present?
       @recipients = story.email      
     end
     

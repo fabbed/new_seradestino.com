@@ -19,7 +19,7 @@ class CommentsController < LocatableController
     locate_comment
     track_comment
     @comment.save
-    if (@story.email.present? or @story.user_id.present?)
+    if (@story.email.present? or (@story.user_id.present? and @story.notifications))
       UserMailer.deliver_new_comment(@story)
     end
 
