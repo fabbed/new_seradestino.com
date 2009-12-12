@@ -17,6 +17,7 @@ class UsersController < LocatableController
     logout_keeping_session!
     @user = User.new(params[:user])
     @user.vcode = cookies[:vcode] if cookies[:vcode]
+    cookies[:vcode] = nil
     success = @user && @user.save
     if success && @user.errors.empty?
       self.current_user = @user
