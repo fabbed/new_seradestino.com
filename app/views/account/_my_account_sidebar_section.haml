@@ -1,0 +1,17 @@
+.section
+  =image_tag "header_micuenta.png"
+-if logged_in?
+  #categories
+    %ul
+      %li=link_to "Mi Cuenta", my_account_path, :class => "only_if_activated_link"
+      %li=link_to t("account.change_picture"), account_avatar_path, :class => "only_if_activated_link"
+      %li=link_to t("account.see_own_profile"), user_path(current_user), :class => "only_if_activated_link"
+      %li{:style => "margin-top: 10px;"}=link_to t("top_login.logout"), logout_path
+
+  =image_tag "sidebar_seperator.png", :class => "seperator fix"
+  -if !current_user.active?
+    :javascript
+      $(".only_if_activated_link").click(function(){
+        alert("#{t('account.first_confirm_photo_link', :email =>current_user.email)}");
+        return false;
+      })
