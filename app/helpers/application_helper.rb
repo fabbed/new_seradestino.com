@@ -18,7 +18,13 @@ module ApplicationHelper
       options[:size] ||= :medium
       flag = image_tag get_flag_image(user), :class => "user_box_flag tooltip", :title => get_country_name_for_object(user)
       output = flag
-      user_pic = link_to image_tag(user.avatar.url(options[:size]), :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), user_path(user)
+      
+      if user.avatar_file_name
+        user_pic = link_to image_tag(user.avatar.url(options[:size]), :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), user_path(user)
+      else
+        user_pic = link_to image_tag("/avatars/#{options[:size]}/missing_male.png", :alt => h(user.login), :title => h(user.login), :class => "icon", :id => "user_profile_link"), user_path(user)
+      end
+      
       output << user_pic
       output << "<br/>"
       user_name_link =link_to truncate(user.login, 15), user_path(user), :class => "normal_color dashed", :id => "user_profile_link"

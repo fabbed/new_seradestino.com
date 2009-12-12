@@ -41,8 +41,10 @@ es:
     no_top_rated_stories: "No votaste ninguna historia como 'destino'"
     no_flop_rated_stories: "No votaste ninguna historia como 'casualidad'"
     no_commented_stories: "No comentaste ninguna historia"
-    no_comment: "No mandaste ningún comentario. ¡Lánzate!"
-    
+    no_comment: "No mandaste ningún comentario. ¡Lánzate!"  
+    no_own_stories: "No escribiste ninguna historia"
+    no_own_comments: "No mandaste ningún comentario. ¡Lánzate!"  
+    no_comments: "No mandaste ningún comentario. ¡Lánzate!"  
   
   comments:
     comment_box_title: "Tu respuesta:"

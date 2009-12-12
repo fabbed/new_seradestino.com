@@ -34,7 +34,8 @@ class User  < ActiveRecord::Base
   
   before_create :make_activation_code 
 
-  has_attached_file :avatar, :styles => { :large => "126x126", :medium => "65x65#", :small => "34x34#" }
+  has_attached_file :avatar, :styles => { :large => "126x126", :medium => "65x65#", :small => "34x34#" }, :default_url => "/avatars/:style/missing.png"
+
 
   named_scope :active, { :conditions => { :state => :active } }
   named_scope :newest_first, { :order => "activated_at asc" }
