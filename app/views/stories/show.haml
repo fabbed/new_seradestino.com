@@ -1,8 +1,7 @@
 -title("#{@story.browser_title} - seradestino.com")
 
-
 -content_for(:sidebar) do
-  =render :partial => 'show_sidebar'
+  =render :partial => '/shared/sidebars/sidebar', :locals => {:big => false}
 
 -content_for(:main) do
   =render :partial => "story_single", :locals => {:story => @story}
