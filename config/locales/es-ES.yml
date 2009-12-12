@@ -24,7 +24,8 @@ es:
   stories:
     story_of_category: 'Historias de la categoría "{{cat_name}}"'
     no_stories_for_category: 'Todavia no hay historias para la categoria "{{cat_name}}"'
-
+    top_stories: "Las historias consideradas como obra del destino"
+    flop_stories: "Las historias consideradas como casualidades"
   account:
     avatar_updated: "Foto actualizado"
     see_own_profile: "Mi perfil"

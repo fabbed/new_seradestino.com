@@ -80,54 +80,54 @@ class StoriesController < LocatableController
     # end
   end
 
-  def tops
+  def destino
     
-    date_range=case params[:tiempo]
-      when nil
-        (Date.today-30.days)..(Date.today)
-      when "hoy"
-        (Date.today-1.days)..Date.today
-      when "ayer"
-        (Date.today-2.days)..(Date.today-1.day)
-      when "semana"
-        (Date.today-7.days)..(Date.today)
-      when "mes"
-        (Date.today-30.days)..(Date.today)
-      when "siempre"
-        "no sort"
-    end
-
-    builder = Story.scope_builder
-    builder.tops
-    builder.date_between(date_range) unless date_range == "no sort"
-    builder.from_country(session[:selected_country]) if session[:selected_country]
+    # date_range=case params[:tiempo]
+    #   when nil
+    #     (Date.today-30.days)..(Date.today)
+    #   when "hoy"
+    #     (Date.today-1.days)..Date.today
+    #   when "ayer"
+    #     (Date.today-2.days)..(Date.today-1.day)
+    #   when "semana"
+    #     (Date.today-7.days)..(Date.today)
+    #   when "mes"
+    #     (Date.today-30.days)..(Date.today)
+    #   when "siempre"
+    #     "no sort"
+    # end
+    # 
+    # builder = Story.scope_builder
+    # builder.tops
+    # builder.date_between(date_range) unless date_range == "no sort"
+    # builder.from_country(session[:selected_country]) if session[:selected_country]
     
-    @stories = builder.paginate(:page => params[:page], :per_page => 8)
+    @stories = Story.all.sort_by{|t| - t.average_rating}.paginate(:page => params[:page], :per_page => 8)
 
   end
 
-  def flops
-    date_range=case params[:tiempo]
-      when nil
-        (Date.today-30.days)..(Date.today)
-      when "hoy"
-        (Date.today-1.days)..Date.today
-      when "ayer"
-        (Date.today-2.days)..(Date.today-1.day)
-      when "semana"
-        (Date.today-7.days)..(Date.today)
-      when "mes"
-        (Date.today-30.days)..(Date.today)
-      when "siempre"
-        "no sort"
-    end
+  def casualidad
+    # date_range=case params[:tiempo]
+    #   when nil
+    #     (Date.today-30.days)..(Date.today)
+    #   when "hoy"
+    #     (Date.today-1.days)..Date.today
+    #   when "ayer"
+    #     (Date.today-2.days)..(Date.today-1.day)
+    #   when "semana"
+    #     (Date.today-7.days)..(Date.today)
+    #   when "mes"
+    #     (Date.today-30.days)..(Date.today)
+    #   when "siempre"
+    #     "no sort"
+    # end
+    # 
+    # builder = Story.scope_builder
+    # builder.flops
+    # builder.date_between(date_range) unless date_range == "no sort"
+    # builder.from_country(session[:selected_country]) if session[:selected_country]
     
-    builder = Story.scope_builder
-    builder.flops
-    builder.date_between(date_range) unless date_range == "no sort"
-    builder.from_country(session[:selected_country]) if session[:selected_country]
-    
-    @stories = builder.paginate(:page => params[:page], :per_page => 8)
+    @stories = Story.all.sort_by(&:average_rating).paginate(:page => params[:page], :per_page => 8)
   end
 
   def index

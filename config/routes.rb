@@ -32,7 +32,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.resources :stories, 
-                :collection => { :tops => :get, :flops => :get, :to_moderate => :get, :new2 => :get},
+                :collection => { :destino => :get, :casualidad => :get, :to_moderate => :get, :new2 => :get},
                 :member => { :rate => :post, :update_story_settings => :post}
 
   map.resources :categories
