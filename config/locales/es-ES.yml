@@ -44,7 +44,7 @@ es:
     no_comment: "No mandaste ningún comentario. ¡Lánzate!"  
     no_own_stories: "No escribiste ninguna historia"
     no_own_comments: "No mandaste ningún comentario. ¡Lánzate!"  
-    no_comments: "No mandaste ningún comentario. ¡Lánzate!"  
+    no_comments: "No mandaste ningún comentario. ¡Lánzate!"
   
   comments:
     comment_box_title: "Tu respuesta:"

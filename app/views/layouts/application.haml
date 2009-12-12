@@ -78,16 +78,18 @@
         
         
     #register_before_view_profile{:style => "display: none;"}
-      %h1 Registrate primero
-      %p Este miembro prefiere solo mostrar su perfil a miembros registrados.
+      %p Este miembro prefiere sólo mostrar su perfil a miembros registrados.
       %br
       =link_to t("top_login.register"), signup_path, :id => "top_signup_link"
 
     #realy_write_story_without_signup{:style => "display: none;"}
-      %h1 Puedes escribir la historias sin registrarte, pero...
-      %p la historia no será conectado contigo de ninguna manera...
+      %h1 Puedes escribir tu historia sin registrarte, pero si lo haces:
       %br
-      %h2 Quieres registrarte primero?
+      %ul
+        %li recibirás notificaciones cuando tengas comentarios
+        %li podrás elegir firmar con tu nombre de usuario o como anónimo
+        %li tendrás un registro con tus historias, los comentarios que recibas y los que tú hagas
+      %h2 ¿Quieres las ventajas de un usuario registrado?
       %br
       .fl
         =link_to "No, quiero escribir una historia ya.", new_story_path, :class => "font_14"
