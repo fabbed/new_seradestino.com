@@ -37,9 +37,9 @@ class UserMailer < ActionMailer::Base
       @base_url  = "http://www.seradestino.local/" if RAILS_ENV == "development"
       @base_url  = "http://www.seradestino.com/" if RAILS_ENV == "production"
 
-      @from        = "conoceos.com <admin@conoceos.com>"
+      @from        = "seradestino.com <admin@seradestino.com>"
       @subject     = ""
-      @reply_to     = "admin@conoceos.com"
+      @reply_to     = "admin@seradestino.com"
       @sent_on     = Time.now
     end
 
