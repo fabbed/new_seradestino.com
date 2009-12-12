@@ -9,9 +9,3 @@
       %li{:style => "margin-top: 10px;"}=link_to t("top_login.logout"), logout_path
 
   =image_tag "sidebar_seperator.png", :class => "seperator fix"
-  -if !current_user.active?
-    :javascript
-      $(".only_if_activated_link").click(function(){
-        alert("#{t('account.first_confirm_photo_link', :email =>current_user.email)}");
-        return false;
-      })

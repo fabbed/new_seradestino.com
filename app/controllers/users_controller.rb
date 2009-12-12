@@ -37,6 +37,7 @@ class UsersController < LocatableController
       @user.activate!
       locate_user
       @user.save
+      UserMailer.deliver_activated(@user)
       @user.assign_content
       self.current_user = @user
       flash[:info] = I18n.t('flash.user_activation_complete')
