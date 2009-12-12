@@ -1,0 +1,23 @@
+-title(t("stories.flop_stories"))
+
+-content_for(:top_filter_pages) do
+  .filter_page
+    .top
+      %h1=t("stories.flop_stories")
+      =image_tag "top_main_sep.png"
+
+-content_for(:sidebar) do
+  =render :partial => '/shared/sidebars/sidebar', :locals => {:big => false}
+
+-content_for(:main) do
+  -if @stories.size > 0
+    =render :partial => 'stories/story', :collection => @stories
+
+
+-content_for(:footer) do
+  .paginators
+    -if PAGINATION or true
+      = will_paginate @stories, :page_links => false, :class => :prev_next_pagination, :prev_label => 'Anterior', :next_label => 'Siguiente'
+      .c
+      = will_paginate @stories, :prev_label => '« Anterior', :next_label => 'Siguiente »'
+
