@@ -7,6 +7,7 @@
         =image_tag "new/flags/#{comment.country_code.downcase}.png", :title => comment.country_name, :class => "tooltip" if comment.country_id
         %span.info
           =meta_info comment
+    .c
     %span.black.font_14
       =comment.body
     .fr.comment_action

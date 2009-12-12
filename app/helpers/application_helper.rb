@@ -58,7 +58,7 @@ module ApplicationHelper
 
     if object.is_a?(Comment)
       output << content_tag(:div, image_tag(get_flag_image(object), :title => get_country_name_for_object(object), :class => "tooltip"), :class => "flag")
-      output << "#{author(object)} el #{my_date(object.created_at)}"      
+      output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
 
     elsif object.is_a?(Story)
       output << content_tag(:div, image_tag(get_flag_image(object), :title =>  get_country_name_for_object(object), :class => "tooltip"), :class => "flag")

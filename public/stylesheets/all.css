@@ -1,4 +1,14 @@
 
+.comment .flag, .comment .seperator, .comment .category, .comment .text {
+  float: left; }
+.comment .flag {
+  padding-top: 4px; }
+.comment .text {
+  padding-top: 2px;
+  padding-left: 5px; }
+.comment .seperator {
+  margin-left: 5px; }
+
 #stories #show #content_main {
   padding-top: 25px; }
   #stories #show #content_main .middle h2 {
