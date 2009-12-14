@@ -1,5 +1,5 @@
 #content_header
   #content_header_content
     =image_tag "title_new_users.png", :id => "title_new_users", :class => :fix, :style => "border: 0;"
-    -User.newest_first.each do |user|
+    -User.newest_first.active[0..5].each do |user|
       =link_to_profile(user)
