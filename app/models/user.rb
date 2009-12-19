@@ -38,7 +38,7 @@ class User  < ActiveRecord::Base
 
 
   named_scope :active, { :conditions => { :activation_code => nil } }
-  named_scope :newest_first, { :order => "activated_at asc" }
+  named_scope :newest_first, { :order => "activated_at desc" }
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
