@@ -9,6 +9,17 @@
 .comment .seperator {
   margin-left: 5px; }
 
+#debug_msgs {
+  border: 1px solid white;
+  color: white;
+  background-color: black;
+  width: 30em;
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  text-align: left;
+  font-family: verdana; }
+
 #stories #show #content_main {
   padding-top: 25px; }
   #stories #show #content_main .middle h2 {
