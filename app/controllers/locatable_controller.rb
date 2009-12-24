@@ -12,6 +12,38 @@ class LocatableController < ApplicationController
     @user.location = Location.build(@user, session[:geo_location], request.env["REMOTE_ADDR"]) if session[:geo_location]
   end
 
+
+  def track_registration
+    if (visitor_session = get_visitor_session)
+      visitor_session.user_id = @user.id
+      visitor_session.save
+      puts "registration tracked"
+    else
+      puts "error in trackpageview, has cookie but NO visitor_session"        
+    end
+  end
+
+  def track_newsletter
+      if (visitor_session = get_visitor_session)
+        visitor_session.newsletter = true
+        visitor_session.save
+        puts "newsletter tracked"
+      else
+        puts "error in trackpageview, has cookie but NO visitor_session"        
+      end
+  end
+
+  def track_read_story
+      if (visitor_session = get_visitor_session)
+        visitor_session.stories_read << @story.id
+        visitor_session.save
+        puts "read_story_tracked"
+      else
+        puts "error in trackpageview, has cookie but NO visitor_session"        
+      end
+  end
+
+
   def track_story
       if (visitor_session = get_visitor_session)
         visitor_session.stories << @story.id

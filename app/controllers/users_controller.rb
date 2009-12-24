@@ -21,6 +21,7 @@ class UsersController < LocatableController
     success = @user && @user.save
     if success && @user.errors.empty?
       self.current_user = @user
+      track_registration
       #redirect_back_or_default('/')
       flash[:info] = I18n.t('flash.thanks_for_signing_up', :email => @user.email, :login => @user.login)
       redirect_to my_account_path

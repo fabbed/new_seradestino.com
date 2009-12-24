@@ -14,7 +14,8 @@ class Visitor < ActiveRecord::Base
                                             :comments => Array.new,                                            
                                             :stories => Array.new,                                            
                                             :recommendations => Array.new,                                            
-                                            :ratings => Array.new
+                                            :ratings => Array.new,
+                                            :stories_read => Array.new
                                             )
   end
 

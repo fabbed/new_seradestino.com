@@ -140,13 +140,13 @@ class StoriesController < LocatableController
   # GET /stories/1
   # GET /stories/1.xml
   def show
-
     # story = Story.find(13)
     # story.location = session[:geo_location]
     # story.save
 
-
     @story = Story.find(params[:id])
+
+    track_read_story
 
     @related_stories = Story.find_tagged_with(@story.tag_list, :limit => 10)
     @related_stories = @related_stories - [@story]

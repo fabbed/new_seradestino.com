@@ -6,6 +6,7 @@ class VisitorSession < ActiveRecord::Base
   serialize   :comments
   serialize   :ratings
   serialize   :recommendations
+  serialize   :stories_read
    
   
 end
