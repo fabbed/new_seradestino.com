@@ -36,6 +36,7 @@ module ApplicationHelper
     
     
   def get_session
+    return false if !session[:visitor_session_id]
     VisitorSession.find_by_session_id(session[:visitor_session_id])
   end
 
