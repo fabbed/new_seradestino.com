@@ -1,0 +1,38 @@
+.story{:id => dom_id(story)}
+  .left.fix
+    =comment_bubble_link(story)
+
+  .middle
+    %h2
+      -unless defined?(mode)
+        =link_to(truncate(story.title, 80), story_path(story))
+      -else
+        =story.title
+    .text
+      -unless controller.controller_name == "stories" and controller.action_name == "show"
+        =truncate(story.body, 400).strip
+        =link_to("(Leer mas)", story_path(story), :class => "leer_mas", :rel => "nofollow")
+      -else
+        =simple_format(story.body.strip)
+    .story_footer
+      =meta_info(story)
+
+  .right
+    .thumbs
+      .thumb
+        .top
+          -form_tag(rate_story_path(story, :type => "destino"), :id => "rate_top_#{dom_id(story)}") do 
+            =thumbs_up_link(story)
+        %span=story.ratings_count_top
+      .thumb
+        .flop
+          -form_tag (rate_story_path(story, :type => "casualidad"), :id => "rate_flop_#{dom_id(story)}") do 
+            =thumbs_down_link(story)
+        %span=story.ratings_count_flop
+
+  -unless controller.controller_name == "stories" and controller.action_name == "show"
+    .footer.cl
+      =image_tag "new/footer_story_divider.png"
+  -else
+    &nbsp;
+.c

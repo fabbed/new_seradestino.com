@@ -1,0 +1,8 @@
+#inside_left {
+  background: transparent url(/images/experiment/left_moon.jpg) no-repeat scroll right top; }
+
+#inside_right {
+  background: transparent url(/images/experiment/right_moon_ne.jpg) no-repeat scroll left top; }
+
+#main {
+  background: transparent url(/images/experiment/header_ne.jpg) no-repeat scroll center top; }

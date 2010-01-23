@@ -1,0 +1,14 @@
+# Typus Roles Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+admin:
+  Category: create, read, update, delete
+  Comment: create, read, update, delete
+  Country: create, read, update, delete
+  Location: create, read, update, delete
+  NewsletterRegistration: create, read, update, delete
+  Story: create, read, update, delete
+  User: create, read, update, delete
+  Visitor: create, read, update, delete
+  VisitorSession: create, read, update, delete

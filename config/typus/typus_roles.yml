@@ -1,0 +1,16 @@
+# Typus Roles Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+admin:
+  TypusUser: all
+
+Category:
+  fields:
+    list: description
+    form: description
+  order_by: 
+  relationships: stories
+  filters: 
+  search: name
+  application: seradestino.com

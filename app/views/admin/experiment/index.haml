@@ -1,0 +1,60 @@
+%h1 Estadísticas
+
+%table#mytable.td_title_table{:cellspacing=>"0"}
+  %tr
+    %td.title.left.black{:colspan => 2} General
+  %tr
+    %td.title Visitors
+    %td=Visitor.count
+  %tr
+    %td.title Visitor Sessions
+    %td=VisitorSession.count
+
+%br
+%br
+
+%table#mytable{:cellspacing=>"0", :summary=>"Projects"}
+  -@visitor_sessions.each_with_index do |session, i|
+    -if ((i % 15) == 0)
+      %tr
+        %th Variation
+        %th IP
+        %th # PVs
+        %th Stories read
+        %th Stories rated
+        %th Newsletter
+        %th Comments written
+        %th Registered
+        %th Avatar uploaded
+        %th Stories written
+        %th Avatars clicked
+
+    %tr
+      %td="#{session.visitor.manipulation_level}"
+      %td="#{session.visitor.ip}"      
+      %td="#{session.pageviews}"
+      %td
+        -session.stories_read.uniq.each do |story_id|
+          =link_to story_id, story_path(story_id)
+      %td
+        -session.ratings.uniq.each do |story_id|
+          =link_to story_id, story_path(story_id)
+      %td="#{session.newsletter == false ? "-" : "yes"}"
+      %td="#{session.comments}"
+      %td="#{session.user_id ? link_to(User.find(session.user_id).login, user_path(session.user_id)) : "-"}"
+      %td="#{session.avatar_uploaded == false ? "-" : "yes"}"
+      %td="#{session.stories}"
+      %td="#{session.avatars_clicked.uniq.join(", ")}"
+
+
+
+-Story.find(:all, :conditions => ["fab_rating > 0"]).each do |story|
+  =story.id.to_s + " " + story.title
+  %br
+  %br
+  =story.body
+  %br
+  %br
+  %br
+  %br
+  

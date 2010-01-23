@@ -1,0 +1,95 @@
+# Typus Models Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+Category:
+  fields:
+    list: name, description
+    form: name, description
+  order_by: 
+  relationships: stories
+  filters: 
+  search: name
+  application: seradestino.com
+
+Comment:
+  fields:
+    list: commentable_id, commentable_type, title, subject, ip, country_id, lft, rgt, location, user, parent
+    form: commentable_id, commentable_type, title, body, subject, ip, country_id, lft, rgt, location, user, parent
+  order_by: 
+  relationships: children, location, parent, user
+  filters: 
+  search: 
+  application: seradestino.com
+
+Country:
+  fields:
+    list: name, iso, visible, sort_order, used_id
+    form: name, iso, visible, sort_order, used_id
+  order_by: 
+  relationships: users
+  filters: 
+  search: name
+  application: seradestino.com
+
+Location:
+  fields:
+    list: lng, lat, city, precision, country_code, locatable_id, country
+    form: lng, lat, city, precision, country_code, locatable_id, country
+  order_by: 
+  relationships: country
+  filters: 
+  search: 
+  application: seradestino.com
+
+NewsletterRegistration:
+  fields:
+    list: name, email
+    form: name, email
+  order_by: 
+  relationships: 
+  filters: 
+  search: name
+  application: seradestino.com
+
+Story:
+  fields:
+    list: experiment_story, fab_rating, country_iso, title, category
+    form: experiment_story, fab_rating, title, body, title_ne, body_ne, title_es, body_es, title_mx, body_mx
+  order_by: -fab_rating
+  relationships: #category, comment_threads, country, location, rating, slugs, taggings, tags, user
+  filters:
+  search: 
+  application: seradestino.com
+
+
+User:
+  fields:
+    list: login, name, email, crypted_password, salt, remember_token, remember_token_expires_at, activation_code, activated_at, birthdate, gender, country_id, avatar_file_name, avatar_content_type, avatar_file_size, avatar_updated_at, vcode, location
+    form: login, name, email, crypted_password, salt, remember_token, remember_token_expires_at, activation_code, activated_at, birthdate, gender, country_id, avatar_file_name, avatar_content_type, avatar_file_size, avatar_updated_at, vcode, location
+  order_by: 
+  relationships: comments, location, stories, user_ratings
+  filters: 
+  search: name
+  application: seradestino.com
+
+Visitor:
+  fields:
+    list: email, vcode, logins, ip, referer, manipulation_level, cookies_failed, country
+    form: email, vcode, logins, ip, referer, manipulation_level, cookies_failed, country
+  order_by: 
+  relationships: country, visitor_sessions
+  filters: 
+  search: 
+  application: seradestino.com
+
+VisitorSession:
+  fields:
+    list: ip, session_id, referer, pageviews, request_method, http_accept_language, ajax_created_at, ajax_updated_at, user_id, newsletter, cookies_failed, visitor
+    form: ip, session_id, referer, pageviews, stories, comments, ratings, recommendations, request_method, http_accept_language, ajax_created_at, ajax_updated_at, user_id, newsletter, stories_read, cookies_failed, visitor
+  order_by: 
+  relationships: visitor
+  filters: 
+  search: 
+  application: seradestino.com
+
