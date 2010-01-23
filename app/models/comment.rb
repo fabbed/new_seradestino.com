@@ -10,7 +10,7 @@ class Comment  < ActiveRecord::Base
   #acts_as_voteable
   
   # NOTE: Comments belong to a user
-  belongs_to :user
+
   
   # Helper class method that allows you to build a comment
   # by passing a commentable object, a user_id, and comment text
@@ -23,6 +23,7 @@ class Comment  < ActiveRecord::Base
     c.user_id = user_id
     c
   end
+
   
   #helper method to check if a comment has children
   def has_children?

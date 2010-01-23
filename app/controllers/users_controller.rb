@@ -11,17 +11,22 @@ class UsersController < LocatableController
  
   def show
     @user = User.find(params[:id])
+    track_avatar_clicked
+    
+    if !current_user
+      redirect_to root_path(:register_first => "si")
+    end
   end
  
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
     @user.vcode = cookies[:vcode] if cookies[:vcode]
-    cookies[:vcode] = nil
     success = @user && @user.save
     if success && @user.errors.empty?
       self.current_user = @user
       track_registration
+      cookies[:vcode] = nil
       #redirect_back_or_default('/')
       flash[:info] = I18n.t('flash.thanks_for_signing_up', :email => @user.email, :login => @user.login)
       redirect_to my_account_path

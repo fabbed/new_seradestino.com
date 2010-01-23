@@ -1,9 +1,9 @@
 require 'digest/sha1'
 
 class User  < ActiveRecord::Base
-  include Authentication
-  include Authentication::ByPassword
-  include Authentication::ByCookieToken
+  include ::Authentication
+  include ::Authentication::ByPassword
+  include ::Authentication::ByCookieToken
 
   has_many :stories
   has_many :comments
@@ -13,15 +13,15 @@ class User  < ActiveRecord::Base
   validates_presence_of     :login,    :message => I18n.t("user.login_required")
   validates_length_of       :login,    :within => 4..40, :message => I18n.t("user.login_length")
   validates_uniqueness_of   :login, :message => I18n.t("user.login_exists")
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => I18n.t("user.login_format") 
+  validates_format_of       :login,    :with => ::Authentication.login_regex, :message => I18n.t("user.login_format") 
 
-  validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
+  validates_format_of       :name,     :with => ::Authentication.name_regex,  :message => ::Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100
 
   validates_presence_of     :email, :message => I18n.t("user.email_required")
   validates_length_of       :email,    :within => 6..100, :message => I18n.t("user.email_length")
   validates_uniqueness_of   :email, :message => I18n.t("user.email_exists")
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => I18n.t("user.email_format")
+  validates_format_of       :email,    :with => ::Authentication.email_regex, :message => I18n.t("user.email_format")
 
   validates_presence_of     :birthdate,   :message => I18n.t("user.birthdate_required")
   # validates_presence_of     :gender,   :message => I18n.t("user.gender_required")

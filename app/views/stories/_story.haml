@@ -5,15 +5,15 @@
   .middle
     %h2
       -unless defined?(mode)
-        =link_to(truncate(story.title, 80), story_path(story))
+        =link_to(truncate(get_title_for_story(story), 80), story_path(story))
       -else
-        =story.title
+        =get_title_for_story(story)
     .text
       -unless controller.controller_name == "stories" and controller.action_name == "show"
-        =truncate(story.body, 400).strip
+        =truncate(get_body_for_story(story), 400).strip
         =link_to("(Leer mas)", story_path(story), :class => "leer_mas", :rel => "nofollow")
       -else
-        =simple_format(story.body.strip)
+        =simple_format(get_body_for_story(story).strip)
     .story_footer
       =meta_info(story)
 

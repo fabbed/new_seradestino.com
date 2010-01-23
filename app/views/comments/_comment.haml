@@ -4,7 +4,7 @@
   .comment.brown_background.oh{:id => dom_id(comment)}
     .info
       .flag
-        =image_tag "new/flags/#{comment.country_code.downcase}.png", :title => comment.country_name, :class => "tooltip" if comment.country_id
+        =#image_tag "new/flags/#{comment.country_code.downcase}.png", :title => comment.country_name, :class => "tooltip" if comment.country_id
         %span.info
           =meta_info comment
     .c

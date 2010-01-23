@@ -8,7 +8,12 @@ es:
     cancel: "Cancelar"
     send: "Enviar"
     introduction_text: "Amores pasados, encuentros casuales, la suerte a la vuelta de la esquina... A todos nos pasaron historias de esas, ¿casualidad o destino? ¡Cuéntanos tu historia y además lee y opina sobre la de los demás!"
-    introduction_text: "¿Te fascinan las historias que podrían ser obra del destino o la casualidad? ¿Existe el destino? Comparte tus historias, disfruta de las de otros usuarios y ayúdanos a discenir cuando son una conexión cósmica y cuando una tirada de dados."
+
+    introduction_text_ne: "¿Te fascinan las historias que podrían ser obra del destino o la casualidad? ¿Existe el destino? Comparte tus historias, disfruta de las de otros usuarios y ayúdanos a discenir cuando son una conexión cósmica y cuando una tirada de dados."
+    introduction_text_es: "ES Que guay!"
+    introduction_text_mx: "MX Pinche pendejo"
+
+
     newsletter_subtext: "Ingresa tu email y recibe<br/> periódicamente las historias más asombrosas."
     terms: "Condiciones de Uso"
   top_login:

@@ -1,15 +1,25 @@
 <% bundle do %>
-<%= javascript_include_tag 'jquery-1.3.2.min.js', 'jrails.js', 'jquery.validate.pack.js', 'jquery.timer.js', 'application.js', 'jquery.dimensions.js', 'jquery.form.js', 'jquery.corners.js', 'facebox', 'jquery.tooltip.pack.js', 'measure' %>
+  <%= javascript_include_tag 'jquery-1.3.2.min.js', 'jrails.js', 'jquery.validate.pack.js', 'jquery.timer.js', 'application.js', 'jquery.dimensions.js', 'jquery.form.js', 'jquery.corners.js', 'facebox', 'jquery.tooltip.pack.js', 'measure' %>
 
-<%=stylesheet_link_tag "reset"%>
-<%=stylesheet_link_tag "all"%>
-<%=stylesheet_link_tag "sd"%>
-<%=stylesheet_link_tag "user"%>
-<%=stylesheet_link_tag "generic"%>
-<%=stylesheet_link_tag "sidebar"%>
-<%=stylesheet_link_tag "messages"%>
-<%=stylesheet_link_tag "facebox"%>
-<%=stylesheet_link_tag "jquery.tooltip"%>
+  <%=stylesheet_link_tag "reset"%>
+  <%=stylesheet_link_tag "all"%>
+  <%=stylesheet_link_tag "sd"%>
+  <%=stylesheet_link_tag "user"%>
+  <%=stylesheet_link_tag "generic"%>
+  <%=stylesheet_link_tag "sidebar"%>
+  <%=stylesheet_link_tag "messages"%>
+  <%=stylesheet_link_tag "facebox"%>
+  <%=stylesheet_link_tag "jquery.tooltip"%>
+
+  <%- if get_session && session[:experiment] %>
+    <%- if get_session.visitor.manipulation_level.split("_")[0] == "symbols" %>
+      <%=stylesheet_link_tag "experiment/#{get_session.visitor.manipulation_level}"%>
+    <%- else  %>
+      <%=stylesheet_link_tag "experiment/symbols_ne"%>
+    <% end %>
+  <%- else  %>
+    <%=stylesheet_link_tag "experiment/symbols_ne"%>
+  <% end %>
 <% end %>
 
 

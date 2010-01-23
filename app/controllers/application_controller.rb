@@ -12,6 +12,8 @@ class ApplicationController < TrackingController
 
   before_filter :create_visitor_or_load_existing
 
+
+
   private
 
     def get_visitor_session
@@ -26,19 +28,32 @@ class ApplicationController < TrackingController
       return false
     end
 
-
     
     def create_visitor_or_load_existing
       puts "============================================================="
       puts "============create_visitor_or_load_existing=================="
       if !(robot?(request.user_agent)) and request.env["REQUEST_METHOD"] == "GET" #if no robot
-        if !(has_cookie?) and params[:controller] == "stories" and params[:action] == "index" #kein cookie & STARTSEITE
+        if !(has_cookie?) and !(has_session?) and params[:controller] == "stories" and params[:action] == "index" #kein cookie & STARTSEITE
+          #TODO: Nur wenn referer
+          session[:experiment] = false
           puts "==== -> New first visitor"
-          new_visitor = Visitor.create_new(request, session[:geo_location], session[:country_selector])
+          man_level = Experiment.get_variation
+          puts "Randomizing manipulation_level and adaption_level: #{man_level}"
+          new_visitor = Visitor.create_new(request, session[:geo_location], man_level)
           new_visitor.create_visitor_session(request)
           store_session_variables(new_visitor.id, new_visitor.visitor_sessions.last.session_id)
           cookies[:vcode] = { :value => new_visitor.vcode, :expires => Time.now.next_year}
+        elsif (!has_cookie? and (has_session?)) #wenn er ne session hat aber kein cookie -> cookies disabled
+          session[:experiment] = false
+          visitor_session = VisitorSession.find_by_session_id(session[:visitor_session_id])
+          visitor_session.cookies_failed = true
+          visitor = visitor_session.visitor
+          visitor.save
+          visitor_session.save
+          puts "MARK AS COOKIES NOT WORKING"
+          session[:visitor_session_id] = nil
         elsif (has_cookie? and !(has_session?)) #wenn er cookie hat aber keine session
+          session[:experiment] = false
           puts "==== -> Returning visitor"
           if (returning_visitor = Visitor.find_by_vcode(cookies[:vcode])) #visitor laden
             returning_visitor.logins = returning_visitor.logins + 1

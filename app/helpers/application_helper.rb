@@ -3,21 +3,74 @@ module ApplicationHelper
 
   include TagsHelper
 
+
+  def get_manipulation_level
+    return "error-in-manipulation-level" if !get_session
+    get_session && get_session.visitor.manipulation_level.split("_")[0]
+  end
+
+  def get_adaptation_level
+    return "error-in-adaptation-level" if !get_session
+    get_session && get_session.visitor.manipulation_level.split("_")[1]
+  end
+
+  def get_title_for_story(story)
+    if !session[:experiment] || !story.experiment_story
+      story.title  || "no title"
+    elsif session[:experiment] && (get_manipulation_level != "ugc")
+      story.title_ne || "no title"
+    elsif session[:experiment] && (get_manipulation_level == "ugc")
+      story.send("title_#{get_adaptation_level}") || "no title"
+    end
+  end
+  
+  def get_body_for_story(story)
+    if !session[:experiment] || !story.experiment_story
+      story.body
+    elsif session[:experiment] && (get_manipulation_level != "ugc")
+      story.body_ne || "no body"
+    elsif session[:experiment] && (get_manipulation_level == "ugc")
+      story.send("body_#{get_adaptation_level}")  || "no body"
+    end
+  end
+    
+    
+  def get_session
+    VisitorSession.find_by_session_id(session[:visitor_session_id])
+  end
+
   def  get_country_name_for_object(object)
     return object.location.country.name if object.location
     "No sabemos el país"
   end
 
 
-  def get_flag_image(object)
-    return "flags/xx.png" if !object.location
-    "flags/#{object.location.country_code.downcase}.png"
+  def get_flag_image(object, mode)
+    return "" if get_session && get_session.visitor.manipulation_level.split("_")[0] != "ugc" && session[:experiment]
+    if mode == "meta"
+      if !object.location
+        image_tag("flags/xx.png", :title =>  get_country_name_for_object(object), :class => "tooltip")            
+      else
+        image_tag("flags/#{object.location.country_code.downcase}.png", :title =>  get_country_name_for_object(object), :class => "tooltip")      
+      end
+    elsif mode == "profile"
+      if !object.location
+        image_tag("flags/xx.png", :class => "user_box_flag tooltip", :title => get_country_name_for_object(object))
+      else
+        image_tag "flags/#{object.location.country_code.downcase}.png", :class => "user_box_flag tooltip", :title => get_country_name_for_object(object)
+      end
+    end
+
+
+    
+
+
   end
 
   def link_to_profile(user, options = {})
       options[:size] ||= :medium
       
-      flag = image_tag get_flag_image(user), :class => "user_box_flag tooltip", :title => get_country_name_for_object(user)
+      flag = get_flag_image(user, "profile")
       output = flag
       
       if user.avatar_file_name
@@ -57,12 +110,11 @@ module ApplicationHelper
     output = ""
 
     if object.is_a?(Comment)
-      output << content_tag(:div, image_tag(get_flag_image(object), :title => get_country_name_for_object(object), :class => "tooltip"), :class => "flag")
+      output << content_tag(:div, get_flag_image(object, "meta"), :class => "flag")
       output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
 
     elsif object.is_a?(Story)
-      output << content_tag(:div, image_tag(get_flag_image(object), :title =>  get_country_name_for_object(object), :class => "tooltip"), :class => "flag")
-
+      output << content_tag(:div, get_flag_image(object, "meta"), :class => "flag")
       output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
       output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text fix")
       output << content_tag(:div, "Categoría: #{link_to(object.category.name, category_path(object.category))}", :class => "category text")      

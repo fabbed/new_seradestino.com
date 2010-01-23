@@ -42,12 +42,10 @@ a.normal_color {
   width: auto; }
 
 #inside_left {
-  background: transparent url(/images/left_moon.jpg) no-repeat scroll right top;
   width: 50px;
   height: 600px; }
 
 #inside_right {
-  background: transparent url(/images/right_moon.jpg) no-repeat scroll left top;
   width: 120px;
   height: 600px; }
 
@@ -160,7 +158,6 @@ label.error {
   margin-top: 3px; }
 
 #main {
-  background: transparent url(/images/header_ne.jpg) no-repeat scroll center top;
   overflow: hidden;
   width: 960px; }
 

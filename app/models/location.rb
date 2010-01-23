@@ -1,6 +1,7 @@
 class Location < ActiveRecord::Base
   belongs_to :country
   
+  
   def self.build(object, geo_session, ip)
     self.create(
       :lat => geo_session.lat,

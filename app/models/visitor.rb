@@ -15,7 +15,10 @@ class Visitor < ActiveRecord::Base
                                             :stories => Array.new,                                            
                                             :recommendations => Array.new,                                            
                                             :ratings => Array.new,
-                                            :stories_read => Array.new
+                                            :stories_read => Array.new,
+                                            :stories_order => Experiment.get_experiment_stories.map(&:id),
+                                            :avatars_clicked => Array.new
+
                                             )
   end
 

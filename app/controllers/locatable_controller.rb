@@ -33,6 +33,28 @@ class LocatableController < ApplicationController
       end
   end
 
+
+  def track_avatar_upload
+      if (visitor_session = get_visitor_session)
+        visitor_session.avatar_uploaded = true
+        visitor_session.save
+        puts "avatar_uploaded_tracked"
+      else
+        puts "error in avatar uploaded"        
+      end    
+  end
+
+
+  def track_avatar_clicked
+      if (visitor_session = get_visitor_session)
+        visitor_session.avatars_clicked << @user.id
+        visitor_session.save
+        puts "avatar_clicked_tracked"
+      else
+        puts "error in avatar clicked"        
+      end    
+  end
+
   def track_read_story
       if (visitor_session = get_visitor_session)
         visitor_session.stories_read << @story.id
@@ -43,6 +65,15 @@ class LocatableController < ApplicationController
       end
   end
 
+  def track_rating
+      if (visitor_session = get_visitor_session)
+        visitor_session.ratings << @story.id
+        visitor_session.save
+        puts "read_story_tracked"
+      else
+        puts "error in trackpageview, has cookie but NO visitor_session"        
+      end
+  end
 
   def track_story
       if (visitor_session = get_visitor_session)

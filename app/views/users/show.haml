@@ -9,24 +9,30 @@
       #user_show.my_account_main
         %h1="Perfil de #{@user.login}"
         
-        .fl
-          %h2 Historias
-          .section
-            %ul
-              -if @user.stories.not_anonymous.count > 0
-                =render :partial => "account/stories/story", :collection => @user.stories.not_anonymous
-              -else
-                %span.no_entity=t("user.user_no_stories", :login => @user.login)
+        -if !logged_in?
+          .font_16
+            %p Este miembro prefiere sólo mostrar su perfil a miembros registrados.
+            %br
+            =link_to t("top_login.register"), signup_path, :id => "top_signup_link"
+        -else
+          .fl
+            %h2 Historias
+            .section
+              %ul
+                -if @user.stories.not_anonymous.count > 0
+                  =render :partial => "account/stories/story", :collection => @user.stories.not_anonymous
+                -else
+                  %span.no_entity=t("user.user_no_stories", :login => @user.login)
 
-          %h2 Comentarios
-          .section
-            %ul
-              -if @user.comments.size > 0
-                =render :partial => "account/comments/comment", :collection => @user.comments
-              -else
-                =t("user.user_no_comments_header", :login => @user.login)
+            %h2 Comentarios
+            .section
+              %ul
+                -if @user.comments.size > 0
+                  =render :partial => "account/comments/comment", :collection => @user.comments
+                -else
+                  =t("user.user_no_comments_header", :login => @user.login)
 
         
-        .fr
-          =link_to_profile @user, :size => :large
-        .c
+          .fr
+            =link_to_profile @user, :size => :large
+          .c

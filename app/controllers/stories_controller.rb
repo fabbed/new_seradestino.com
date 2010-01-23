@@ -21,7 +21,8 @@ class StoriesController < LocatableController
   
   def rate
     @story.rate_it(@rating.to_i, (current_user ? current_user.id : get_visitor_session.visitor.vcode))
-    redirect_to story_path(@story)
+    track_rating
+    redirect_to root_path
   end
 
   def update_story_settings
@@ -102,7 +103,7 @@ class StoriesController < LocatableController
     # builder.date_between(date_range) unless date_range == "no sort"
     # builder.from_country(session[:selected_country]) if session[:selected_country]
     
-    @stories = Story.all.sort_by{|t| - t.average_rating}.paginate(:page => params[:page], :per_page => 8)
+    @stories = Story.all.sort_by{|t| - t.average_rating}.paginate(:page => params[:page], :per_page => 7)
 
   end
 
@@ -127,14 +128,28 @@ class StoriesController < LocatableController
     # builder.date_between(date_range) unless date_range == "no sort"
     # builder.from_country(session[:selected_country]) if session[:selected_country]
     
-    @stories = Story.all.sort_by(&:average_rating).paginate(:page => params[:page], :per_page => 8)
+    @stories = Story.all.sort_by(&:average_rating).paginate(:page => params[:page], :per_page => 7)
   end
 
   def index
-    builder = Story.scope_builder
-    builder.newest_first
-    builder.from_country(session[:selected_country]) if session[:selected_country]
-    @stories = builder.paginate(:page => params[:page], :per_page => 8)
+    if !session[:experiment]
+      builder = Story.scope_builder
+      builder.newest_first
+      builder.not_part_of_experiment
+      @stories = builder.paginate(:page => params[:page], :per_page => 7)
+
+    elsif session[:experiment] && get_visitor_session
+      @stories = Story.find(get_visitor_session.stories_order)
+    end
+
+    # Add more stories to the existing 8
+    if session[:experiment]
+      #@stories = @stories.paginate(:page => params[:page], :per_page => 7)
+      @stories = (@stories | Story.not_part_of_experiment.newest_first).paginate(:page => params[:page], :per_page => 7)
+    end
+    
+    puts "Stories: #{@stories.size}"
+
   end
 
   # GET /stories/1
@@ -233,8 +248,7 @@ class StoriesController < LocatableController
   protected
     def activation_required
       if current_user and !current_user.activated_at
-        redirect_to :controller => "account/base", :action => "activation_required"
-      end
+      flash[:info] = I18n.t('flash.thanks_for_signing_up', :email => current_user.email, :login => current_user.login)      end
     end
 
 

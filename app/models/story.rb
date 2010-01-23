@@ -19,7 +19,7 @@ class Story  < ActiveRecord::Base
   validates_length_of     :body,              :within => 99..1000000, :message => "Al menos 100 letras"
   validates_presence_of :category_id, :message => "Elige una categoría"
 
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => I18n.t("user.email_format"), :allow_nil => true, :if => :email?
+  validates_format_of       :email,    :with => ::Authentication.email_regex, :message => I18n.t("user.email_format"), :allow_nil => true, :if => :email?
 
   named_scope :moderated, :conditions => ['on_startpage = ?', true]
   named_scope :tops, :order => ['rated_top desc']
@@ -33,7 +33,8 @@ class Story  < ActiveRecord::Base
   named_scope :date_between, lambda { |date_range|   { :conditions => { :created_at => date_range } } }
   named_scope :not_anonymous, :conditions => { :anonymous => false }
 
-
+  named_scope :part_of_experiment, :conditions =>     { :experiment_story => true }
+  named_scope :not_part_of_experiment, :conditions => { :experiment_story => false }  
   
   has_friendly_id :seo_title, :use_slug => true, :strip_diacritics => true
   
@@ -41,12 +42,18 @@ class Story  < ActiveRecord::Base
   before_validation :remove_long_words_in_body
   before_validation :remove_long_words_in_title
   
+
+
   
   
   def generate_url
     self.to_param
   end
   
+  def country_iso
+    return "NA" if !location
+    location.country.iso
+  end
   
   def self.country_builder(country_code)
     builder = self.scope_builder
