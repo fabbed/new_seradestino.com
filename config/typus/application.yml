@@ -58,7 +58,7 @@ Story:
     form: experiment_story, fab_rating, title, body, title_ne, body_ne, title_es, body_es, title_mx, body_mx
   order_by: -fab_rating
   relationships: #category, comment_threads, country, location, rating, slugs, taggings, tags, user
-  filters:
+  filters: experiment_story
   search: 
   application: seradestino.com
 
