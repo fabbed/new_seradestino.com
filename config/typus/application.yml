@@ -55,10 +55,10 @@ NewsletterRegistration:
 Story:
   fields:
     list: experiment_story, fab_rating, country_iso, title, category, created_at
-    form: experiment_story, fab_rating, title, body, title_ne, body_ne, title_es, body_es, title_mx, body_mx
-  order_by: -fab_rating
+    form: experiment_story, fab_rating, country_iso, title, body, title_ne, body_ne, title_es, body_es, title_mx, body_mx
+  order_by: -created_at
   relationships: #category, comment_threads, country, location, rating, slugs, taggings, tags, user
-  filters: experiment_story
+  filters: experiment_story, fab_rating
   search: 
   application: seradestino.com
 
