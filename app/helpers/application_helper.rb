@@ -36,8 +36,15 @@ module ApplicationHelper
     
     
   def get_session
-    return false if !session[:visitor_session_id]
-    VisitorSession.find_by_session_id(session[:visitor_session_id])
+    return false if (!session[:visitor_session_id] or !session[:experiment])
+    visitor_session = VisitorSession.find_by_session_id(session[:visitor_session_id])
+
+    if !visitor_session
+      session[:experiment] = false
+      return false
+    end
+    
+    session
   end
 
   def  get_country_name_for_object(object)
