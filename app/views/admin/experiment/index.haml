@@ -17,6 +17,7 @@
   -@visitor_sessions.each_with_index do |session, i|
     -if ((i % 15) == 0)
       %tr
+        %th Visitor_id
         %th Variation
         %th Referrer
         %th IP
@@ -31,6 +32,7 @@
         %th Avatars clicked
 
     %tr
+      %td="#{session.visitor.id}"
       %td="#{session.visitor.manipulation_level}"
       %td="#{session.referer}"
       %td="#{session.visitor.ip}"      
