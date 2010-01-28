@@ -100,6 +100,7 @@ class ApplicationController < TrackingController
     end
 
     def referrer?(referrer)
+      return true if RAILS_ENV == "development"
       referrer =~ /(trucos-de-belleza)/i      
     end
     

@@ -15,7 +15,7 @@
       =stylesheet_link_tag "iefixes_v6"
   %body{:id=>controller.controller_name}
     
-    -if RAILS_ENV == "development"
+    -if RAILS_ENV == "development" or session[:debug]
       #debug_msgs
         .fr=puts get_session.visitor.manipulation_level if get_session
         %br

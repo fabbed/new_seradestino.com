@@ -131,6 +131,12 @@ class StoriesController < LocatableController
     @stories = Story.all.sort_by(&:average_rating).paginate(:page => params[:page], :per_page => 7)
   end
 
+
+  def debug_on
+    session[:debug] = true
+    redirect_to root_path
+  end
+
   def index
     if !session[:experiment]
       builder = Story.scope_builder

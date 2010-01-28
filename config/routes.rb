@@ -51,6 +51,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.sitemap "/sitemap.xml", :controller => "sitemap", :action => "xml"
 
+  map.debug_on "/debug_on", :controller => "stories", :action => "debug_on"
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
