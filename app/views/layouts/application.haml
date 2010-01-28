@@ -113,6 +113,26 @@
         =link_to "Si, quiero registrarme", signup_path, :class => "font_14"
       .c
 
+
+    -if get_session
+      :javascript
+        $(document).ready(function() {
+            AjaxTrackTime();
+            debug_msg("First after pagereload")
+
+            var times = 120;
+            $.timer(10000, function (timer) {
+              times = times - 1;
+              if (times <= 0) {
+                timer.stop();        
+              };
+      
+              AjaxTrackTime();
+            });  
+   
+        });      
+    
+
     -if get_session && get_session.visitor.manipulation_level.split("_")[0] == "dialect" && !session[:box_shown]
       -session[:box_shown] = true
       :javascript

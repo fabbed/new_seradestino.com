@@ -134,6 +134,7 @@ class StoriesController < LocatableController
 
   def debug_on
     session[:debug_stuff] = true
+    redirect_to root_path
   end
 
   def index
