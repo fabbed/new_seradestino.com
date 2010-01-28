@@ -139,17 +139,15 @@ class StoriesController < LocatableController
       @stories = builder.paginate(:page => params[:page], :per_page => 7)
 
     elsif session[:experiment] && get_visitor_session
-      @stories = Story.find(get_visitor_session.stories_order)
+      stories = Story.find(get_visitor_session.stories_order)
+      @stories = get_visitor_session.stories_order.map{|id| stories.detect{|each| each.id == id}}
     end
 
     # Add more stories to the existing 8
     if session[:experiment]
-      #@stories = @stories.paginate(:page => params[:page], :per_page => 7)
-      @stories = (@stories | Story.not_part_of_experiment.newest_first).paginate(:page => params[:page], :per_page => 7)
+      @stories = (@stories | Story.not_part_of_experiment.newest_first).paginate(:page => params[:page], :per_page => 8)
     end
     
-    puts "Stories: #{@stories.size}"
-
   end
 
   # GET /stories/1

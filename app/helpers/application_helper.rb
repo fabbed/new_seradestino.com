@@ -4,6 +4,12 @@ module ApplicationHelper
   include TagsHelper
 
 
+  def get_user_avatars_for_experiment_in_particular_order
+    r=User.find(get_session.avatars_order)
+    users = get_session.avatars_order.map{|id| r.detect{|each| each.id == id}}
+  end
+
+
   def get_manipulation_level
     return "error-in-manipulation-level" if !get_session
     get_session && get_session.visitor.manipulation_level.split("_")[0]
@@ -44,19 +50,29 @@ module ApplicationHelper
       return false
     end
     
-    session
+    visitor_session
   end
 
   def  get_country_name_for_object(object)
-    return object.location.country.name if object.location
+    return object.location.country_name if object.location
     "No sabemos el país"
   end
 
 
   def get_flag_image(object, mode)
-    return "" if get_session && get_session.visitor.manipulation_level.split("_")[0] != "ugc" && session[:experiment]
+    return "" if get_session && session[:experiment] && get_session.visitor.manipulation_level.split("_")[0] != "ugc"
+
     if mode == "meta"
-      if !object.location
+      return image_tag("flags/mx.png", :title =>  "México", :class => "tooltip") if get_session && session[:experiment] && get_session.visitor.manipulation_level == "ugc_mx"
+      return image_tag("flags/es.png", :title =>  "España", :class => "tooltip") if get_session && session[:experiment] && get_session.visitor.manipulation_level == "ugc_es"
+    elsif mode == "profile"
+      return image_tag("flags/mx.png", :title =>  "México", :class => "tooltip user_box_flag") if get_session && session[:experiment] && get_session.visitor.manipulation_level == "ugc_mx"
+      return image_tag("flags/es.png", :title =>  "España", :class => "tooltip user_box_flag") if get_session && session[:experiment] && get_session.visitor.manipulation_level == "ugc_es"
+    end
+
+
+    if mode == "meta"
+      if !object.location_id
         image_tag("flags/xx.png", :title =>  get_country_name_for_object(object), :class => "tooltip")            
       else
         image_tag("flags/#{object.location.country_code.downcase}.png", :title =>  get_country_name_for_object(object), :class => "tooltip")      

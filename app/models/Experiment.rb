@@ -14,8 +14,12 @@ class Experiment
     User.find(@@NEUTRAL_USERS, :order => "rand()")
   end
 
+  def self.get_experiment_avatars
+    @@NEUTRAL_USERS.sort_by { rand }
+  end
+
   def self.get_experiment_stories
-    Story.find(:all, :conditions => {:experiment_story => true}, :order => "rand()", :limit => 3)
+    Story.find(:all, :conditions => {:experiment_story => true}, :order => "rand()", :limit => 8)
   end
 
 

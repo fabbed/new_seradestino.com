@@ -20,6 +20,8 @@
         .fr=puts get_session.visitor.manipulation_level if get_session
         %br
         .fr="Experiment: #{session[:experiment]}"
+        %br
+        .fr=get_session.avatars_order.join(",") if get_session
     .wrapper{:id => controller.action_name}
       #main
         #header

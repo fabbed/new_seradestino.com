@@ -20,4 +20,12 @@ namespace :exp do
       end
     end
 
+    desc "Edit Neutral"
+    task :storey_country_names_in_location_table => :environment do
+      Location.all.each do |location|
+        location.update_attribute(:country_name, location.country.name)
+      end
+    end
+
+
 end

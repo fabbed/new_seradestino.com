@@ -33,9 +33,9 @@ class ApplicationController < TrackingController
       puts "============================================================="
       puts "============create_visitor_or_load_existing=================="
       if !(robot?(request.user_agent)) and request.env["REQUEST_METHOD"] == "GET" #if no robot
-        if !(has_cookie?) and !(has_session?) and params[:controller] == "stories" and params[:action] == "index" #kein cookie & STARTSEITE
+        if referrer?(request.env["HTTP_REFERER"]) and !(has_cookie?) and !(has_session?) and params[:controller] == "stories" and params[:action] == "index" #kein cookie & STARTSEITE
           #TODO: Nur wenn referer
-          session[:experiment] = false
+          session[:experiment] = true
           puts "==== -> New first visitor"
           man_level = Experiment.get_variation
           puts "Randomizing manipulation_level and adaption_level: #{man_level}"
@@ -99,7 +99,10 @@ class ApplicationController < TrackingController
       user_agent =~ /(Baidu|bot|Google|SiteUptime|Slurp|WordPress|ZIBB|ZyBorg|Spider|Sogou)/i
     end
 
-
+    def referrer?(referrer)
+      referrer =~ /(trucos-de-belleza)/i      
+    end
+    
 
 
   

@@ -11,15 +11,16 @@
   <%=stylesheet_link_tag "facebox"%>
   <%=stylesheet_link_tag "jquery.tooltip"%>
 
-  <%- if get_session && session[:experiment] %>
-    <%- if get_session.visitor.manipulation_level.split("_")[0] == "symbols" %>
-      <%=stylesheet_link_tag "experiment/#{get_session.visitor.manipulation_level}"%>
-    <%- else  %>
-      <%=stylesheet_link_tag "experiment/symbols_ne"%>
-    <% end %>
+<% end %>
+
+<%- if get_session %>
+  <%- if get_session.visitor.manipulation_level.split("_")[0] == "symbols" %>
+    <%=stylesheet_link_tag "experiment/#{get_session.visitor.manipulation_level}"%>
   <%- else  %>
     <%=stylesheet_link_tag "experiment/symbols_ne"%>
   <% end %>
+<%- else  %>
+  <%=stylesheet_link_tag "experiment/symbols_ne"%>
 <% end %>
 
 

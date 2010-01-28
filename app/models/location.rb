@@ -1,4 +1,5 @@
 class Location < ActiveRecord::Base
+  
   belongs_to :country
   
   
@@ -8,6 +9,7 @@ class Location < ActiveRecord::Base
       :lng => geo_session.lng,
       :country_id => Country.find_by_iso(geo_session.country_code.upcase).used_id,
       :country_code => geo_session.country_code,
+      :country_name => Country.find_by_iso(geo_session.country_code.upcase).name,
       :city => geo_session.city,
       :precision => geo_session.precision,
       :locatable_id => object.id
