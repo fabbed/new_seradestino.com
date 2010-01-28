@@ -1,7 +1,9 @@
 class Visitor < ActiveRecord::Base
   
-  has_many :visitor_sessions
+  has_many :visitor_sessions, :dependent => :destroy
   belongs_to :country
+
+
 
   def create_visitor_session(request)
     self.visitor_sessions << VisitorSession.create(
