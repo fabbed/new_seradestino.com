@@ -1,3 +1,6 @@
+ActiveRecord::Base.connection.execute("DELETE from visitors")
+ActiveRecord::Base.connection.execute("DELETE from visitor_sessions")
+
 Master
   -Data collection Algorithmus programmieren
   -Text mit Elena udn Lilian

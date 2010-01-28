@@ -45,16 +45,3 @@
       %td="#{session.avatar_uploaded == false ? "-" : "yes"}"
       %td="#{session.stories}"
       %td="#{session.avatars_clicked.uniq.join(", ")}"
-
-
-
--Story.find(:all, :conditions => ["fab_rating > 0"]).each do |story|
-  =story.id.to_s + " " + story.title
-  %br
-  %br
-  =story.body
-  %br
-  %br
-  %br
-  %br
-  
