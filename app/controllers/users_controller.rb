@@ -29,7 +29,7 @@ class UsersController < LocatableController
       cookies[:vcode] = nil
       #redirect_back_or_default('/')
       flash[:info] = I18n.t('flash.thanks_for_signing_up', :email => @user.email, :login => @user.login)
-      redirect_to my_account_path
+      redirect_to root_path
     else
       flash[:error]  = I18n.t('flash.error_in_signing_up')
       render :action => 'new'

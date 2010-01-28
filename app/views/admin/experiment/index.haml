@@ -18,6 +18,7 @@
     -if ((i % 15) == 0)
       %tr
         %th Variation
+        %th Referrer
         %th IP
         %th # PVs
         %th Stories read
@@ -31,6 +32,7 @@
 
     %tr
       %td="#{session.visitor.manipulation_level}"
+      %td="#{session.referer}"
       %td="#{session.visitor.ip}"      
       %td="#{session.pageviews}"
       %td
