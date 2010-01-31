@@ -20,7 +20,13 @@ class StoriesController < LocatableController
   end
   
   def rate
-    @story.rate_it(@rating.to_i, (current_user ? current_user.id : get_visitor_session.visitor.vcode))
+    
+    if current_user
+      @story.rate_it(@rating.to_i, (current_user.id))
+    elsif !current_user && get_visitor_session
+      @story.rate_it(@rating.to_i, get_visitor_session.visitor.vcode)
+    end
+    
     track_rating
     redirect_to root_path
   end
