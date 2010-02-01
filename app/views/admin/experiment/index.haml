@@ -18,6 +18,8 @@
     -if ((i % 15) == 0)
       %tr
         %th Visitor_id
+        %th First Ajax Call
+        %th Difference
         %th Variation
         %th Referrer
         %th IP
@@ -33,6 +35,12 @@
 
     %tr
       %td="#{session.visitor.id}"
+      %td
+        -if session.ajax_created_at
+          ="#{session.ajax_created_at.strftime("%H:%M:%S ")}"
+      %td
+        -if session.ajax_created_at
+          =session.created_at - session.ajax_created_at
       %td="#{session.visitor.manipulation_level}"
       %td="#{session.referer}"
       %td="#{session.visitor.ip}"      

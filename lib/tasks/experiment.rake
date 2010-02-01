@@ -1,5 +1,37 @@
 namespace :exp do
 
+
+    desc "Remove Tag"
+    task :get_exp_stories => :environment do
+      Story.find(:all, :conditions => ['fab_rating = ?', 3]).each do |story|
+        puts "================================================================="
+        puts "Origen del autor: " + story.location.country_name
+        puts "Titulo Original: " + story.title
+        puts "____________"        
+        puts "Body Original: "
+        puts story.body
+        puts
+        puts "====== Neutral ======="
+        puts "Titulo: "
+        puts "____________"        
+        puts "Body: "
+        puts
+        puts "====== ES ======="
+        puts "Titulo: "
+        puts "____________"        
+        puts "Body: "
+        puts
+        puts "====== MX ======="
+        puts "Titulo: "
+        puts "____________"        
+        puts "Body: "
+        puts
+        
+      end
+      false
+    end
+
+
     desc "Remove Tag"
     task :remove_exp_story => :environment do
       Story.find(:all, :conditions => ['fab_rating < ?', 3]).each do |story|

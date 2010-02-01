@@ -8,6 +8,7 @@ class Experiment
 
   def self.get_variation
       @@MAN_LEV[rand(3)]+"_"+@@APT_LEV[rand(3)]
+      "ugc_ne"
   end
 
   def self.get_neutral_users

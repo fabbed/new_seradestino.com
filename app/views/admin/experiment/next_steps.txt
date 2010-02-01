@@ -2,11 +2,18 @@ ActiveRecord::Base.connection.execute("DELETE from visitors")
 ActiveRecord::Base.connection.execute("DELETE from visitor_sessions")
 
 Master
-  -Data collection Algorithmus programmieren
-  -Text mit Elena udn Lilian
+  - Introduction Text updaten (Google Docs)
+  
+  - Stories Online Updaten (Copy Paste Google Doc)
+  
+  - Rake Task auf Server ausführen für onload time
+    --Checken ob onLoad anders ist online als ajaxcall
+  
+  - Leute in Chile fragen, wie lange das Laden dauert (Paulina, Lilian)
+  
+  - Online stellen und ausprobieren
 
-  -Dialect Text
-  -7 Geschichten auswählen
-  -User auswählen
-  
-  
+Hypothesen Kapitel schrieben
+  - Warten Mail Jungermann
+  - Cultures Consequences Buch besorgen
+  - 

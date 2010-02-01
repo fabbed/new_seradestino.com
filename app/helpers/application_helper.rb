@@ -139,7 +139,17 @@ module ApplicationHelper
 
     elsif object.is_a?(Story)
       output << content_tag(:div, get_flag_image(object, "meta"), :class => "flag")
-      output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
+      
+
+      if get_session
+        output << content_tag(:div, "#{author(object)} el #{my_date(Date.today - (rand(3)+1).days - (rand(10)+1).hours - (rand(59)+1).minutes )}", :class => "text")
+      else
+        output << content_tag(:div, "#{author(object)} el #{my_date(object.created_at)}", :class => "text")
+      end
+
+
+      
+      
       output << content_tag(:div, image_tag("story_footer_seperator.png"), :class => "text fix")
       output << content_tag(:div, "Categoría: #{link_to(object.category.name, category_path(object.category))}", :class => "category text")      
     end

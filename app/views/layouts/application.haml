@@ -72,7 +72,7 @@
 
           #end.fix.font_14
             =image_tag "footer_moon.png", :id => "footer_moon"
-            =link_to t("global.terms"), terms_path, :id => "terms_link", :class => "fr"
+            =#link_to t("global.terms"), terms_path, :id => "terms_link", :class => "fr"
 
     #inside_right $nbsp;
     =yield(:javascript)
@@ -96,8 +96,8 @@
 
     -if get_session && get_session.visitor.manipulation_level.split("_")[0] == "dialect" && !session[:box_shown]
       #introduction_msg{:style => "display: none;"}
-        %h2
-          =t "global.introduction_text_#{get_session.visitor.manipulation_level.split("_")[1]}"
+        %h1=t "global.introduction_text_title_#{get_session.visitor.manipulation_level.split("_")[1]}"
+        %p=t "global.introduction_text_#{get_session.visitor.manipulation_level.split("_")[1]}"
 
     #realy_write_story_without_signup{:style => "display: none;"}
       %h1 Puedes escribir tu historia sin registrarte, pero si lo haces:
@@ -114,11 +114,17 @@
       .c
 
 
+    -if get_session  && !session[:on_load_tracked]
+      -session[:on_load_tracked] = true
+      :javascript
+        $(window).load(function() {
+          AjaxTrackOnLoadTime();
+        });
+
     -if get_session
       :javascript
         $(document).ready(function() {
-            AjaxTrackTime();
-            debug_msg("First after pagereload")
+            FirstAjaxTrackTime();
 
             var times = 120;
             $.timer(10000, function (timer) {
@@ -131,7 +137,7 @@
             });  
    
         });      
-    
+
 
     -if get_session && get_session.visitor.manipulation_level.split("_")[0] == "dialect" && !session[:box_shown]
       -session[:box_shown] = true
