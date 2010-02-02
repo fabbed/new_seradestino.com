@@ -8,7 +8,35 @@
     %td=Visitor.count
   %tr
     %td.title Visitor Sessions
-    %td=VisitorSession.count
+    %td=Visitor.count
+  %tr
+    %td.title Symbols MX
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_mx"}).size
+  %tr
+    %td.title Symbols ES
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_es"}).size
+  %tr
+    %td.title Symbols NE
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_ne"}).size  
+  %tr
+    %td.title UGC MX
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_mx"}).size  
+  %tr
+    %td.title UGC ES
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_es"}).size  
+  %tr
+    %td.title UGC NE
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_ne"}).size  
+  %tr
+    %td.title Dialect MX
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_mx"}).size  
+  %tr
+    %td.title DIALECT ES
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_es"}).size  
+  %tr
+    %td.title DIALECT NE
+    %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_ne"}).size  
+
 
 %br
 %br
@@ -19,7 +47,7 @@
       %tr
         %th Visitor_id
         %th First Ajax Call
-        %th Difference
+        %th Window-load Call
         %th Variation
         %th Referrer
         %th IP
@@ -39,8 +67,8 @@
         -if session.ajax_created_at
           ="#{session.ajax_created_at.strftime("%H:%M:%S ")}"
       %td
-        -if session.ajax_created_at
-          =session.created_at - session.ajax_created_at
+        -if session.ajax_on_load_time
+          =session.ajax_on_load_time
       %td="#{session.visitor.manipulation_level}"
       %td="#{session.referer}"
       %td="#{session.visitor.ip}"      
