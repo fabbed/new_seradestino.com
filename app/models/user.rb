@@ -71,7 +71,7 @@ class User  < ActiveRecord::Base
   
   def assign_content
 
-    if self.vcode
+    if self.vcode and Visitor.find_by_vcode(self.vcode)
       UserRating.find(:all, :conditions => ['vcode = ?', self.vcode]).each do |user_rating|
         user_rating.user_id = self.id
         puts "rating"
