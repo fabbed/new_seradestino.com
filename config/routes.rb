@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
 
 
-  map.reglas  '/reglas-de-uso', :controller => 'pages', :action => 'reglas_de_uso'
+  map.reglas      '/reglas-de-uso',          :controller => 'pages', :action => 'reglas_de_uso'
   map.privacidad  '/politica-de-privacidad', :controller => 'pages', :action => 'politica_de_privacidad'
   
   map.my_account '/mi-cuenta', :controller => 'account/base', :action => 'show'

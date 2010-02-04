@@ -1,19 +1,42 @@
+Terms
+
+Locations dieser Leute:
+  liseliz         -> Alemania
+  Gaan, Marty23 -> Argentina
+  azahar          -> Spain
+
+HopToad-Errors checken
+
+
+
 ActiveRecord::Base.connection.execute("DELETE from visitors")
 ActiveRecord::Base.connection.execute("DELETE from visitor_sessions")
 
 Master
-  - Introduction Text updaten (Google Docs)
-  
-  - Stories Online Updaten (Copy Paste Google Doc)
-  
-  - Rake Task auf Server ausführen für onload time
-    --Checken ob onLoad anders ist online als ajaxcall
-  
   - Leute in Chile fragen, wie lange das Laden dauert (Paulina, Lilian)
-  
   - Online stellen und ausprobieren
 
 Hypothesen Kapitel schrieben
   - Warten Mail Jungermann
   - Cultures Consequences Buch besorgen
-  - 
+  - Mail an Georg
+
+Hallo Georg,
+
+ich wollte dir eine Frage stellen, falls die Antwort viel Zeit erfordert, kann ich auch in deine nächste Sprechstunde kommen.
+
+Ich bin grade dabei das Methodikkapitel meiner Masterarbeit fertig zu schreiben, der einzige Abschnitt der mir noch fehlt sind die Hypothesen.
+
+Ich habe 8 abhängige Variablen z.B.: Anzahl Kommentare pro User, Anzahl Pageviews etc.
+Ich habe 2 unabhängige Variablen: Manipulationsebene (Symbole, Dialect, Content) und Anpassungsebene (Neutral, Spanisch adaptiert, Mexikanisch adaptiert).
+Ein Webseitenbesucher kann aus Spanien oder Mexiko kommen.
+
+Theoretisch gibt es nun 8 * 3 * 3 * 2 = 144 Hypothesen
+
+Das kommt mir ein bisschen viel vor. Auch wenn ich die 8 abhängigen Variablen nicht einzeln betrachte, sondern sage
+"alle 8 erhöhen sich bei einer Anpassung", dann hätte ich immer noch 3*3*2 = 18 Hypothesen.
+
+Symbole:    
+  Mexikaner sieht Neutrale Version --> Baseline
+  Mexikaner sieht spanische Version --> Baseline
+  Spanisch 
