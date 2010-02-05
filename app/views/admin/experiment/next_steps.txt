@@ -5,6 +5,14 @@ Locations dieser Leute:
   Gaan, Marty23 -> Argentina
   azahar          -> Spain
 
+
+banderas de Stories
+
+User.find_by_login("liseliz").update_attribute(:location_id, User.find_by_login("esceptico28").location_id)
+User.find_by_login("gaan").update_attribute(:location_id, User.find(56).location_id)
+User.find_by_login("liseliz").update_attribute(:location_id, User.find_by_login("esceptico28").location_id)
+
+
 HopToad-Errors checken
 
 
