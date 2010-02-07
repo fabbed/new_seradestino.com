@@ -51,10 +51,11 @@
         =check_box_tag "terms[accepted]", "", :checked => "checked"
         %span.label= link_to "Aceptar los Términos del Servicio", root_path, :target => "blank", :class => "link_blue"
 
-      %p
-        %br
-        =f.check_box :anonymous, :checked => false
-        %span.label Escribir como anónimo
+      -if logged_in?
+        %p
+          %br
+          =f.check_box :anonymous, :checked => false
+          %span.label Escribir como anónimo
 
 
 
