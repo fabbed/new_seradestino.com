@@ -46,7 +46,7 @@
         =text_field_tag "story[tag_list]", nil, :size => 60, :class => "input short"
         /, :onclick => "this.value = ''", :onfocus => "this.value = ''"
 
-      %p
+      %p{:style => "display: none;"}
         %br
         =check_box_tag "terms[accepted]", "", :checked => "checked"
         %span.label= link_to "Aceptar los Términos del Servicio", root_path, :target => "blank", :class => "link_blue"
