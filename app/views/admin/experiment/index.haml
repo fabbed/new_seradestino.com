@@ -1,45 +1,63 @@
-%h1 Estadísticas
+%h1 Date range
+=link_to "Today", :action => :index, :tiempo => "hoy"
+=link_to "Yesterday", :action => :index, :tiempo => "ayer"
+=link_to "Siempre", :action => :index, :tiempo => "all"
 
+=link_to "Download CSV", :action => :download, :tiempo => params[:tiempo]
+
+
+%h1 Results
 %table#mytable.td_title_table{:cellspacing=>"0"}
   %tr
     %td.title.left.black{:colspan => 2} General
   %tr
-    %td.title Visitors
-    %td=Visitor.count
-  %tr
-    %td.title Visitor Sessions
-    %td=Visitor.count
-  %tr
-    %td.title Symbols MX
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_mx"}).size
-  %tr
-    %td.title Symbols ES
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_es"}).size
-  %tr
-    %td.title Symbols NE
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_ne"}).size  
-  %tr
-    %td.title UGC MX
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_mx"}).size  
-  %tr
-    %td.title UGC ES
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_es"}).size  
-  %tr
-    %td.title UGC NE
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_ne"}).size  
-  %tr
-    %td.title Dialect MX
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_mx"}).size  
-  %tr
-    %td.title DIALECT ES
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_es"}).size  
-  %tr
-    %td.title DIALECT NE
-    %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_ne"}).size  
+    %td.title Selected
+    %td=@visitor_sessions.size
+
+
+%h1 Estadísticas
+
+/ %table#mytable.td_title_table{:cellspacing=>"0"}
+/   %tr
+/     %td.title.left.black{:colspan => 2} General
+/   %tr
+/     %td.title Visitors
+/     %td=Visitor.count
+/   %tr
+/     %td.title Visitor Sessions
+/     %td=VisitorSessions.count
+/   %tr
+/     %td.title Symbols MX
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_mx"}).size
+/   %tr
+/     %td.title Symbols ES
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_es"}).size
+/   %tr
+/     %td.title Symbols NE
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "symbols_ne"}).size  
+/   %tr
+/     %td.title UGC MX
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_mx"}).size  
+/   %tr
+/     %td.title UGC ES
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_es"}).size  
+/   %tr
+/     %td.title UGC NE
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "ugc_ne"}).size  
+/   %tr
+/     %td.title Dialect MX
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_mx"}).size  
+/   %tr
+/     %td.title DIALECT ES
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_es"}).size  
+/   %tr
+/     %td.title DIALECT NE
+/     %td=Visitor.find(:all, :conditions => {:manipulation_level => "dialect_ne"}).size  
 
 
 %br
 %br
+
 
 %table#mytable{:cellspacing=>"0", :summary=>"Projects"}
   -@visitor_sessions.each_with_index do |session, i|

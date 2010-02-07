@@ -22,5 +22,29 @@ class Experiment
     Story.find(:all, :conditions => {:experiment_story => true}, :order => "rand()", :limit => 8)
   end
 
+  def self.getCSV(tiempo)
+
+    date_range=case tiempo
+      when nil
+        (Date.today.beginning_of_day-1.days)..Date.today.end_of_day
+      when "hoy"
+        (Date.today.beginning_of_day)..Date.today.end_of_day
+      when "ayer"
+        (Date.today.beginning_of_day-1.days)..((Date.today-1.day).end_of_day)
+      when "all"
+        (Date.today-1.month)..(Date.today.end_of_day)
+    end
+
+    FasterCSV.generate(:col_sep => "\t") do |csv|
+      csv << ["session_id", "manipulation_level", "ip", "pageviews", "stories_read", "stories_rated", "newsletter", "comments written", "registered", "photo", "stories_written", "avatars_clicked"]
+
+      sessions = Visitor.date_between(date_range).map { |e| e.visitor_sessions.first }
+      sessions.reject { |e| e.ajax_on_load_time == NIL }.each do |session|
+        csv << [session.id, session.visitor.manipulation_level, session.ip, session.pageviews, session.stories_read.uniq.size, session.ratings.uniq, session.newsletter ? "yes" : "no", session.comments, session.user_id ? "yes" : "no", session.avatar_uploaded == false ? "no" : "yes", session.stories, session.avatars_clicked.uniq.size]
+      end
+    end
+  end
+
+
 
 end
