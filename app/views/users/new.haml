@@ -36,13 +36,13 @@
         #dateerrors
       %br
       
-      =f.check_box "terms_accepted", :checked => true
-      Confirmo que he acepto 
-      =link_to "las reglas de uso", reglas_path, :target => "_blank"
-      y 
-      =link_to "la politica de privacidad", privacidad_path, :target => "_blank"
-      de conoceos.com
-      \.
+      =f.check_box "terms_accepted", :checked => true, :style => "display: none;"
+      / Confirmo que he acepto 
+      / =link_to "las reglas de uso", reglas_path, :target => "_blank"
+      / y 
+      / =link_to "la politica de privacidad", privacidad_path, :target => "_blank"
+      / de conoceos.com
+      / \.
       #termserrors
       
       
