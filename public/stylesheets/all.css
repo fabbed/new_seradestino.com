@@ -64,7 +64,7 @@ body {
   text-align: center;
   width: 1260px; }
 
-.fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span, .tl, .tr, .br, .bl {
+.fix, .active, .seperator_line, #sidebar img, .thumb_input, .paginators a, .paginators span, .tl, .tr, .br, .bl, #content_footer, .prev_next_pagination {
   behavior: url("/iepngfix.htc"); }
 
 .fix img {
@@ -98,7 +98,8 @@ body {
         padding-left: 30px; }
       #content #middle #content_main_wrapper #content_footer {
         background: transparent url(/images/content_footer_stars.png) no-repeat scroll 0 0em;
-        overflow: hidden; }
+        overflow: hidden;
+        height: 150px; }
     #content #middle h2 {
       font-size: 1.7em;
       line-height: 1.3em; }

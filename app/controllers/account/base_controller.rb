@@ -1,5 +1,5 @@
 class Account::BaseController < ApplicationController
-  before_filter :login_required
+  before_filter :is_current_user?
   before_filter :activation_required, :except => [:activation_required]
 
   def show
@@ -11,6 +11,11 @@ class Account::BaseController < ApplicationController
   end
   
   protected
+  
+    def is_current_user?
+      return false unless logged_in?
+    end
+  
   
     def find_user
       @user = User.find(current_user)
