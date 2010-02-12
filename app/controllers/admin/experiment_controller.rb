@@ -17,7 +17,7 @@ class Admin::ExperimentController < ApplicationController
       when "ayer"
         (Date.today.beginning_of_day-1.days)..((Date.today-1.day).end_of_day)
       when "all"
-        (Date.today-1.month)..(Date.today.end_of_day)
+        ((Date.today-4.month).end_of_day)..(Date.today.end_of_day)
     end
     
     @visitor_sessions = Visitor.date_between(date_range).map { |e| e.visitor_sessions.first }
