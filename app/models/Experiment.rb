@@ -40,7 +40,7 @@ class Experiment
 
       sessions = Visitor.experiment_countries.date_between(date_range).map { |e| e.visitor_sessions.first }
       sessions.reject { |e| e.ajax_on_load_time == NIL }.each do |session|
-        csv << [session.id, session.visitor.country_iso, session.visitor.manipulation_level, session.ip, session.pageviews, session.stories_read.uniq.size, session.ratings.uniq, session.newsletter ? "yes" : "no", session.comments, session.user_id ? "yes" : "no", session.avatar_uploaded == false ? "no" : "yes", session.stories, session.avatars_clicked.uniq.size]
+        csv << [session.id, session.visitor.country_iso, session.visitor.manipulation_level, session.ip, session.pageviews, session.stories_read.uniq.size, session.ratings.uniq.size, session.newsletter ? "yes" : "no", session.comments, session.user_id ? "yes" : "no", session.avatar_uploaded == false ? "no" : "yes", session.stories, session.avatars_clicked.uniq.size]
       end
     end
   end

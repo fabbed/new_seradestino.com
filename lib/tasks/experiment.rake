@@ -76,9 +76,9 @@ namespace :exp do
         else
 
           if !story.ip
-            story.country_code = "xx"
+            story.country_iso = "xx"
             story.save
-          elsif story.ip
+          elsif story.ip and !story.country_iso
             # location = GeoKit::Geocoders::IpGeocoder.geocode(story.ip)
             location = GeoKit::Geocoders::GeoPluginGeocoder.geocode("#{story.ip}")    
             if location.success
