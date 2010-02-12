@@ -70,7 +70,7 @@ namespace :exp do
 
       Visitor.all.each do |story|
 
-        unless true
+        if false
           location = GeoKit::Geocoders::GeoPluginGeocoder.geocode("189.152.195.113")
           puts location.to_yaml
         else
@@ -83,16 +83,11 @@ namespace :exp do
             location = GeoKit::Geocoders::GeoPluginGeocoder.geocode("#{story.ip}")    
             if location.success
               puts location.country_code
-              story.country_code = location.country_code
-              story.country_id = Country.find_by_iso(location.country_code).used_id
-              story.city = location.city if location.city
+              story.country_iso = location.country_code
               story.save
-              # location.lat
-              # location.lng
-              # location.city
             else
               story.country_id = nil
-              story.country_code = "xx"
+              story.country_iso = "xx"
               story.save
             end
           end
