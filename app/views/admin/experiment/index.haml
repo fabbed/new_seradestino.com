@@ -58,14 +58,17 @@
 %br
 %br
 
+Visitor.last.country.iso
 
 %table#mytable{:cellspacing=>"0", :summary=>"Projects"}
   -@visitor_sessions.each_with_index do |session, i|
     -if ((i % 15) == 0)
       %tr
         %th Visitor_id
+        %th created_at
         %th First Ajax Call
         %th Window-load Call
+        %th Visitor_home_country
         %th Variation
         %th Referrer
         %th IP
@@ -81,12 +84,14 @@
 
     %tr
       %td="#{session.visitor.id}"
+      %td="#{session.created_at.strftime("%H:%M:%S")}"
       %td
         -if session.ajax_created_at
           ="#{session.ajax_created_at.strftime("%H:%M:%S ")}"
       %td
         -if session.ajax_on_load_time
           =session.ajax_on_load_time
+      %td="#{session.visitor.country.iso}"
       %td="#{session.visitor.manipulation_level}"
       %td="#{session.referer}"
       %td="#{session.visitor.ip}"      
