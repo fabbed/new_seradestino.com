@@ -1,3 +1,6 @@
+rake exp:get_countries_for_visitors
+
+
 28896 ES
 28894 ES
 28898 MX
