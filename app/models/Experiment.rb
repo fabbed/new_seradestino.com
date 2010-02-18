@@ -14,7 +14,6 @@ class Experiment
       else
         "all"+"_"+@@APT_LEV_ALL[rand(2)]
       end
-      "ugc_ne"
   end
 
   def self.get_neutral_users
