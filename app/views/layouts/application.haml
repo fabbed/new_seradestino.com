@@ -44,7 +44,7 @@
             #right.fix
               =link_to(image_tag("btn_contar_nueva_historia.png"), new_story_path, :id => "btn_new_story")
             #header_text
-              -if get_session && get_session.visitor.manipulation_level.split("_")[0] == "dialect"
+              -if get_session && (get_session.visitor.manipulation_level.split("_")[0] == "dialect" || get_session.visitor.manipulation_level.split("_")[0] == "all")
                 =t "global.introduction_text_#{get_session.visitor.manipulation_level.split("_")[1]}"
               -else
                 =t "global.introduction_text_ne"
@@ -94,7 +94,7 @@
       =link_to t("top_login.register"), signup_path, :id => "top_signup_link"
 
 
-    -if get_session && get_session.visitor.manipulation_level.split("_")[0] == "dialect" && !session[:box_shown]
+    -if get_session && (get_session.visitor.manipulation_level.split("_")[0] == "dialect" || get_session.visitor.manipulation_level.split("_")[0] == "all") && !session[:box_shown]
       #introduction_msg{:style => "display: none;"}
         %h1=t "global.introduction_text_title_#{get_session.visitor.manipulation_level.split("_")[1]}"
         %p=t "global.introduction_text_#{get_session.visitor.manipulation_level.split("_")[1]}"
@@ -139,7 +139,7 @@
         });      
 
 
-    -if get_session && get_session.visitor.manipulation_level.split("_")[0] == "dialect" && !session[:box_shown]
+    -if get_session && (get_session.visitor.manipulation_level.split("_")[0] == "dialect" || get_session.visitor.manipulation_level.split("_")[0] == "all") && !session[:box_shown]
       -session[:box_shown] = true
       :javascript
         $.timer(2000, function (timer) {

@@ -10,15 +10,3 @@
       -User.newest_first.with_avatar.active[0..6].each do |user|                  #Sonst neueste zuerst
         =link_to_profile(user)
 
-    / -if get_session && get_session.visitor.manipulation_level == "ugc_es"         #Wenn session und Ebene UCG-ES
-    /   -Experiment.get_neutral_users.each do |user|
-    /     =link_to_profile(user)
-    / -elsif get_session && get_session.visitor.manipulation_level == "ugc_mx"      #Wenn session und Ebene UCG-MX
-    /   -Experiment.get_neutral_users.each do |user|
-    /     =link_to_profile(user)
-    / -elsif !get_session
-    /   -User.newest_first.with_avatar.active[0..6].each do |user|                  #Sonst neueste zuerst
-    /     =link_to_profile(user)
-    / -else
-    /   -Experiment.get_neutral_users.each do |user|
-    /     =link_to_profile(user)

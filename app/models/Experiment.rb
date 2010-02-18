@@ -2,12 +2,19 @@ class Experiment
 
   @@MAN_LEV = ["symbols", "dialect", "ugc"]
   @@APT_LEV = ["ne", "mx", "es"]
+  @@APT_LEV_ALL = ["mx", "es"]
+
 
   @@NEUTRAL_USERS = [280, 224, 46, 197, 128, 137, 147]
 
 
   def self.get_variation
-      @@MAN_LEV[rand(3)]+"_"+@@APT_LEV[rand(3)]
+      unless rand(8) == 2
+        @@MAN_LEV[rand(3)]+"_"+@@APT_LEV[rand(3)]
+      else
+        "all"+"_"+@@APT_LEV_ALL[rand(2)]
+      end
+      "ugc_ne"
   end
 
   def self.get_neutral_users

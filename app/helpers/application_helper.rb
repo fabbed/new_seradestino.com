@@ -23,9 +23,9 @@ module ApplicationHelper
   def get_title_for_story(story)
     if !session[:experiment] || !story.experiment_story
       story.title  || "no title"
-    elsif session[:experiment] && (get_manipulation_level != "ugc")
+    elsif session[:experiment] && (get_manipulation_level != "ugc" && get_manipulation_level != "all")
       story.title_ne || "no title"
-    elsif session[:experiment] && (get_manipulation_level == "ugc")
+    elsif session[:experiment] && (get_manipulation_level == "ugc" || get_manipulation_level == "all")
       story.send("title_#{get_adaptation_level}") || "no title"
     end
   end
@@ -33,9 +33,9 @@ module ApplicationHelper
   def get_body_for_story(story)
     if !session[:experiment] || !story.experiment_story
       story.body
-    elsif session[:experiment] && (get_manipulation_level != "ugc")
+    elsif session[:experiment] && (get_manipulation_level != "ugc" && get_manipulation_level != "all")
       story.body_ne || "no body"
-    elsif session[:experiment] && (get_manipulation_level == "ugc")
+    elsif session[:experiment] && (get_manipulation_level == "ugc" || get_manipulation_level == "all")
       story.send("body_#{get_adaptation_level}")  || "no body"
     end
   end
@@ -60,14 +60,14 @@ module ApplicationHelper
 
 
   def get_flag_image(object, mode)
-    return "" if get_session && session[:experiment] && get_session.visitor.manipulation_level.split("_")[0] != "ugc"
+    return "" if get_session && session[:experiment] && !(get_session.visitor.manipulation_level.split("_")[0] == "ugc" or get_session.visitor.manipulation_level.split("_")[0] == "all")
 
     if mode == "meta"
-      return image_tag("flags/mx.png", :title =>  "México", :class => "tooltip") if get_session && session[:experiment] && get_session.visitor.manipulation_level == "ugc_mx"
-      return image_tag("flags/es.png", :title =>  "España", :class => "tooltip") if get_session && session[:experiment] && get_session.visitor.manipulation_level == "ugc_es"
+      return image_tag("flags/mx.png", :title =>  "México", :class => "tooltip") if get_session && (get_session.visitor.manipulation_level == "ugc_mx" || get_session.visitor.manipulation_level == "all_mx")
+      return image_tag("flags/es.png", :title =>  "España", :class => "tooltip") if get_session && (get_session.visitor.manipulation_level == "ugc_es" || get_session.visitor.manipulation_level == "all_es")
     elsif mode == "profile"
-      return image_tag("flags/mx.png", :title =>  "México", :class => "tooltip user_box_flag") if get_session && session[:experiment] && get_session.visitor.manipulation_level == "ugc_mx"
-      return image_tag("flags/es.png", :title =>  "España", :class => "tooltip user_box_flag") if get_session && session[:experiment] && get_session.visitor.manipulation_level == "ugc_es"
+      return image_tag("flags/mx.png", :title =>  "México", :class => "tooltip user_box_flag") if get_session && (get_session.visitor.manipulation_level == "ugc_mx" || get_session.visitor.manipulation_level == "all_mx")
+      return image_tag("flags/es.png", :title =>  "España", :class => "tooltip user_box_flag") if get_session && (get_session.visitor.manipulation_level == "ugc_es" || get_session.visitor.manipulation_level == "all_es")
     end
 
 

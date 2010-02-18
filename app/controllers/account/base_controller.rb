@@ -13,7 +13,20 @@ class Account::BaseController < ApplicationController
   protected
   
     def is_current_user?
-      return false unless logged_in?
+      unless logged_in?
+        
+          visitor_session = VisitorSession.find_by_session_id(session[:visitor_session_id])
+          if visitor_session
+            v = visitor_session.visitor
+            visitor_session.destroy
+            v.destroy
+          end
+
+          session[:experiment] = false
+          session[:visitor_session_id] = nil        
+        
+        redirect_to root_path
+      end
     end
   
   
