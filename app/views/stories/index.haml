@@ -1,12 +1,16 @@
 -title("seradestino.com - ¿Destino o casualidad?")
 
--content_for(:top) do
-  =render :partial => '/shared/new_users_boxes', :locals => {:big => false}
+-if Experiment.include_user_images?
+  -content_for(:top) do
+    =render :partial => '/shared/new_users_boxes', :locals => {:big => false}
 
 -content_for(:sidebar) do
   =render :partial => '/shared/sidebars/sidebar', :locals => {:big => false}
 
 -content_for(:main) do
+  -if !Experiment.include_user_images?
+    %br
+    %br
   =render :partial => 'stories/story', :collection => @stories
 
 -content_for(:footer) do

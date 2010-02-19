@@ -104,7 +104,7 @@ Visitor.last.country.iso
           =link_to story_id, story_path(story_id)
       %td="#{session.newsletter == false ? "-" : "yes"}"
       %td="#{session.comments}"
-      %td="#{session.user_id ? link_to(User.find(session.user_id).login, user_path(session.user_id)) : "-"}"
+      %td="#{session.user_id ? session.user_id : "-"}"
       %td="#{session.avatar_uploaded == false ? "-" : "yes"}"
       %td="#{session.stories}"
       %td="#{session.avatars_clicked.uniq.join(", ")}"

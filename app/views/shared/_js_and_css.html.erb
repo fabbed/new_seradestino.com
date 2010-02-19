@@ -15,7 +15,7 @@
 
 <%- if get_session %>
   <%- if get_session.visitor.manipulation_level.split("_")[0] == "symbols" %>
-    <%=stylesheet_link_tag "experiment/#{get_session.visitor.manipulation_level}"%>
+    <%=stylesheet_link_tag "experiment/symbols_#{get_session.visitor.manipulation_level.split("_")[1]}"%>
   <%- elsif get_session.visitor.manipulation_level.split("_")[0] == "all" %>
     <%=stylesheet_link_tag "experiment/symbols_#{get_session.visitor.manipulation_level.split("_")[1]}"%>
   <%- else  %>
