@@ -8,6 +8,26 @@ class Experiment
     false
   end
 
+  def self.dichotomize(amount, condition)
+    return "TRUE" if amount > condition
+    return "FALSE"
+  end
+
+  def self.time_on_page(session)
+    
+    if session.ajax_created_at && session.ajax_updated_at
+      diff= session.ajax_updated_at - session.ajax_created_at
+      if diff < 6000
+        return (diff)
+      else
+        "NA"
+      end
+    elsif session.ajax_created_at && !session.ajax_updated_at
+      return "NA"
+    end
+  
+  end
+
   def self.adapted_lev(nationality, man_lev)
     if nationality == man_lev.split("_")[1]
       "TRUE"
@@ -55,23 +75,53 @@ class Experiment
     end
 
     FasterCSV.generate(:col_sep => "\t") do |csv|
-      csv << ["session_id", "nationality", "adapted", "man_lev", "ip", "pageviews", "stories_read", "stories_rated", "newsletter", "comments written", "registered", "photo", "stories_written", "avatars_clicked"]
+      csv << ["nationality",
+              "time_on_page", 
+              "adapted_to_nationality", 
+              "manipulation_lev", 
+              "stories_read", 
+              "stories_read_dichotomized", 
+              "stories_rated",               
+              "stories_rated_dichotomized", 
+              "comments_written",              
+              "comments_written_dichotomized",
+              "stories_written",               
+              "stories_written_dichotomized", 
+              "avatars_clicked",              
+              "avatars_clicked_dichotomized",
+              "newsletter", 
+              "registered", 
+              "photo"
+               ]
 
       sessions = Visitor.experiment_countries.date_between(date_range).map { |e| e.visitor_sessions.first }
       sessions.reject { |e| e.ajax_on_load_time == NIL }.each do |session|
-        csv << [
-          session.id, 
-          session.visitor.country_iso, 
-          self.adapted_lev(session.visitor.country_iso.downcase, session.visitor.manipulation_level),
-          session.visitor.manipulation_level,
-          session.ip, 
-          session.pageviews, 
-          session.stories_read.uniq.size > 0 ? "0" : "1", 
-          session.ratings.uniq.size, 
-          session.newsletter ? "TRUE" : "FALSE", 
-          session.comments.uniq.size, 
-          session.user_id ? "yes" : "no", 
-          session.avatar_uploaded == false ? "FALSE" : "TRUE", session.stories.uniq.size, session.avatars_clicked.uniq.size]
+
+          csv << [
+            session.visitor.country_iso, 
+            self.time_on_page(session),
+            self.adapted_lev(session.visitor.country_iso.downcase, session.visitor.manipulation_level),
+            session.visitor.manipulation_level,
+
+            session.stories_read.uniq.size, 
+            dichotomize(session.stories_read.uniq.size, 0),
+
+            session.ratings.uniq.size, 
+            dichotomize(session.ratings.uniq.size, 0),
+
+            session.comments.uniq.size, 
+            dichotomize(session.comments.uniq.size, 0),
+
+            session.stories.uniq.size,
+            dichotomize(session.stories.uniq.size, 0),
+
+            session.avatars_clicked.uniq.size,
+            dichotomize(session.avatars_clicked.uniq.size, 0),
+          
+            session.newsletter ? "TRUE" : "FALSE", 
+            session.user_id ? "TRUE" : "FALSE", 
+          session.avatar_uploaded == false ? "FALSE" : "TRUE"]
+
       end
     end
   end
