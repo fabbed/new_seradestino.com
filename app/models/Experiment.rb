@@ -8,6 +8,12 @@ class Experiment
     false
   end
 
+
+  def self.get_layer(man_lev)
+    man_lev.split("_")[0]
+  end
+    
+
   def self.dichotomize(amount, condition)
     return "TRUE" if amount > condition
     return "FALSE"
@@ -42,7 +48,9 @@ class Experiment
 
 
   def self.get_variation
-      unless rand(8) == 2
+      # unless rand(8) == 2
+
+      unless 2 == 2
         @@MAN_LEV[rand(3)]+"_"+@@APT_LEV[rand(3)] + (self.include_user_images? ? "_with_avatars" : "_without_avatars")
       else
         "all"+"_"+@@APT_LEV_ALL[rand(2)] + (self.include_user_images? ? "_with_avatars" : "_without_avatars")
@@ -74,10 +82,15 @@ class Experiment
         ((Date.today-4.month).end_of_day)..(Date.today.end_of_day)
     end
 
+    puts "==================== EXPORT ========================"
+    puts "Exporting: #{date_range}"
+
     FasterCSV.generate(:col_sep => "\t") do |csv|
       csv << ["nationality",
               "time_on_page", 
+              "layer", 
               "adapted_to_nationality", 
+              "avatar_pictures_shown", 
               "manipulation_lev", 
               "stories_read", 
               "stories_read_dichotomized", 
@@ -94,13 +107,23 @@ class Experiment
               "photo"
                ]
 
-      sessions = Visitor.experiment_countries.date_between(date_range).map { |e| e.visitor_sessions.first }
-      sessions.reject { |e| e.ajax_on_load_time == NIL }.each do |session|
-
+      
+      sessions = Visitor.experiment_countries.date_between(date_range)
+      puts "Total Sessions: #{VisitorSession.count}"      
+      puts "Session from MX or ES: #{sessions.size}"
+      sessions = sessions.map { |e| e.visitor_sessions.first }
+      puts "Only first sessions: #{sessions.size}"
+      sessions = sessions.reject { |e| e.ajax_on_load_time == NIL }
+      puts "Sessions with onLoad: #{sessions.size}"
+      
+      sessions.each_with_index do |session, i|
+          print "#{i}, "
           csv << [
             session.visitor.country_iso, 
             self.time_on_page(session),
+            self.get_layer(session.visitor.manipulation_level),
             self.adapted_lev(session.visitor.country_iso.downcase, session.visitor.manipulation_level),
+            session.visitor.manipulation_level.split("_").size == 4 ? "TRUE" : "FALSE",
             session.visitor.manipulation_level,
 
             session.stories_read.uniq.size, 
@@ -120,7 +143,7 @@ class Experiment
           
             session.newsletter ? "TRUE" : "FALSE", 
             session.user_id ? "TRUE" : "FALSE", 
-          session.avatar_uploaded == false ? "FALSE" : "TRUE"]
+            session.avatar_uploaded == false ? "FALSE" : "TRUE"]
 
       end
     end

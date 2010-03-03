@@ -2,6 +2,27 @@ namespace :exp do
 
 
     desc "Remove Tag"
+    task :get_csv => :environment do
+      
+      csv_string = Experiment.getCSV("all")  
+      puts "Wrting File"
+      File.open("/Users/fabian/Desktop/Master/exp_data/sd_exp_results.txt", 'w') {|f| f.write(csv_string) }            
+      
+    end
+
+
+  
+    desc "Remove Tag"
+    task :comments => :environment do
+      
+      
+      
+      
+      
+    end
+
+
+    desc "Remove Tag"
     task :get_exp_stories => :environment do
       Story.find(:all, :conditions => ['fab_rating = ?', 3]).each do |story|
         puts "================================================================="
