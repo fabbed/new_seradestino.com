@@ -14,9 +14,8 @@ namespace :exp do
       
       csv_string = Experiment.getContTable()  
       puts "Wrting File"
-      File.open("/Users/fabian/Desktop/Master/exp_data/sd_exp_results_cont.txt", 'w') {|f| f.write(csv_string) }            
+      File.open("./public/experiment/results.txt", 'w') {|f| f.write(csv_string) }            
     end
-
   
     desc "Remove Tag"
     task :comments => :environment do
