@@ -161,4 +161,56 @@
           alert("#{t('account.first_confirm_photo_link', :email =>current_user.email)}");
           return false;
         })
+        
+
+    
+    -if (get_manipulation_level and get_manipulation_level != "all" and get_manipulation_level != "dialect")
+      -if rand(2) == 0
+        #survey{:style => "display: none;"}
+          %h1 ¿Cual es tu nacionalidad?
+          -form_tag({:controller => :survey, :action => "create"}, {:class => "form"}) do
+            %table{:style => "font-size: 15px;"}
+              %tr
+                %td{:style => "width: 5em;"} Soy de:
+                %td
+                  =select_tag :survey_result, options_for_select(Country.for_country_select_in_surves, visitor_country_id_or_selected_country_id), :id => "select_country"
+                  =hidden_field_tag :survey_id, "survey_country"
+              %tr
+                %td &nbsp;
+                %td &nbsp;
+              %tr
+                %td
+                %td=submit_tag "Mandar respuesta"
+      -else
+        #survey{:style => "display: none;"}
+          %h1 ¿Cual es tu sexo?
+          -form_tag({:controller => :survey, :action => "create"}, {:class => "form"}) do
+            %table{:style => "font-size: 15px;"}
+              %tr
+                %td{:style => "width: 5em;"} Soy:
+                %td
+                  =select_tag :survey_result, options_for_select(Country.for_gender_select_in_surves, visitor_country_id_or_selected_country_id), :id => "select_country"
+                  =hidden_field_tag :survey_id, "survey_gender"
+              %tr
+                %td &nbsp;
+                %td &nbsp;
+              %tr
+                %td
+                %td=submit_tag "Mandar respuesta"
+            
+      -if !session[:survey_shown]
+        -session[:survey_shown] = true    
+        :javascript
+          $(document).ready(function() {
+            jQuery.facebox($("#survey").show());
+            return false;
+          });      
+        
+
+        
+        
+        
+        
+        
+        
     = render :partial => "shared/google_analytics" if production?

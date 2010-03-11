@@ -69,6 +69,8 @@ Visitor.last.country.iso
         %th First Ajax Call
         %th Window-load Call
         %th Visitor_home_country
+        %th Visitor Survey (Country)
+        %th Visitor Survey (Gender)        
         %th Variation
         %th Referrer
         %th IP
@@ -92,9 +94,11 @@ Visitor.last.country.iso
         -if session.ajax_on_load_time
           =session.ajax_on_load_time
       %td="#{session.visitor.country_iso}"
+      %td="#{session.visitor.survey_country}"
+      %td="#{session.visitor.survey_gender}"
       %td="#{session.visitor.manipulation_level}"
       %td="#{session.referer}"
-      %td="#{session.visitor.ip}"      
+      %td="#{session.visitor.ip}"
       %td="#{session.pageviews}"
       %td
         -session.stories_read.uniq.each do |story_id|
