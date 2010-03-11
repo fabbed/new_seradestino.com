@@ -71,6 +71,7 @@ Visitor.last.country.iso
         %th Visitor_home_country
         %th Visitor Survey (Country)
         %th Visitor Survey (Gender)        
+        %th Visitor Survey (Where is the page from?)
         %th Variation
         %th Referrer
         %th IP
@@ -96,6 +97,7 @@ Visitor.last.country.iso
       %td="#{session.visitor.country_iso}"
       %td="#{session.visitor.survey_country}"
       %td="#{session.visitor.survey_gender}"
+      %td="#{session.visitor.survey_nationality_of_page}"
       %td="#{session.visitor.manipulation_level}"
       %td="#{session.referer}"
       %td="#{session.visitor.ip}"

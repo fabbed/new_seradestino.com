@@ -13,6 +13,8 @@ class SurveyController < ApplicationController
         end
       elsif params[:survey_id] == "survey_gender"
         visitor.survey_gender = params[:survey_result]
+      elsif params[:survey_id] == "survey_page_origin"
+        visitor.survey_nationality_of_page = params[:survey_result]
       end
       
       visitor.save
