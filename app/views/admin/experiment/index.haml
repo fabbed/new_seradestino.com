@@ -69,6 +69,7 @@ Visitor.last.country.iso
         %th First Ajax Call
         %th Window-load Call
         %th Visitor_home_country
+        %th Survey Type
         %th Visitor Survey (Country)
         %th Visitor Survey (Gender)        
         %th Visitor Survey (Where is the page from?)
@@ -95,6 +96,7 @@ Visitor.last.country.iso
         -if session.ajax_on_load_time
           =session.ajax_on_load_time
       %td="#{session.visitor.country_iso}"
+      %td="#{session.visitor.survey_identifier}"
       %td="#{session.visitor.survey_country}"
       %td="#{session.visitor.survey_gender}"
       %td="#{session.visitor.survey_nationality_of_page}"

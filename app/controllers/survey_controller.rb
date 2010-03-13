@@ -13,6 +13,7 @@ class SurveyController < ApplicationController
         end
       elsif params[:survey_id] == "survey_gender"
         visitor.survey_gender = params[:survey_result]
+
       elsif params[:survey_id] == "survey_page_origin"
         if Country.find(params[:survey_result])        
           visitor.survey_nationality_of_page = Country.find(params[:survey_result]).iso

@@ -45,9 +45,11 @@ class ApplicationController < TrackingController
           cookies[:vcode] = { :value => new_visitor.vcode, :expires => Time.now.next_year}
         elsif (!has_cookie? and (has_session?)) #wenn er ne session hat aber kein cookie -> cookies disabled
           visitor_session = VisitorSession.find_by_session_id(session[:visitor_session_id])
-          v = visitor_session.visitor
-          visitor_session.destroy
-          v.destroy
+          if visitor_session
+            v = visitor_session.visitor
+            visitor_session.destroy
+            v.destroy
+          end
           session[:experiment] = false
           session[:visitor_session_id] = nil
         elsif (has_cookie? and !(has_session?)) #wenn er cookie hat aber keine session

@@ -164,7 +164,7 @@
         
 
     
-    -if (get_manipulation_level and get_manipulation_level != "all" and get_manipulation_level != "dialect")
+    -if (get_manipulation_level and get_manipulation_level != "all" and get_manipulation_level != "dialect") and get_session and !session[:survey_shown]
       -random_number = rand(3)
       -if random_number == 0
         #survey{:style => "display: none;"}
@@ -172,6 +172,10 @@
           -form_tag({:controller => :survey, :action => "create"}, {:class => "form"}) do
             %table{:style => "font-size: 15px;"}
               %tr
+                -if (get_session)
+                  -visitor=get_session.visitor
+                  -visitor.survey_identifier = "survey_country"
+                  -visitor.save
                 %td{:style => "width: 5em;"} Soy de:
                 %td
                   =select_tag :survey_result, options_for_select(Country.for_country_select_in_surves, visitor_country_id_or_selected_country_id), :id => "select_country"
@@ -188,6 +192,10 @@
           -form_tag({:controller => :survey, :action => "create"}, {:class => "form"}) do
             %table{:style => "font-size: 15px;"}
               %tr
+                -if (get_session)
+                  -visitor=get_session.visitor
+                  -visitor.survey_identifier = "survey_gender"
+                  -visitor.save
                 %td{:style => "width: 5em;"} Soy:
                 %td
                   =select_tag :survey_result, options_for_select(Country.for_gender_select_in_surves, visitor_country_id_or_selected_country_id), :id => "select_country"
@@ -205,6 +213,10 @@
           -form_tag({:controller => :survey, :action => "create"}, {:class => "form"}) do
             %table{:style => "font-size: 15px;"}
               %tr
+                -if (get_session)
+                  -visitor=get_session.visitor
+                  -visitor.survey_identifier = "survey_page_origin"
+                  -visitor.save
                 %td{:style => "width: 5em;"} La página es de...
                 %td
                   =select_tag :survey_result, options_for_select(Country.for_country_select_in_surves, visitor_country_id_or_selected_country_id), :id => "select_country"
