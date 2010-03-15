@@ -165,7 +165,7 @@
 
     
     -if (get_manipulation_level and get_manipulation_level != "all" and get_manipulation_level != "dialect") and get_session and !session[:survey_shown]
-      -random_number = rand(3)
+      -random_number = rand(2)
       -if random_number == 0
         #survey{:style => "display: none;"}
           %h1 ¿Cual es tu nacionalidad?
