@@ -170,7 +170,7 @@
         #survey{:style => "display: none;"}
           %h1 ¿Cual es tu nacionalidad?
           -form_tag({:controller => :survey, :action => "create"}, {:class => "form"}) do
-            %table{:style => "font-size: 15px;"}
+            %table{:style => "font-size: 16px;"}
               %tr
                 -if (get_session)
                   -visitor=get_session.visitor
