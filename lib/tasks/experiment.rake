@@ -97,6 +97,19 @@ namespace :exp do
 
       require 'geokit'
 
+
+# Visitor.find_all_by_country_iso("xx").size
+# 
+# Visitor.find_all_by_country_iso("xx").each do |visitor|
+#   visitor.country_iso = false
+#   visitor.save
+# end
+# 
+# Visitor.find_all_by_country_iso("xx").size
+
+
+
+
 	  Geokit::Geocoders::google = 'ABQIAAAAkzCpk0J1FPlWiSinzJS-6hQasU70E895awct6WnEz2cX57FcExR-8TDVSJXcZAB8ZToBgaBanLSjRw'
 
       Visitor.all.each do |story|
@@ -110,8 +123,8 @@ namespace :exp do
             puts "Visitor #{story.id} has no IP"
             story.country_iso = "xx"
             story.save
-          elsif story.ip and !story.country_iso
-            puts "Has ip and is country_iso is not nill"
+          elsif story.ip and story.country_iso != "xx"
+            puts "Has ip and country_iso is not nill"
             # location = GeoKit::Geocoders::IpGeocoder.geocode(story.ip)
             location = GeoKit::Geocoders::GeoPluginGeocoder.geocode("#{story.ip}")    
             if location.success
