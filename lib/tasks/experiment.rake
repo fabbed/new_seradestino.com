@@ -120,7 +120,7 @@ namespace :exp do
             puts "Visitor #{story.id} has no IP"
             story.country_iso = "xx"
             story.save
-          elsif story.ip and (story.country_iso == "0" OR !story.country_iso)
+          elsif story.ip and (story.country_iso == "0" or !story.country_iso)
             puts "Has ip and country_iso is not set"
             # location = GeoKit::Geocoders::IpGeocoder.geocode(story.ip)
             location = GeoKit::Geocoders::GeoPluginGeocoder.geocode("#{story.ip}")    
