@@ -4,6 +4,223 @@ class Experiment
   @@APT_LEV = ["ne", "mx", "es"]
   @@APT_LEV_ALL = ["mx", "es"]
 
+
+  def self.get_values_for_dummy(nationality, level, adaptation, which, var)
+    nationality = 
+      case nationality
+      when "mexican"
+        "mx"
+      when "spanish"
+        "es"
+      end
+      
+    adaptation = 
+      case adaptation
+      when "neutral"
+        "ne"
+      when "es"
+        "es"
+      when "mx"
+        "mx"
+      end      
+
+    level_changed = level+"_"+adaptation
+
+    puts "#{nationality}, #{adaptation}, #{level_changed}"
+
+    freq_no       = 0
+    freq_yes      = 0
+
+    puts "Before SQL"
+        
+    visitors = Visitor.find(:all, :joins => :visitor_sessions, :conditions => 
+      ["(manipulation_level = ? or manipulation_level = ?) AND 
+        visitor_sessions.ajax_on_load_time IS NOT NULL AND
+        country_iso = ?", level_changed, level_changed+"_without_avatars",nationality])
+    
+    puts "After SQL"
+    puts visitors.size
+    
+    puts "Before map"
+    sessions = visitors.map { |e| e.visitor_sessions.first }
+    puts "After map"
+
+    puts "Sessions: #{sessions.size}"        
+    sessions.each do |session|
+
+      if var != "newsletter"
+        freq_no     =         (freq_no          + 1) if eval("session.#{var}.size") == 0
+        freq_yes    =         (freq_yes         + 1) if eval("session.#{var}.size")  > 0
+      else
+        freq_no     =         (freq_no          + 1) if eval("session.#{var}") == false
+        freq_yes    =         (freq_yes         + 1) if eval("session.#{var}") == true
+      end
+
+    end
+    
+    puts "Nationality transform"
+    dummy_nationality = 
+      case nationality
+      when "mx"
+        "0"
+      when "es"
+        "1"
+      end
+    
+    dummy_level = 
+      case level
+      when "symbols"
+        "0"
+      when "dialect"
+        "1"
+      when "ugc"
+        "2"
+      when "all"
+        "3"
+      end     
+    
+    dummy_adaptation = 
+      case adaptation
+      when "ne"
+        "1"
+      when "es"
+        "0"
+      when "mx"
+        "2"
+      end      
+    
+    dummy_which =
+      case which
+      when "yes"
+        "1"
+      when "no"
+        "0"
+      end      
+    
+    puts "Before return"
+
+    if    which == "yes"
+      return [dummy_nationality, dummy_level, dummy_adaptation, dummy_which, freq_yes]
+    elsif which == "no"
+      return [dummy_nationality, dummy_level, dummy_adaptation, dummy_which, freq_no]      
+    end
+        
+  end
+
+  def self.getDummyTable(var)
+
+    puts "Start"
+  
+    FasterCSV.generate(:col_sep => "\t") do |csv|
+      csv << ["nationality",
+              "level", 
+              "adaptation",
+              "story_read",
+              "frequency", 
+               ]
+
+   puts "Mexican Symbols"
+    
+    csv << get_values_for_dummy("mexican", "symbols", "es", "yes", var)
+    
+    puts "next"
+    csv << get_values_for_dummy("mexican", "symbols", "es", "no", var)
+    csv << get_values_for_dummy("mexican", "symbols", "neutral", "yes", var)
+    csv << get_values_for_dummy("mexican", "symbols", "neutral", "no", var)
+    csv << get_values_for_dummy("mexican", "symbols", "mx", "yes", var)
+    csv << get_values_for_dummy("mexican", "symbols", "mx", "no", var)
+
+   puts "Mexican Dialects"
+
+    csv << get_values_for_dummy("mexican", "dialect", "es", "yes", var)
+    csv << get_values_for_dummy("mexican", "dialect", "es", "no", var)
+    csv << get_values_for_dummy("mexican", "dialect", "neutral", "yes", var)
+    csv << get_values_for_dummy("mexican", "dialect", "neutral", "no", var)    
+    csv << get_values_for_dummy("mexican", "dialect", "mx", "yes", var)
+    csv << get_values_for_dummy("mexican", "dialect", "mx", "no", var)
+
+    puts "Mexican ugc"
+
+    csv << get_values_for_dummy("mexican", "ugc", "es"     , "yes", var)
+    csv << get_values_for_dummy("mexican", "ugc", "es"     , "no", var)
+    csv << get_values_for_dummy("mexican", "ugc", "neutral", "yes", var)
+    csv << get_values_for_dummy("mexican", "ugc", "neutral", "no", var)
+    csv << get_values_for_dummy("mexican", "ugc", "mx"     , "yes", var)  
+    csv << get_values_for_dummy("mexican", "ugc", "mx"     , "no", var)      
+    
+    mx_symbols_ne_yes = get_values_for_dummy("mexican", "symbols", "neutral", "yes", var)
+    mx_symbols_ne_no  = get_values_for_dummy("mexican", "symbols", "neutral", "no" , var)    
+        
+    mx_symbols_ne_yes[0] = "0"
+    mx_symbols_ne_yes[1] = "3"
+    mx_symbols_ne_yes[2] = "1"
+    mx_symbols_ne_no[0] = "0"
+    mx_symbols_ne_no[1] = "3"
+    mx_symbols_ne_no[2] = "1"
+
+    csv << get_values_for_dummy("mexican", "all", "es", "yes", var)
+    csv << get_values_for_dummy("mexican", "all", "es", "no", var)    
+    csv << mx_symbols_ne_yes
+    csv << mx_symbols_ne_no    
+    csv << get_values_for_dummy("mexican", "all", "mx", "yes", var)
+    csv << get_values_for_dummy("mexican", "all", "mx", "no", var)    
+
+
+
+    # SPANIARDS
+
+   puts "Spanish Symbols"
+    
+    csv << get_values_for_dummy("spanish", "symbols", "es", "yes", var)
+    csv << get_values_for_dummy("spanish", "symbols", "es", "no", var)
+    csv << get_values_for_dummy("spanish", "symbols", "neutral", "yes", var)
+    csv << get_values_for_dummy("spanish", "symbols", "neutral", "no", var)
+    csv << get_values_for_dummy("spanish", "symbols", "mx", "yes", var)
+    csv << get_values_for_dummy("spanish", "symbols", "mx", "no", var)
+    
+    
+   puts "Spanish Dialect"    
+    csv << get_values_for_dummy("spanish", "dialect", "es", "yes", var)
+    csv << get_values_for_dummy("spanish", "dialect", "es", "no", var)
+    csv << get_values_for_dummy("spanish", "dialect", "neutral", "yes", var)
+    csv << get_values_for_dummy("spanish", "dialect", "neutral", "no", var)    
+    csv << get_values_for_dummy("spanish", "dialect", "mx", "yes", var)
+    csv << get_values_for_dummy("spanish", "dialect", "mx", "no", var)
+
+   puts "Spanish UGC"
+
+    csv << get_values_for_dummy("spanish", "ugc", "es"     , "yes", var)
+    csv << get_values_for_dummy("spanish", "ugc", "es"     , "no", var)
+    csv << get_values_for_dummy("spanish", "ugc", "neutral", "yes", var)
+    csv << get_values_for_dummy("spanish", "ugc", "neutral", "no", var)
+    csv << get_values_for_dummy("spanish", "ugc", "mx"     , "yes", var)  
+    csv << get_values_for_dummy("spanish", "ugc", "mx"     , "no", var)      
+    
+    es_symbols_ne_yes = get_values_for_dummy("spanish", "symbols", "neutral", "yes", var)
+    es_symbols_ne_no  = get_values_for_dummy("spanish", "symbols", "neutral", "no" , var)    
+        
+    es_symbols_ne_yes[0] = "1"
+    es_symbols_ne_yes[1] = "3"
+    es_symbols_ne_yes[2] = "1"
+    es_symbols_ne_no[0] = "1"
+    es_symbols_ne_no[1] = "3"
+    es_symbols_ne_no[2] = "1"
+
+    csv << get_values_for_dummy("spanish", "all", "mx", "yes", var)
+    csv << get_values_for_dummy("spanish", "all", "mx", "no", var)    
+    csv << es_symbols_ne_yes
+    csv << es_symbols_ne_no    
+    csv << get_values_for_dummy("spanish", "all", "es", "yes", var)
+    csv << get_values_for_dummy("spanish", "all", "es", "no", var)  
+
+    csv
+             
+   end    
+    
+  end
+
+
+
   def self.include_user_images?
     false
   end

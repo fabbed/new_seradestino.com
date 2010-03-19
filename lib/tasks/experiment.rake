@@ -16,6 +16,16 @@ namespace :exp do
       puts "Wrting File"
       File.open("./public/experiment/results.txt", 'w') {|f| f.write(csv_string) }            
     end
+
+    desc "Remove Tag"
+    task :get_dummy => :environment do
+      var="newsletter"
+      csv_string = Experiment.getDummyTable(var)  
+      puts "Wrting File"
+      File.open("./public/experiment/#{var}_dummy_coded_numeric.txt", 'w') {|f| f.write(csv_string) }            
+    end
+
+
   
     desc "Remove Tag"
     task :comments => :environment do
@@ -97,9 +107,11 @@ namespace :exp do
         else
 
           if !story.ip
+            puts "Visitor #{story.id} has no IP"
             story.country_iso = "xx"
             story.save
           elsif story.ip and !story.country_iso
+            puts "Has ip and is country_iso is not nill"
             # location = GeoKit::Geocoders::IpGeocoder.geocode(story.ip)
             location = GeoKit::Geocoders::GeoPluginGeocoder.geocode("#{story.ip}")    
             if location.success
