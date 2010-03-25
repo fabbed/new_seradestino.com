@@ -48,12 +48,15 @@ class Experiment
     puts "Sessions: #{sessions.size}"        
     sessions.each do |session|
 
-      if var != "newsletter"
+      if var == "stories_read" or var == "comments" or var == "stories" or var == "ratings"
         freq_no     =         (freq_no          + 1) if eval("session.#{var}.size") == 0
         freq_yes    =         (freq_yes         + 1) if eval("session.#{var}.size")  > 0
-      else
+      elsif var == "newsletter"
         freq_no     =         (freq_no          + 1) if eval("session.#{var}") == false
         freq_yes    =         (freq_yes         + 1) if eval("session.#{var}") == true
+      elsif var == "registered"
+        freq_no     =         (freq_no          + 1) if !session.user_id
+        freq_yes    =         (freq_yes         + 1) if session.user_id
       end
 
     end

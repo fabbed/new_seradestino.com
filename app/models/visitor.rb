@@ -3,6 +3,7 @@ class Visitor < ActiveRecord::Base
   has_many :visitor_sessions, :dependent => :destroy
   belongs_to :country
 
+
   named_scope :date_between, lambda { |date_range|   { :conditions => { :created_at => date_range } } }
   named_scope :experiment_countries, :conditions => ['country_iso = ? OR country_iso = ?', "ES", "MX"]
   

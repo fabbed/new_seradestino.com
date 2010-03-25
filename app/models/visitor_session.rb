@@ -1,5 +1,5 @@
 class VisitorSession < ActiveRecord::Base
-
+  belongs_to :user
   belongs_to :visitor
   
   serialize   :stories
