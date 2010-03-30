@@ -35,8 +35,10 @@ class User  < ActiveRecord::Base
   before_create :make_activation_code 
 
   has_attached_file :avatar, :styles => { :large => "126x126", :medium => "65x65#", :small => "34x34#" }, :default_url => "/avatars/:style/missing.png"
+  
+  named_scope :gender, lambda { |gender|   { :conditions => { :gender => gender } } }
 
-
+  
   named_scope :active, { :conditions => { :activation_code => nil } }
   named_scope :newest_first, { :order => "activated_at desc" }
   named_scope :with_avatar, { :conditions => ["users.avatar_file_name IS NOT NULL"] }

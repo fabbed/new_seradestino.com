@@ -10,7 +10,7 @@ class ApplicationController < TrackingController
 
   STORIES_PER_PAGE = 6
 
-  before_filter :create_visitor_or_load_existing
+  # before_filter :create_visitor_or_load_existing
 
 
 

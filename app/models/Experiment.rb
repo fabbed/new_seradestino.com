@@ -5,6 +5,115 @@ class Experiment
   @@APT_LEV_ALL = ["mx", "es"]
 
 
+  def self.get_values_for_dummy_collapsed(nationality, adaptation, which, var)
+    nationality = 
+      case nationality
+      when "mexican"
+        "mx"
+      when "spanish"
+        "es"
+      end
+      
+    adaptation = 
+      case adaptation
+      when "neutral"
+        "ne"
+      when "es"
+        "es"
+      when "mx"
+        "mx"
+      end      
+
+
+ adaptation1 = "symbols_#{adaptation}"
+ adaptation2 = "symbols_#{adaptation}_without_avatars"
+ adaptation3 = "dialect_#{adaptation}"
+ adaptation4 = "dialect_#{adaptation}_without_avatars"
+ adaptation5 = "ugc_#{adaptation}"
+ adaptation6 = "ugc_#{adaptation}_without_avatars"
+ adaptation7 = "all_#{adaptation}"
+ adaptation8 = "all_#{adaptation}_without_avatars"
+
+
+    puts "#{nationality}, #{adaptation}"
+
+    freq_no       = 0
+    freq_yes      = 0
+
+    puts "Before SQL"
+        
+    visitors = Visitor.find(:all, :joins => :visitor_sessions, :conditions => 
+      ["visitor_sessions.ajax_on_load_time IS NOT NULL AND country_iso = ? AND
+        (manipulation_level = ? or 
+        manipulation_level = ? or
+        manipulation_level = ? or 
+        manipulation_level = ? or
+        manipulation_level = ? or 
+        manipulation_level = ? or
+        manipulation_level = ? or 
+        manipulation_level = ?)", nationality, adaptation1, adaptation2, adaptation3, adaptation4, adaptation5, adaptation6, adaptation7,adaptation8])
+
+    
+    puts "After SQL"
+    puts visitors.size
+    
+    puts "Before map"
+    sessions = visitors.map { |e| e.visitor_sessions.first }
+    puts "After map"
+
+    puts "Sessions: #{sessions.size}"        
+    sessions.each do |session|
+
+      if var == "stories_read" or var == "comments" or var == "stories" or var == "ratings"
+        freq_no     =         (freq_no          + 1) if eval("session.#{var}.size") == 0
+        freq_yes    =         (freq_yes         + 1) if eval("session.#{var}.size")  > 0
+      elsif var == "newsletter"
+        freq_no     =         (freq_no          + 1) if eval("session.#{var}") == false
+        freq_yes    =         (freq_yes         + 1) if eval("session.#{var}") == true
+      elsif var == "registered"
+        freq_no     =         (freq_no          + 1) if !session.user_id
+        freq_yes    =         (freq_yes         + 1) if session.user_id
+      end
+
+    end
+    
+    puts "Nationality transform"
+    dummy_nationality = 
+      case nationality
+      when "mx"
+        "0"
+      when "es"
+        "1"
+      end
+        
+    dummy_adaptation = 
+      case adaptation
+      when "ne"
+        "1"
+      when "es"
+        "0"
+      when "mx"
+        "2"
+      end      
+    
+    dummy_which =
+      case which
+      when "yes"
+        "1"
+      when "no"
+        "0"
+      end      
+    
+    puts "Before return"
+
+    if    which == "yes"
+      return [dummy_nationality, dummy_adaptation, dummy_which, freq_yes]
+    elsif which == "no"
+      return [dummy_nationality, dummy_adaptation, dummy_which, freq_no]      
+    end
+            
+  end
+
   def self.get_values_for_dummy(nationality, level, adaptation, which, var)
     nationality = 
       case nationality
@@ -109,6 +218,48 @@ class Experiment
     end
         
   end
+
+
+
+  def self.getDummyTableCollapsed(var)
+    puts "Start"
+  
+    FasterCSV.generate(:col_sep => "\t") do |csv|
+      csv << ["nationality",
+              "adaptation",
+              "#{var}",
+              "frequency", 
+               ]
+
+   puts "Mexican Symbols"
+    
+    csv << get_values_for_dummy_collapsed("mexican", "es", "yes", var)
+    csv << get_values_for_dummy_collapsed("mexican", "es", "no", var)
+    csv << get_values_for_dummy_collapsed("mexican", "neutral", "yes", var)
+    csv << get_values_for_dummy_collapsed("mexican", "neutral", "no", var)
+    csv << get_values_for_dummy_collapsed("mexican", "mx", "yes", var)
+    csv << get_values_for_dummy_collapsed("mexican", "mx", "no", var)
+
+    # SPANIARDS
+
+   puts "Spanish Symbols"
+    
+    csv << get_values_for_dummy_collapsed("spanish", "es", "yes", var)
+    csv << get_values_for_dummy_collapsed("spanish", "es", "no", var)
+    csv << get_values_for_dummy_collapsed("spanish", "neutral", "yes", var)
+    csv << get_values_for_dummy_collapsed("spanish", "neutral", "no", var)
+    csv << get_values_for_dummy_collapsed("spanish", "mx", "yes", var)
+    csv << get_values_for_dummy_collapsed("spanish", "mx", "no", var)
+    
+
+    csv
+             
+   end    
+    
+  end
+  
+  
+  
 
   def self.getDummyTable(var)
 

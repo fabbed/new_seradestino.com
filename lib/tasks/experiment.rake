@@ -1,6 +1,25 @@
 namespace :exp do
 
     desc "Survey Results"
+    task :age => :environment do
+      
+      ages = 0
+      
+      users = User.active.gender("f")
+      
+      users.each do |user|
+        puts Date.today.year - user.birthdate.to_date.year
+        ages = ages + (Date.today.year - user.birthdate.to_date.year)
+      end
+      
+      puts "Average Age: #{ages.to_f / users.size.to_f}"
+      
+      
+    end
+
+
+
+    desc "Survey Results"
     task :get_survey_results => :environment do
       
       count_survey_gender = Visitor.find(:all, 
@@ -90,6 +109,16 @@ namespace :exp do
       puts "Wrting File"
       File.open("./public/experiment/#{ENV['variable']}_dummy_coded_numeric.txt", 'w') {|f| f.write(csv_string) }            
     end
+
+    desc "Remove Tag"
+    task :get_dummy_collapsed => :environment do
+      csv_string = Experiment.getDummyTableCollapsed(ENV['variable'])  
+      puts "Wrting File"
+      File.open("./public/experiment/collapsed_#{ENV['variable']}_dummy_coded_.txt", 'w') {|f| f.write(csv_string) }            
+    end
+
+
+
   
     desc "Remove Tag"
     task :comments => :environment do
