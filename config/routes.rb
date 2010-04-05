@@ -7,6 +7,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.reglas      '/reglas-de-uso',          :controller => 'pages', :action => 'reglas_de_uso'
   map.privacidad  '/politica-de-privacidad', :controller => 'pages', :action => 'politica_de_privacidad'
+
+
+  map.spss_results  '/experiment/spss', :controller => 'pages', :action => 'spss'
+  map.r_results  '/experiment/r', :controller => 'pages', :action => 'r'
   
   map.my_account '/mi-cuenta', :controller => 'account/base', :action => 'show'
   

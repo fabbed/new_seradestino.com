@@ -8,4 +8,12 @@ class PagesController < ApplicationController
     
   end
 
+  def spss
+    render :layout => false    
+  end
+
+  def r
+    render :layout => false
+  end
+
 end
